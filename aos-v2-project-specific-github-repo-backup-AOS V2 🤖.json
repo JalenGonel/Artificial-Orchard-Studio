@@ -1,0 +1,619 @@
+{
+  "createdAt": "2025-09-03T15:59:44.053Z",
+  "updatedAt": "2025-09-04T07:14:03.000Z",
+  "id": "iOpqJhPcb4IdaMnZ",
+  "name": "AOS v2 Project Specific Github Repo Backup",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "id": "ac7f7806-e633-4a7e-af12-cb67c69eb73b",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        384,
+        240
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2c85f436-13c9-48a9-bfc2-a5b374b553d2",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        704,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "JalenGonel",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "Artificial-Orchard-Studio",
+          "mode": "list",
+          "cachedResultName": "Artificial-Orchard-Studio",
+          "cachedResultUrl": "https://github.com/JalenGonel/Artificial-Orchard-Studio"
+        },
+        "filePath": "="
+      },
+      "id": "e7824e86-40da-4f91-a91f-3ecdedaba78d",
+      "name": "List files from repo",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        544,
+        240
+      ],
+      "webhookId": "fe226d42-cb47-49e7-867a-a70c3600e235",
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "TFvtNpNSj8RKnQAM",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "JalenGonel",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "Artificial-Orchard-Studio",
+          "mode": "list",
+          "cachedResultName": "Artificial-Orchard-Studio",
+          "cachedResultUrl": "https://github.com/JalenGonel/Artificial-Orchard-Studio"
+        },
+        "filePath": "={{ $('Retrieve [AOS V2 🤖] workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve [AOS V2 🤖] workflows').item.json.tags[0].name }}.json",
+        "fileContent": "={{ $('To base64').item.json.data }}",
+        "commitMessage": "=backup-{{ $('Commit date & file name').item.json.commitDate }}"
+      },
+      "id": "b302eef5-0d12-4676-89aa-25b8e8f411f8",
+      "name": "Update file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        1984,
+        160
+      ],
+      "webhookId": "4a7be34c-ea0b-4c38-aed2-7cde6cc18251",
+      "typeVersion": 1,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "TFvtNpNSj8RKnQAM",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "JalenGonel",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "Artificial-Orchard-Studio",
+          "mode": "list",
+          "cachedResultName": "Artificial-Orchard-Studio",
+          "cachedResultUrl": "https://github.com/JalenGonel/Artificial-Orchard-Studio"
+        },
+        "filePath": "={{ $('Retrieve [AOS V2 🤖] workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve [AOS V2 🤖] workflows').item.json.tags[0].name }}.json",
+        "fileContent": "={{ $('To base64').item.json.data }}",
+        "commitMessage": "=backup-{{ $node['Commit date & file name'].json.commitDate }}"
+      },
+      "id": "48b3c908-17c6-4d60-972c-1d123a5c2a85",
+      "name": "Upload file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        1984,
+        320
+      ],
+      "webhookId": "c792192c-5870-4b6a-a0f5-9ce1a211f5e6",
+      "typeVersion": 1,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "TFvtNpNSj8RKnQAM",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Aggregate').item.json.name }}",
+              "operation": "contains",
+              "value2": "={{ $('Retrieve [AOS V2 🤖] workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve [AOS V2 🤖] workflows').item.json.tags[0].name }}.json"
+            }
+          ]
+        }
+      },
+      "id": "b206959d-5814-4668-a664-ae43bb9d14bc",
+      "name": "Check if file exists",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1824,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "format": true
+        }
+      },
+      "id": "4298060d-aa13-4c1e-96b1-9634406e8c10",
+      "name": "Json file",
+      "type": "n8n-nodes-base.convertToFile",
+      "position": [
+        1264,
+        240
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "id": "e5a945b5-7e89-4627-9bbe-95967f8af5a0",
+      "name": "To base64",
+      "type": "n8n-nodes-base.extractFromFile",
+      "position": [
+        1440,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### Retrieve previous file names from Github",
+        "height": 380,
+        "width": 300,
+        "color": 5
+      },
+      "id": "f11d57e4-a3ff-44d3-bf8d-0783554c649e",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        528,
+        112
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe4a36ef-9f04-40e3-99bd-cc517a49b440",
+              "name": "commitDate",
+              "type": "string",
+              "value": "={{ $now.format('dd-MM-yyyy/H:mm') }}"
+            },
+            {
+              "id": "b0fe1bcc-e79c-4a6b-b8b4-44222c8bf4e8",
+              "name": "fileName",
+              "type": "string",
+              "value": "={{ $('Retrieve [AOS V2 🤖] workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve [AOS V2 🤖] workflows').item.json.tags[0].name }}.json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9717007a-7d24-4a68-aeeb-4603c7414a89",
+      "name": "Commit date & file name",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1664,
+        240
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "### Retrieve and process workflows from n8n",
+        "height": 380,
+        "width": 660,
+        "color": 3
+      },
+      "id": "345efced-7f94-4ffa-88ba-d22136631435",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        928,
+        112
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### Commit + edit/create files if needed",
+        "height": 380,
+        "width": 460,
+        "color": 4
+      },
+      "id": "76056620-876c-4e28-bf67-66ed0cad8fca",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1648,
+        112
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### Backs up Artificial Orchard Studios - version 2 workflows to Github Repo\n### Repository: Artificial-Orchard-Studio\n### Repository Owner: @JalenGonel\n### Repo Permission: Public\n\nJalen 090425: Because this workflow is a public case study, the Github repo is, too, public",
+        "height": 200,
+        "width": 600
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        512,
+        -128
+      ],
+      "id": "c8524d64-def5-4205-813d-9fb59fcfbb54",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "batchSize": 15,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        240
+      ],
+      "id": "0d0e1a8e-d42f-4e76-828d-2e30a3ccef6a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        320
+      ],
+      "id": "1e7cc180-93f0-4cbf-af59-ef3063adc978",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C091847GHDK",
+          "mode": "list",
+          "cachedResultName": "n8n-logs"
+        },
+        "text": "Backed up to github, @JalenGonel if Artificial-Orchard repo",
+        "otherOptions": {
+          "includeLinkToWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1824,
+        -80
+      ],
+      "id": "44891e90-da96-4ad4-8461-2e673ebfee2c",
+      "name": "Slack",
+      "webhookId": "0b6008d7-b615-4b32-b68f-7eb5e89b86ae",
+      "executeOnce": true,
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "i1ehKH0CWcfieZGy",
+          "name": "AO Slack OAuth 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Record in Slack Channel when complete #n8n-logs",
+        "height": 260,
+        "width": 460,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        -176
+      ],
+      "id": "3e3a52fe-ccc1-4060-b27e-afa563ef8834",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "filters": {
+          "tags": "AOS V2 🤖"
+        },
+        "requestOptions": {
+          "batching": {
+            "batch": {
+              "batchSize": 20
+            }
+          }
+        }
+      },
+      "id": "15815f5c-9936-4111-9938-2fb316fb0fcf",
+      "name": "Retrieve [AOS V2 🤖] workflows",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        848,
+        240
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "jJ1xMNPtzkKT0iWA",
+          "name": "n8n — @adamandjalen"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Retrieve [AOS V2 🤖] workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Json file": {
+      "main": [
+        [
+          {
+            "node": "To base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "To base64": {
+      "main": [
+        [
+          {
+            "node": "Commit date & file name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "List files from repo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if file exists": {
+      "main": [
+        [
+          {
+            "node": "Update file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List files from repo": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Commit date & file name": {
+      "main": [
+        [
+          {
+            "node": "Check if file exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Json file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update file": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrieve [AOS V2 🤖] workflows": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "any",
+    "executionOrder": "v0",
+    "errorWorkflow": "QrPB2RdQEyWqBx3N"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        0
+      ]
+    }
+  },
+  "meta": {
+    "templateId": "4064",
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-06-30T12:00:48.005-04:00",
+          "Readable date": "June 30th 2025, 12:00:48 pm",
+          "Readable time": "12:00:48 pm",
+          "Day of week": "Monday",
+          "Year": "2025",
+          "Month": "June",
+          "Day of month": "30",
+          "Hour": "12",
+          "Minute": "00",
+          "Second": "48",
+          "Timezone": "America/New_York (UTC-04:00)"
+        }
+      }
+    ]
+  },
+  "versionId": "0fe847e7-b584-461a-abdc-96cc9da96ea6",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-09-03T16:00:27.304Z",
+      "updatedAt": "2025-09-03T16:00:27.304Z",
+      "role": "workflow:owner",
+      "workflowId": "iOpqJhPcb4IdaMnZ",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-13T03:52:11.297Z",
+      "updatedAt": "2025-06-13T03:52:11.297Z",
+      "id": "KzRClXHCISj3Ntcd",
+      "name": "recordkeeping"
+    },
+    {
+      "createdAt": "2025-07-10T02:57:43.859Z",
+      "updatedAt": "2025-07-10T02:57:43.859Z",
+      "id": "q2dSzISNDOwt6IiP",
+      "name": "logs/metadata/eval"
+    }
+  ]
+}
