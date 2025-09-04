@@ -1,0 +1,1888 @@
+{
+  "createdAt": "2025-08-06T17:19:46.437Z",
+  "updatedAt": "2025-08-29T17:54:24.000Z",
+  "id": "TTRgShxKssQmwHFQ",
+  "name": "Publish Final Package",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "final_package_id"
+            },
+            {
+              "name": "google_drive_final_package_folder_id"
+            },
+            {
+              "name": "caption",
+              "type": "any"
+            },
+            {
+              "name": "schedule_date_utc_format"
+            },
+            {
+              "name": "platform"
+            },
+            {
+              "name": "aos",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "9a78fa2c-002b-46c0-b565-04ed8c0eebe6",
+      "typeVersion": 1.1,
+      "name": "start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        496,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $('start').item.json.FINAL_PACKAGE_ID }}\n{{ $('start').item.json.google_drive_final_package_folder_id }}\n{{ $('start').item.json.caption }}\n{{ $('start').item.json.schedule_date }}\n{{ $('start').item.json.platform }}\n{{ $('start').item.json.SpecialPublishOptions }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        144
+      ],
+      "id": "c5e9f33d-1cf3-4bcf-acef-f0b5b6c888e5",
+      "name": "Archive $('start') js field expressions",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f7bbe44-1a9f-4a72-8e94-21358b93bcf1",
+              "name": "packageD",
+              "value": "={{\n\n[\n  \"https://drive.google.com/uc?id=10y4s7TxAk-P1xE_a0iqmZD5wBdLJo4WZ&export=download\",\n  \"https://drive.google.com/uc?id=1wRq7FXLpvOOBDtCU8P7CJTDUnJChJd4e&export=download\",\n  \"https://drive.google.com/uc?id=1wI5i8z82AOayveO07kog-aZeiDsbNwRi&export=download\",\n  \"https://drive.google.com/uc?id=1WiAroxo3KHQxHeHf3VUJRDsE20S4PKM1&export=download\",\n  \"https://drive.google.com/uc?id=1ZQGw8uVebCoAqWoOWwNTJIHYteRs4yxV&export=download\",\n  \"https://drive.google.com/uc?id=1do-fPPTA07WFTGJG8KmWX109mFgMd9HC&export=download\",\n  \"https://drive.google.com/uc?id=1coHuij-vuM4Zl4CVsLHKpQSIEsQ7MKAS&export=download\"\n]\n}}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        1280
+      ],
+      "id": "86532e0b-cc96-43c5-aa4e-2da840e34fa9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "mediaUrl": "={{ $json.webContentLink }}"
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        1264,
+        1120
+      ],
+      "id": "110222c6-20d9-467f-915a-672de3ddcc23",
+      "name": "Upload media2",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "blotatoApi": {
+          "id": "RMbjVIxX1aLSvyw5",
+          "name": "Blotato — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "url"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        1120
+      ],
+      "id": "e860ecc6-4b31-4c5c-bd4a-e0f00f5dfdda",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a0b6dcd-9097-4b1d-a39c-c157df3746ff",
+              "name": "success?",
+              "value": "={{ !!$('Upload to Instagram').item?.json?.postSubmissionId }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2640,
+        1120
+      ],
+      "id": "479672c1-01b2-4874-a06c-fc8997f8dea8",
+      "name": "FINAL OUTPUT",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1825956263,
+          "mode": "list",
+          "cachedResultName": "final_packages",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1825956263"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "last_workflow_execution_id": "={{ $execution.id }}",
+            "cdn_post_submission_id": "={{ $json.postSubmissionId }}",
+            "final_pkg_id": "={{ $('start').item.json.final_pkg_id }}",
+            "schedule_release_date_at": "={{ $('start').item.json.schedule_date ?? $now.plus(3, 'minutes') }}",
+            "published_to_cdn_at": "={{ $now.toLocal().toISO() }}",
+            "cdn_method": "Blotato",
+            "Caption": "={{ $('start').item.json.caption !== $(\"Get Final Package's row(s) in sheet\").item.json.Caption ? $('start').item.json.caption : undefined }}"
+          },
+          "matchingColumns": [
+            "final_pkg_id"
+          ],
+          "schema": [
+            {
+              "id": "final_pkg_no",
+              "displayName": "final_pkg_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_name",
+              "displayName": "project_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_no",
+              "displayName": "project_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_wrk_drft_order_no",
+              "displayName": "project_wrk_drft_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_no",
+              "displayName": "wrk_drft_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_id",
+              "displayName": "wrk_drft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_prod_ver_lock_order_no",
+              "displayName": "project_prod_ver_lock_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_no",
+              "displayName": "prod_ver_lock_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_id",
+              "displayName": "prod_ver_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_final_pkg_order_no",
+              "displayName": "project_final_pkg_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_id",
+              "displayName": "final_pkg_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "final_pkg_status",
+              "displayName": "final_pkg_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_approval_status",
+              "displayName": "final_pkg_approval_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_aka_refs_tags",
+              "displayName": "internal_aka_refs_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_desc",
+              "displayName": "internal_desc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_name",
+              "displayName": "final_pkg_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "package_format",
+              "displayName": "package_format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "published_to_cdn_at",
+              "displayName": "published_to_cdn_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_drive_folder_id",
+              "displayName": "final_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_type",
+              "displayName": "final_pkg_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "schedule_release_date_at",
+              "displayName": "schedule_release_date_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Caption",
+              "displayName": "Caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "final_package_manifest",
+              "displayName": "final_package_manifest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cdn_method",
+              "displayName": "cdn_method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cdn_post_submission_id",
+              "displayName": "cdn_post_submission_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2320,
+        1120
+      ],
+      "id": "f83ab8be-adcd-43ff-bca6-4b68c6bc3a99",
+      "name": "Update Publish Statuses in Final Packages",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        496,
+        1232
+      ],
+      "id": "765d9f04-7144-43dd-a618-c8a030ad8664",
+      "name": "Start"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "={{ $('start').item.json.google_drive_final_package_folder_id }}",
+            "mode": "id"
+          }
+        },
+        "options": {
+          "fields": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        992,
+        1120
+      ],
+      "id": "50a5d65e-f19f-4ec3-b150-dabaf973f846",
+      "name": "Search Final_Package_Folder id",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "notes": "return: webContentLink"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1825956263,
+          "mode": "list",
+          "cachedResultName": "final_packages",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1825956263"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "final_pkg_id",
+              "lookupValue": "={{ $json.final_pkg_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        944
+      ],
+      "id": "d487772b-f93e-4497-9c9e-583dc7e9d27b",
+      "name": "Get Final Package's row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('start').item.json.platform }}",
+                    "rightValue": "instagram",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "5ed568dc-62e7-4c30-b1cf-86625303d4d8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "instagram"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8ac54d5d-e869-40a0-abb7-e29dcc820f44",
+                    "leftValue": "={{ $('start').item.json.platform }}",
+                    "rightValue": "tiktok",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tiktok"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1584,
+        1296
+      ],
+      "id": "9d8399c2-b20e-47dd-ae46-2b6a86562d68",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "url"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        1392
+      ],
+      "id": "1ad04876-3044-49c9-8185-95b0537d3576",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1825956263,
+          "mode": "list",
+          "cachedResultName": "final_packages",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1825956263"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "last_workflow_execution_id": "={{ $execution.id }}",
+            "cdn_post_submission_id": "={{ $json.postSubmissionId }}",
+            "final_pkg_id": "={{ $('start').item.json.final_pkg_id }}",
+            "schedule_release_date_at": "={{ $('start').item.json.schedule_date ?? $now.plus(3, 'minutes') }}",
+            "published_to_cdn_at": "={{ $now.toLocal().toISO() }}",
+            "cdn_method": "Blotato",
+            "Caption": "={{ $('start').item.json.caption !== $(\"Get Final Package's row(s) in sheet\").item.json.Caption ? $('start').item.json.caption : undefined }}"
+          },
+          "matchingColumns": [
+            "final_pkg_id"
+          ],
+          "schema": [
+            {
+              "id": "final_pkg_no",
+              "displayName": "final_pkg_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_name",
+              "displayName": "project_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_no",
+              "displayName": "project_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_wrk_drft_order_no",
+              "displayName": "project_wrk_drft_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_no",
+              "displayName": "wrk_drft_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_id",
+              "displayName": "wrk_drft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_prod_ver_lock_order_no",
+              "displayName": "project_prod_ver_lock_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_no",
+              "displayName": "prod_ver_lock_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_id",
+              "displayName": "prod_ver_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_final_pkg_order_no",
+              "displayName": "project_final_pkg_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_id",
+              "displayName": "final_pkg_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "final_pkg_status",
+              "displayName": "final_pkg_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_approval_status",
+              "displayName": "final_pkg_approval_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_aka_refs_tags",
+              "displayName": "internal_aka_refs_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_desc",
+              "displayName": "internal_desc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_name",
+              "displayName": "final_pkg_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "package_format",
+              "displayName": "package_format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "published_to_cdn_at",
+              "displayName": "published_to_cdn_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_drive_folder_id",
+              "displayName": "final_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_pkg_type",
+              "displayName": "final_pkg_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "schedule_release_date_at",
+              "displayName": "schedule_release_date_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Caption",
+              "displayName": "Caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "final_package_manifest",
+              "displayName": "final_package_manifest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cdn_method",
+              "displayName": "cdn_method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cdn_post_submission_id",
+              "displayName": "cdn_post_submission_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2320,
+        1392
+      ],
+      "id": "925b02eb-b54a-4319-8c71-eac929db78c2",
+      "name": "Update Publish Statuses in Final Packages1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "platform": "tiktok",
+        "accountId": {
+          "__rl": true,
+          "value": "3968",
+          "mode": "list",
+          "cachedResultName": "artificial_orchard",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/3968"
+        },
+        "postContentText": "={{ $('start').item.json.caption }}",
+        "postContentMediaUrls": "={{ Array.isArray($json.url) ? $json.url.join(',') : $json.url || '' }}",
+        "postCreateTiktokOptionIsAiGenerated": true,
+        "options": {
+          "scheduledTime": "={{ $('start').item.json.schedule_date_utc_format ? $now.plus(3, 'minutes') : undefined }}"
+        }
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        1392
+      ],
+      "id": "032f1420-8aeb-44f9-803c-7283e97523a7",
+      "name": "Upload to Tiktok",
+      "credentials": {
+        "blotatoApi": {
+          "id": "RMbjVIxX1aLSvyw5",
+          "name": "Blotato — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "accountId": {
+          "__rl": true,
+          "value": "3968",
+          "mode": "list",
+          "cachedResultName": "artificial_orchard",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/3968"
+        },
+        "postContentText": "={{ $('start').item.json.caption }}",
+        "postContentMediaUrls": "={{ Array.isArray($json.url) ? $json.url.join(',') : $json.url || '' }}",
+        "options": {
+          "scheduledTime": "={{ $('start').item.json.schedule_date_utc_format ? $now.plus(3, 'minutes') : undefined }}"
+        }
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        1120
+      ],
+      "id": "606c7653-870b-4adb-ac6f-7d3786243a37",
+      "name": "Upload to Instagram",
+      "credentials": {
+        "blotatoApi": {
+          "id": "RMbjVIxX1aLSvyw5",
+          "name": "Blotato — AO"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "start": {
+      "main": [
+        [
+          {
+            "node": "Search Final_Package_Folder id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        []
+      ]
+    },
+    "Upload media2": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Upload to Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Publish Statuses in Final Packages": {
+      "main": [
+        [
+          {
+            "node": "FINAL OUTPUT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        []
+      ]
+    },
+    "Search Final_Package_Folder id": {
+      "main": [
+        [
+          {
+            "node": "Upload media2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Final Package's row(s) in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Upload to Tiktok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Publish Statuses in Final Packages1": {
+      "main": [
+        []
+      ]
+    },
+    "Upload to Tiktok": {
+      "main": [
+        [
+          {
+            "node": "Update Publish Statuses in Final Packages1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Instagram": {
+      "main": [
+        [
+          {
+            "node": "Update Publish Statuses in Final Packages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "Edit Fields": [
+      {
+        "json": {
+          "packageD": [
+            "https://drive.google.com/uc?id=10y4s7TxAk-P1xE_a0iqmZD5wBdLJo4WZ&export=download",
+            "https://drive.google.com/uc?id=1wRq7FXLpvOOBDtCU8P7CJTDUnJChJd4e&export=download",
+            "https://drive.google.com/uc?id=1wI5i8z82AOayveO07kog-aZeiDsbNwRi&export=download",
+            "https://drive.google.com/uc?id=1WiAroxo3KHQxHeHf3VUJRDsE20S4PKM1&export=download",
+            "https://drive.google.com/uc?id=1ZQGw8uVebCoAqWoOWwNTJIHYteRs4yxV&export=download",
+            "https://drive.google.com/uc?id=1do-fPPTA07WFTGJG8KmWX109mFgMd9HC&export=download",
+            "https://drive.google.com/uc?id=1coHuij-vuM4Zl4CVsLHKpQSIEsQ7MKAS&export=download"
+          ]
+        }
+      }
+    ],
+    "start": [
+      {
+        "json": {
+          "final_package_id": "fp_01J9N8H8P7",
+          "google_drive_final_package_folder_id": "1V9NL0ScDNNFMgjihnwblY2gM4KG9uOtt",
+          "caption": "post right away",
+          "schedule_date_utc_format": "2025-08-23T13:44:03.866Z",
+          "platform": "instagram"
+        }
+      }
+    ],
+    "Search Final_Package_Folder id": [
+      {
+        "json": {
+          "parents": [
+            "1V9NL0ScDNNFMgjihnwblY2gM4KG9uOtt"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Adam and Jalen",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "07735408137453532154",
+            "emailAddress": "adamandjalen@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Adam and Jalen",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "07735408137453532154",
+              "emailAddress": "adamandjalen@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "anyoneWithLink",
+              "type": "anyone",
+              "role": "reader",
+              "allowFileDiscovery": false
+            },
+            {
+              "kind": "drive#permission",
+              "id": "07735408137453532154",
+              "type": "user",
+              "emailAddress": "adamandjalen@gmail.com",
+              "role": "owner",
+              "displayName": "Adam and Jalen",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "anyoneWithLink",
+            "07735408137453532154"
+          ],
+          "imageMediaMetadata": {
+            "width": 1024,
+            "height": 1024,
+            "rotation": 0
+          },
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1wRq7FXLpvOOBDtCU8P7CJTDUnJChJd4e",
+          "name": "D5_attempt1_rXpYwZiA.png",
+          "mimeType": "image/png",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "12",
+          "webContentLink": "https://drive.google.com/uc?id=1wRq7FXLpvOOBDtCU8P7CJTDUnJChJd4e&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1wRq7FXLpvOOBDtCU8P7CJTDUnJChJd4e/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/image/png",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBM0c12tK3juFVyc_PWG0dR_JTBwxT0ZxQsG50-vHFv4ubDVdp8UWttls0U418-H2Z8OOOgdFVeHfa3HFWDG1c1-ihhVfm0oUr8Uam2VJuCLqrE=s220",
+          "thumbnailVersion": "6",
+          "viewedByMe": true,
+          "viewedByMeTime": "2025-08-23T14:44:03.340Z",
+          "createdTime": "2025-08-06T07:59:01.030Z",
+          "modifiedTime": "2025-08-06T08:09:31.511Z",
+          "modifiedByMeTime": "2025-08-06T08:09:31.511Z",
+          "modifiedByMe": true,
+          "shared": true,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "Copy of ChatGPT Image May 22, 2025, 07_02_54 PM.png",
+          "fullFileExtension": "png",
+          "fileExtension": "png",
+          "md5Checksum": "9cdb9b0ba55211fa85689ad7f88693e4",
+          "sha1Checksum": "d978bf9d34155214fa00846f700d113650fb8615",
+          "sha256Checksum": "fb0bc3f826c6040820de97b7ad25976c6545ac40c086081192f322c6441368e2",
+          "size": "1558913",
+          "quotaBytesUsed": "1558913",
+          "headRevisionId": "0B_55MJNs4ba_RlRvd090dzVFeUxYQ2xPRTloNlZSRHVPVGNnPQ",
+          "isAppAuthorized": false,
+          "inheritedPermissionsDisabled": false
+        }
+      },
+      {
+        "json": {
+          "parents": [
+            "1V9NL0ScDNNFMgjihnwblY2gM4KG9uOtt"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Adam and Jalen",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "07735408137453532154",
+            "emailAddress": "adamandjalen@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Adam and Jalen",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "07735408137453532154",
+              "emailAddress": "adamandjalen@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "anyoneWithLink",
+              "type": "anyone",
+              "role": "reader",
+              "allowFileDiscovery": false
+            },
+            {
+              "kind": "drive#permission",
+              "id": "07735408137453532154",
+              "type": "user",
+              "emailAddress": "adamandjalen@gmail.com",
+              "role": "owner",
+              "displayName": "Adam and Jalen",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "anyoneWithLink",
+            "07735408137453532154"
+          ],
+          "imageMediaMetadata": {
+            "width": 1024,
+            "height": 1024,
+            "rotation": 0
+          },
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1wI5i8z82AOayveO07kog-aZeiDsbNwRi",
+          "name": "D4_attempt2_rXpYwZiA.png",
+          "mimeType": "image/png",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "7",
+          "webContentLink": "https://drive.google.com/uc?id=1wI5i8z82AOayveO07kog-aZeiDsbNwRi&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1wI5i8z82AOayveO07kog-aZeiDsbNwRi/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/image/png",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBPm01IY02bd4gJOrEwbACSvWsqEAAJBRD149mnYK9SVDmSbylxL2ZJuL71zzzO_Ccz6O7Vjpf7pznn_Tnu-HijtRu2IWtJrti0B24UovXZHIKk=s220",
+          "thumbnailVersion": "2",
+          "viewedByMe": true,
+          "viewedByMeTime": "2025-08-23T14:44:00.377Z",
+          "createdTime": "2025-08-06T08:07:26.071Z",
+          "modifiedTime": "2025-08-06T08:08:06.852Z",
+          "modifiedByMeTime": "2025-08-06T08:08:06.852Z",
+          "modifiedByMe": true,
+          "shared": true,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "ChatGPT Image Aug 6, 2025, 04_06_50 AM.png",
+          "fullFileExtension": "png",
+          "fileExtension": "png",
+          "md5Checksum": "55aeb2e2211bcba629d52c571cf6c01b",
+          "sha1Checksum": "cc1414b626b1aa7b808d5c02e2bf60eeeaf25a47",
+          "sha256Checksum": "1410b997565b2a8530f39fe68661a0cb865223cbc7c5a95adc996e4a421a732f",
+          "size": "2253907",
+          "quotaBytesUsed": "2253907",
+          "headRevisionId": "0B_55MJNs4ba_a2gwbGFKOVFZMVVKTGpHZm1lVWpFdnltaGNzPQ",
+          "isAppAuthorized": false,
+          "inheritedPermissionsDisabled": false
+        }
+      },
+      {
+        "json": {
+          "parents": [
+            "1V9NL0ScDNNFMgjihnwblY2gM4KG9uOtt"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Adam and Jalen",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "07735408137453532154",
+            "emailAddress": "adamandjalen@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Adam and Jalen",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "07735408137453532154",
+              "emailAddress": "adamandjalen@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "anyoneWithLink",
+              "type": "anyone",
+              "role": "reader",
+              "allowFileDiscovery": false
+            },
+            {
+              "kind": "drive#permission",
+              "id": "07735408137453532154",
+              "type": "user",
+              "emailAddress": "adamandjalen@gmail.com",
+              "role": "owner",
+              "displayName": "Adam and Jalen",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocJzCc9b14_xrnjAiavdUhPERL9JO1WEBEf6IVDV13K0yk8-eZQ=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "anyoneWithLink",
+            "07735408137453532154"
+          ],
+          "imageMediaMetadata": {
+            "width": 1024,
+            "height": 1024,
+            "rotation": 0
+          },
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1ZQGw8uVebCoAqWoOWwNTJIHYteRs4yxV",
+          "name": "D2_attempt1_rXpYwZiA.png",
+          "mimeType": "image/png",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "9",
+          "webContentLink": "https://drive.google.com/uc?id=1ZQGw8uVebCoAqWoOWwNTJIHYteRs4yxV&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1ZQGw8uVebCoAqWoOWwNTJIHYteRs4yxV/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/image/png",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBOs1vQ5CGA5q7FF9Jf8BJrswYIuhvmwNDb3cZpZ2U3-zeI8C-2L8ibK86__sBChrUjb4PPLHEAvzM-HanXoNVljsoQbyAFYzldIiOO00s07Wwc=s220",
+          "thumbnailVersion": "2",
+          "viewedByMe": true,
+          "viewedByMeTime": "2025-08-23T14:44:01.990Z",
+          "createdTime": "2025-08-06T07:58:09.542Z",
+          "modifiedTime": "2025-08-06T08:05:12.874Z",
+          "modifiedByMeTime": "2025-08-06T08:05:12.874Z",
+          "modifiedByMe": true,
+          "shared": true,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "Copy of Manifestation of artificial orchard.png",
+          "fullFileExtension": "png",
+          "fileExtension": "png",
+          "md5Checksum": "70a1170528b3e92016807fc2b903d94a",
+          "sha1Checksum": "0be0d93ff1816a6e0706f34af3ef6a93399f0f15",
+          "sha256Checksum": "7214c96b463c451015ff811bb856d30e5e4b64b009671de10912b709ba11f52a",
+          "size": "2211727",
+          "quotaBytesUsed": "2211727",
+          "headRevisionId": "0B_55MJNs4ba_K0ZxN2RTT3kva0FrU05VL1p3S3BmRlJWT1A0PQ",
+          "isAppAuthorized": false,
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ],
+    "Get Final Package's row(s) in sheet": [
+      {
+        "json": {
+          "row_number": 3,
+          "final_pkg_no": 2,
+          "idea": "I07",
+          "project_name": "City Neon Drifters",
+          "project_no": 2302,
+          "project_id": "prj_01J9N8E5K4",
+          "project_wrk_drft_order_no": 2,
+          "wrk_drft_no": 3,
+          "wrk_drft_id": "wd_01J9N8F6M5",
+          "project_prod_ver_lock_order_no": 1,
+          "prod_ver_lock_no": 2,
+          "prod_ver_lock_id": "pvl_01J9N8G7N6",
+          "project_final_pkg_order_no": "",
+          "final_pkg_id": "fp_01J9N8H8P7",
+          "final_pkg_status": "in-review",
+          "final_pkg_approval_status": "",
+          "notes_by_human": "Add subtitle burn-in.",
+          "notes_by_ai": "Timing drift ±0.2s on S3.",
+          "notes_by_code": "re-encoded h264 high@4.2",
+          "internal_aka_refs_tags": "neon,urban,chase,caption",
+          "internal_desc": "VFX-light version with captions",
+          "final_pkg_name": "City Neon Drifters — Final v2",
+          "package_format": "carousel-images",
+          "platform": "Instagram",
+          "created_at": "",
+          "published_to_cdn_at": "2025-08-23T10:45:48.539-04:00",
+          "updated_at": "",
+          "final_drive_folder_id": "1V9NL0ScDNNFMgjihnwblY2gM4KG9uOtt",
+          "final_pkg_type": "",
+          "schedule_release_date_at": "2025-08-23T10:48:48.538-04:00",
+          "Caption": "",
+          "final_package_manifest": "",
+          "cdn_method": "Blotato",
+          "cdn_post_submission_id": "0b0b2d95-f26d-4d0d-a22c-5b6487ab0e50",
+          "last_workflow_execution_id": 3611
+        }
+      }
+    ],
+    "Upload media2": [
+      {
+        "json": {
+          "url": "https://database.blotato.io/storage/v1/object/public/public_media/1cc1677a-72d5-48e4-8c63-f885c4212cd1/445c9fbe-435a-487d-9777-5470620f4af6.png",
+          "id": "3d02d24a-6c79-4d1f-baad-22016c4366aa"
+        }
+      },
+      {
+        "json": {
+          "url": "https://database.blotato.io/storage/v1/object/public/public_media/1cc1677a-72d5-48e4-8c63-f885c4212cd1/6a9aa00e-aa81-48ca-bfe1-8eae6b894cbd.png",
+          "id": "18e379e0-0d79-488a-99cf-3b8392a0a40b"
+        }
+      },
+      {
+        "json": {
+          "url": "https://database.blotato.io/storage/v1/object/public/public_media/1cc1677a-72d5-48e4-8c63-f885c4212cd1/49dfef3f-b78f-49bc-965f-7ba54d9cd854.png",
+          "id": "69a6ac1c-d265-47e2-b813-b29bf17a929a"
+        }
+      }
+    ]
+  },
+  "versionId": "30eaa8e9-2f4c-4bcf-83b6-773f88c203a8",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:29:40.713Z",
+      "updatedAt": "2025-08-29T12:29:40.713Z",
+      "role": "workflow:owner",
+      "workflowId": "TTRgShxKssQmwHFQ",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    },
+    {
+      "createdAt": "2025-07-12T17:35:37.343Z",
+      "updatedAt": "2025-07-12T17:35:37.343Z",
+      "id": "sLc1HXtJn1OeOOhZ",
+      "name": "🚧"
+    }
+  ]
+}
