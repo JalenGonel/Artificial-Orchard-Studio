@@ -1,0 +1,2292 @@
+{
+  "createdAt": "2025-07-29T06:23:46.075Z",
+  "updatedAt": "2025-08-06T11:04:54.000Z",
+  "id": "aNL5AyVDk66Niqjg",
+  "name": "AI Video Gen — AOS V2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "element_id"
+            },
+            {
+              "name": "Element",
+              "type": "object"
+            },
+            {
+              "name": "aspect_ratio"
+            },
+            {
+              "name": "output_file_format"
+            },
+            {
+              "name": "model_to_use"
+            },
+            {
+              "name": "platform_to_use"
+            },
+            {
+              "name": "duration",
+              "type": "number"
+            },
+            {
+              "name": "videoIncludesNativeSound?",
+              "type": "boolean"
+            },
+            {
+              "name": "saveContentFileToDrive?",
+              "type": "boolean"
+            },
+            {
+              "name": "drive_folder_id_intermediate_assets"
+            },
+            {
+              "name": "content_id"
+            },
+            {
+              "name": "google_drive_file_name"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        160
+      ],
+      "id": "deb535a6-a201-4785-ad90-fe8be7ec4459",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.wavespeed.ai/api/v3/bytedance/seedance-v1-pro-t2v-480p",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.input.video_gen_input_body.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        544,
+        432
+      ],
+      "id": "b65de87a-c901-4cdb-9b29-f0e51a8aab6c",
+      "name": "Call seedance-v1-pro-t2v-480p",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/mmaudio-v2/requests/{{ $('Add Sound').item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2704,
+        352
+      ],
+      "id": "c1778d82-b6b8-4ec0-b4fc-310c4a4a9ded",
+      "name": "Get Sound",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/mmaudio-v2 ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "= {\n        \"prompt\": {{ $('When Executed by Another Workflow').item.json.Element.generation_of_video_sound_prompt.toJsonString() }},\n        \"duration\": {{ $('When Executed by Another Workflow').item.json.duration }},\n        \"video_url\": \"{{ $json.data.outputs[0] }}\"\n  }\n",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2160,
+        384
+      ],
+      "id": "f014fdc0-4655-4b05-b7c1-3e275f6d6ff0",
+      "name": "Add Sound",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "29c0c186-8db7-477f-b296-7681770e10bc",
+              "leftValue": "={{ $('When Executed by Another Workflow').item.json.Element.videoContainsNativeAudio }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "49d73b5a-c9e1-46a1-8d12-1c7c3845fc02",
+              "leftValue": "={{ $('When Executed by Another Workflow').item.json.Element.generation_of_video_sound_prompt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ce2edfa9-3538-470e-a269-516fe8bf84e8",
+              "leftValue": "={{ $('When Executed by Another Workflow').item.json.Element.generation_of_video_sound_prompt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1984,
+        192
+      ],
+      "id": "725d9aec-ceb6-47ef-8d56-fa00ca7ff5b2",
+      "name": "generate native video audio?",
+      "onError": "continueRegularOutput",
+      "notes": "If video contains audio and prompt to generate sound for this video is not empty"
+    },
+    {
+      "parameters": {
+        "inputText": "=Task: Analyze the technical sheet for the content element to generate and determine ideal video gen ai model to use. Especially note the parameter 'model_to_use' for choosing classifiaction. (if uncertain, or model to use choice is not given, classify as seedance by default). \n\nCurrent date/time: {{ $now.toISO() }}\n\nElement: {{ $json.toJsonString() }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Veo 3",
+              "description": "Premium quality model by Google, generates native sound"
+            },
+            {
+              "category": "Seedance",
+              "description": "Cheaper video model, customizeable aspect ratio, non-native sound, must be generated via separate ai-model call."
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Please classify the text provided by the user into one of the following categories: {categories}, and use the provided formatting instructions below. Don't explain, and only output the json.\n\nYour thought process: "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -288,
+        96
+      ],
+      "id": "6eac59b8-4733-4da4-b79d-d391a137e427",
+      "name": "Text Classifier",
+      "alwaysOutputData": false,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        272
+      ],
+      "id": "eeda9709-1e7b-481e-92fb-08e25bea14e9",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pwj1L3d2Ror7G0eW",
+          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://kieai.erweima.ai/api/v1/veo/record-info",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1584,
+        -192
+      ],
+      "id": "b524db13-8bc0-4305-b8ec-f6d342af912d",
+      "name": "Get Video Details",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ed3R3onElA0OgoJ5",
+          "name": "Wavespeed.ai - AO Workspace ALL | 🇨🇳 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.wavespeed.ai/api/v3/predictions/{{ $json.data.id }}/result",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1328,
+        464
+      ],
+      "id": "e459f863-839e-46a0-87ba-d3a5576cd4d5",
+      "name": "Get Task Status",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ed3R3onElA0OgoJ5",
+          "name": "Wavespeed.ai - AO Workspace ALL | 🇨🇳 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9256f29d-674f-450e-b28f-9803c085c674",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "completed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "a1f6cf8a-5f74-4505-9985-5d537551a1bd",
+              "leftValue": "={{ $json.data.outputs[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4db74060-49b7-41d5-a42c-3e69bbe5a5e1",
+              "leftValue": "={{ $json.data.outputs[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1536,
+        384
+      ],
+      "id": "e07defc8-3b77-49d8-ba72-4d18ebb5c511",
+      "name": "If status == completed, else wait"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5af55df5-e0dc-4a0e-bad5-359adb0151d6",
+              "leftValue": "={{$json.video}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "61768c6e-5078-4975-b8fc-35e2fff751b3",
+              "leftValue": "={{$json.video.url}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bc7e0031-d37d-468f-9275-aa9bcae98ceb",
+              "leftValue": "={{$json.video.url}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2832,
+        272
+      ],
+      "id": "bc81ee11-6702-47b9-8fe4-ab99edb21d1d",
+      "name": "If video{ } url exists, else poll"
+    },
+    {
+      "parameters": {
+        "content": "## DO NOT set a Wait Node time > 65s. Realistically no more than 32s\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        400
+      ],
+      "id": "980272ce-4f13-402e-8751-3464e9e142e3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "amount": 32
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2064,
+        -400
+      ],
+      "id": "9a030198-5b44-428d-a9b7-6c0b654fd1f0",
+      "name": "Wait 32s",
+      "webhookId": "106b5982-39c9-4111-8ebd-e82572163b34"
+    },
+    {
+      "parameters": {
+        "amount": 32
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3152,
+        384
+      ],
+      "id": "845c8ab6-508a-41dd-9169-43c021fce7a5",
+      "name": "Wait 32s2",
+      "webhookId": "84dccb79-f97f-4c38-a554-738e7cdc2fcf"
+    },
+    {
+      "parameters": {
+        "amount": 32
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2528,
+        352
+      ],
+      "id": "e73c93cf-917c-4caf-af76-69e9ae410197",
+      "name": "Wait 32s3",
+      "webhookId": "24fe3f6d-bee9-426a-b253-e5bab0776f47"
+    },
+    {
+      "parameters": {
+        "amount": 32
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2032,
+        560
+      ],
+      "id": "afe9efc9-623c-453e-a638-79b156ebc6f1",
+      "name": "Wait 32s4",
+      "webhookId": "584146f7-0876-45b4-a1c2-7ff16e2c96b8"
+    },
+    {
+      "parameters": {
+        "amount": 32
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        784,
+        464
+      ],
+      "id": "fc083352-12fe-4024-82d5-e7074be87e42",
+      "name": "Wait 32s5",
+      "webhookId": "03d8efa9-05f8-4e18-9ec5-48842cb4bb5b"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "722d0ade-e8b1-4229-9d5d-a072f5d83749",
+              "leftValue": "={{ $('When Executed by Another Workflow').item.json['saveContentFileToDrive?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ecabbe5c-ae1a-4c93-9c6d-b3da66d04daf",
+              "leftValue": "={{ $json.output.content_url}}",
+              "rightValue": "={{ $json.output.content_url }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "afd53f36-893e-43dc-ad41-d720dbd5fc7a",
+              "leftValue": "={{ $json.output.content_url}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4960,
+        -96
+      ],
+      "id": "f942cae7-0687-47a8-a9bb-eff8ffcebab9",
+      "name": "If Save To Drive is Yes"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2edfa9c8-0cc5-4f39-93c9-4149f29c9f32",
+              "name": "output.google_drive_is_file_uploaded",
+              "value": "={{ $('Call Save Studio Asset to Drive').item.json.id_isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "fc9cae9f-7153-4d84-a6d6-610de68187f0",
+              "name": "output.google_drive_file_id",
+              "value": "={{ $('Call Save Studio Asset to Drive').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "5a7fc22b-a30f-4120-9c04-c54c8017fc0b",
+              "name": "output.drive_url",
+              "value": "={{ $('Call Save Studio Asset to Drive').item.json.webContentLink }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5760,
+        -208
+      ],
+      "id": "ae7b61a7-a63f-4163-a953-daf5d17d80ec",
+      "name": "Set Some Fields",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput",
+      "notes": "Edit Element object field to now contain image location url. In OpenAI's case, \n\ncurrent contend id folder/current package deliverable folder/intermediate production assets folder"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "clashHandling": {
+            "values": {
+              "resolveClash": "preferInput1"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        5920,
+        -80
+      ],
+      "id": "8d254daa-5423-49f4-8ad3-1a54fea67a27",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        6096,
+        32
+      ],
+      "id": "cbe2eefb-481e-49ac-b900-3f2fcb7303c8",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.successFlag }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    },
+                    "id": "ca6ad86c-dbaf-4517-bceb-047e7eeae273"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "0 : 🚧 Gen"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3d260120-e352-44d5-959a-3e41b8460297",
+                    "leftValue": "={{ $json.data.successFlag }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "1 : ✅ PASS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f5d9fcb4-b0d2-4f44-9e34-8e32595f5c42",
+                    "leftValue": "={{ $json.data.successFlag }}",
+                    "rightValue": 2,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "2 : GEN ❌, TASK ❌"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "82299d57-b770-4525-8c73-163e451780c0",
+                    "leftValue": "={{ $json.data.successFlag }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "3 : GEN ❌, TASK ✅"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1968,
+        -256
+      ],
+      "id": "f31a5616-b22d-4617-9bd4-3e499c3b76d2",
+      "name": "Switch: KIE.AI (task_id.successFlag)",
+      "onError": "continueRegularOutput",
+      "notes": "Status Descriptions (kie.ai video gen tasks only):\n\n0: Generating - Task is currently being processed\n1: Success - Task completed successfully\n2: Failed - Task generation failed\n3: Generation Failed - Task created successfully but generation failed\n\nsource: https://docs.kie.ai/veo3-api/get-veo-3-video-details"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1344,
+        -224
+      ],
+      "id": "d4a1e264-85a2-4854-adcf-ec4a95a400fd",
+      "name": "Wait 30s",
+      "webhookId": "87a71056-27f0-43fb-a120-fdeb7dd3180c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fdf24a55-b215-4078-b753-db9a6ce985c5",
+              "name": "element_id",
+              "value": "={{ $('When Executed by Another Workflow').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "bb4c6efc-56d2-4791-82ee-73d9b2ba0f38",
+              "name": "output.taskId",
+              "value": "={{ $prevNode.name === 'Get Video Details' ? $(\"Get Video Details\").item.json.taskId : null }}",
+              "type": "string"
+            },
+            {
+              "id": "98a497c8-d682-43b0-a6df-e7d775795e5d",
+              "name": "output.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ?  { \"node_that_failed\": $prevNode.name, \"code\": $json.error.code, \"name\": $json.error.name, \"status\": $json.error.status, \"message\": $json.error.message, \"workflow_execution_id\": $execution.id }  : undefined) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2800,
+        -96
+      ],
+      "id": "c251a4a0-eff4-4aa7-9577-d6818d9d6354",
+      "name": "Return error fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "937a97cb-a7b9-4fa1-922b-a78847f4c9b2",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "e0d5676c-06d8-421f-bb5a-a3f5c0af3dfc",
+              "name": "element_id",
+              "value": "={{ $('When Executed by Another Workflow').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "5587b02d-99c3-482b-b612-ee70cbc77a21",
+              "name": "output.source_url",
+              "value": "={{ $if( $prevNode.name === \"generate native video audio?\" , $json.data.outputs[0] , $json.video.url ) }}",
+              "type": "string"
+            },
+            {
+              "id": "85b38b04-abf3-4767-bfd1-652729bfff2a",
+              "name": "output.content_gen_complete",
+              "value": "={{ \n$('Call seedance-v1-pro-t2v-480p').error.isEmpty() && $('Call seedance-v1-pro-t2v-480p').isExecuted && $json.error.isEmpty() \n}}",
+              "type": "boolean"
+            },
+            {
+              "id": "ddee5e72-49f7-4c14-baf2-e6aac0418878",
+              "name": "output.media_type",
+              "value": "video",
+              "type": "string"
+            },
+            {
+              "id": "fe4537a1-b9a3-42d1-a486-5227802a4a6e",
+              "name": "output.model_used_for_generation",
+              "value": "=seedance-v1-pro-t2v-480p",
+              "type": "string"
+            },
+            {
+              "id": "08fb08d6-ba7d-41dd-bb0f-4772204001d8",
+              "name": "output.platform_used_for_generation",
+              "value": "=wavespeed.ai",
+              "type": "string"
+            },
+            {
+              "id": "592ad254-d8fa-45a3-b66a-dbe28eb4f05b",
+              "name": "output.video_gen_api_responses",
+              "value": "={{ \n  $json.output.video_gen_api_responses?.some(item => item.error) \n    ? $json.output.video_gen_api_responses \n    : [200]\n}}",
+              "type": "array"
+            },
+            {
+              "id": "5ba5752a-9916-4058-b124-b4e2de61a9c1",
+              "name": "output.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ?  { \"node_that_failed\": $prevNode.name, \"code\": $json.error.code, \"name\": $json.error.name, \"status\": $json.error.status, \"message\": $json.error.message, \"workflow_execution_id\": $execution.id }  : undefined) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3136,
+        64
+      ],
+      "id": "6e8677fe-b01e-4677-bd89-0e3eb534223a",
+      "name": "Seedance Output Values"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "99740e86-6e37-45d0-9c2e-a50d3744e98f",
+              "name": "output.media_type",
+              "value": "={{ $json.media.media_type }}",
+              "type": "string"
+            },
+            {
+              "id": "f6f9d10b-1ce2-4194-acb4-243194ec1e80",
+              "name": "output.file_type",
+              "value": "={{ $json.media.container }}",
+              "type": "string"
+            },
+            {
+              "id": "98462461-eae9-440a-a323-2fcedd47a80f",
+              "name": "output.duration",
+              "value": "={{ $json.media.duration }}",
+              "type": "number"
+            },
+            {
+              "id": "9c4c0960-39c9-41ea-bc29-0a73d0856b92",
+              "name": "output.source_url",
+              "value": "={{ $json.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "928a6092-391f-4e23-aace-b0631cf8d5c4",
+              "name": "output.resolution",
+              "value": "={{ $json.media.resolution }}",
+              "type": "object"
+            },
+            {
+              "id": "a056ed3b-9035-4117-aab2-f151176324e9",
+              "name": "output.fps",
+              "value": "={{ $json.media.fps }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4592,
+        -576
+      ],
+      "id": "1d7cee98-fe17-46af-8e12-f9410a2921bd",
+      "name": "Add Metadata",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4384,
+        -368
+      ],
+      "id": "006b7da8-7417-4d1f-aa29-9ccef34c1d58",
+      "name": "Wait 20s",
+      "webhookId": "9759f524-7535-491e-a624-1d73fa56921d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Metadata Request Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4160,
+        -544
+      ],
+      "id": "71720cb7-b184-419a-a1ba-cd7889fd1700",
+      "name": "If Status == Success, else Wait to Finish1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/metadata",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "media_url",
+              "value": "={{ $json.output.source_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3504,
+        -464
+      ],
+      "id": "72bd0c46-f0c6-4f83-ae2e-7d0999a176bf",
+      "name": "Post File Metadata",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ed3R3onElA0OgoJ5",
+          "name": "Wavespeed.ai - AO Workspace ALL | 🇨🇳 062025"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Fal.ai's FFMpeg/metadata API endpoint.\n\nhttps://fal.ai/models/fal-ai/ffmpeg-api/metadata/api"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $(\"Post File Metadata\").item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4384,
+        -576
+      ],
+      "id": "f5a3975a-9446-4c0b-9e62-0b30fb2bc36a",
+      "name": "Get File Metadata",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ed3R3onElA0OgoJ5",
+          "name": "Wavespeed.ai - AO Workspace ALL | 🇨🇳 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3712,
+        -464
+      ],
+      "id": "1ab7215d-3535-4407-a033-12e875a652d7",
+      "name": "Wait 10s",
+      "webhookId": "69ed99d8-dbac-4983-9308-8afa8529c5e6"
+    },
+    {
+      "parameters": {
+        "content": "# Get Content Metadata",
+        "height": 440,
+        "width": 1300,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3424,
+        -608
+      ],
+      "id": "83615acb-b7d6-46eb-81cd-33352cee37dc",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{$json.request_id}}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3936,
+        -464
+      ],
+      "id": "2de34d33-756f-40b6-ac4a-c2adb019773e",
+      "name": "Poll Metadata Request Status",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ed3R3onElA0OgoJ5",
+          "name": "Wavespeed.ai - AO Workspace ALL | 🇨🇳 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4720,
+        -96
+      ],
+      "id": "85c5a76d-b437-4e61-9ff0-061483df712a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0a743ab6-cb71-4096-b823-02254654c75e",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "e0d5676c-06d8-421f-bb5a-a3f5c0af3dfc",
+              "name": "element_id",
+              "value": "={{ $('When Executed by Another Workflow').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "5587b02d-99c3-482b-b612-ee70cbc77a21",
+              "name": "output.source_url",
+              "value": "={{ $ifEmpty($json.data.response.resultUrls[0],\"\") }}",
+              "type": "string"
+            },
+            {
+              "id": "85b38b04-abf3-4767-bfd1-652729bfff2a",
+              "name": "output.content_gen_complete",
+              "value": "={{ $('Veo 3 Fast | kie.ai').error.isEmpty() && $('Get Video Details').error.isEmpty().error.isEmpty() && $json.data.response.resultUrls[0]?.isUrl() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "152f20e0-8827-4acf-9bce-5b91684c2c66",
+              "name": "output.media_type",
+              "value": "video",
+              "type": "string"
+            },
+            {
+              "id": "fe4537a1-b9a3-42d1-a486-5227802a4a6e",
+              "name": "output.model_used_for_generation",
+              "value": "=veo3_fast",
+              "type": "string"
+            },
+            {
+              "id": "08fb08d6-ba7d-41dd-bb0f-4772204001d8",
+              "name": "output.platform_used_for_generation",
+              "value": "=kie.ai",
+              "type": "string"
+            },
+            {
+              "id": "83ceb648-6141-41e9-a0a6-57fdc1e11889",
+              "name": "output.content_gen_api_call_info",
+              "value": "={{ $json.output_content_gen_api_call_info }}",
+              "type": "string"
+            },
+            {
+              "id": "145cef55-ce20-4fa6-82c9-1d2317bc9c82",
+              "name": "output.video_gen_api_responses",
+              "value": "={{ \n  $json.output.video_gen_api_responses?.some(item => item.error) \n    ? $json.output.video_gen_api_responses \n    : [200]\n}}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3136,
+        -240
+      ],
+      "id": "3dd208eb-58f0-4963-ac24-f55821086968",
+      "name": "Veo 3 Output Values"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6de2bcda-8fe5-4573-9dc5-e0e9f445c4ba",
+              "name": "input",
+              "value": "={{ $('Set Fields seedance-v1-pro-t2v-480p').isExecuted ? $('Set Fields seedance-v1-pro-t2v-480p').item.json.input : $('Set Fields Set JSON Veo 3 Fast').item.json.input   }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3280,
+        -96
+      ],
+      "id": "4c4395b1-405b-4dbc-86bf-c771337c74cb",
+      "name": "Add Inputs and all",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90be1ae3-c121-4d8c-90a6-88590302a14a",
+              "name": "input.video_gen_input_body",
+              "value": "={\n  \"aspect_ratio\": {{\"9:16\".toJsonString()}},\n  \"duration\": {{ $json.duration }},\n  \"prompt\": {{ $json.Element.video_generation_prompt.toJsonString() }},\n  \"seed\": -1\n} ",
+              "type": "object"
+            },
+            {
+              "id": "2550b149-1c8a-435d-945b-97c4be3b5122",
+              "name": "input.aspect_ratio",
+              "value": "={{ $json.aspect_ratio }}",
+              "type": "string"
+            },
+            {
+              "id": "0ccb2a11-d14d-4c14-8928-8df749d21ccb",
+              "name": "input.output_file_format",
+              "value": "={{ $json.output_file_format }}",
+              "type": "string"
+            },
+            {
+              "id": "bc6b7aeb-d63d-4342-b5fa-e4351c983f66",
+              "name": "input.model_to_use",
+              "value": "={{ $json.model_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "51084168-46cd-4d34-a0e7-8fc3d7726255",
+              "name": "input.platform_to_use",
+              "value": "={{ $json.platform_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "792d8934-261c-4c2b-af4d-80eae22a7171",
+              "name": "input.duration",
+              "value": "={{ $json.duration }}",
+              "type": "number"
+            },
+            {
+              "id": "d53adda3-4e68-4834-83f6-03c5a9be9418",
+              "name": "input.videoIncludesNativeSound?",
+              "value": "={{ $json['videoIncludesNativeSound?'] }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        272,
+        432
+      ],
+      "id": "c9b29396-51bd-4e1e-a64d-83946cb5b905",
+      "name": "Set Fields seedance-v1-pro-t2v-480p"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kieai.erweima.ai/api/v1/veo/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.video_gen_input_body.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        -208
+      ],
+      "id": "6999026b-249c-448f-aff8-8ef286fac6a1",
+      "name": "Veo 3 Fast | kie.ai",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "838fONNY6anntH5d",
+          "name": "Kie.AI"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90be1ae3-c121-4d8c-90a6-88590302a14a",
+              "name": "input.video_gen_input_body",
+              "value": "={\n  \"prompt\": {{$json.Element.video_generation_prompt.toJsonString()}},\n  \"model\": \"veo3_fast\",\n  \"aspectRatio\": {{\"9:16\".toJsonString()}}\n}",
+              "type": "object"
+            },
+            {
+              "id": "2550b149-1c8a-435d-945b-97c4be3b5122",
+              "name": "input.aspect_ratio",
+              "value": "={{ $json.aspect_ratio }}",
+              "type": "string"
+            },
+            {
+              "id": "0ccb2a11-d14d-4c14-8928-8df749d21ccb",
+              "name": "input.output_file_format",
+              "value": "={{ $json.output_file_format }}",
+              "type": "string"
+            },
+            {
+              "id": "bc6b7aeb-d63d-4342-b5fa-e4351c983f66",
+              "name": "input.model_to_use",
+              "value": "={{ $json.model_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "51084168-46cd-4d34-a0e7-8fc3d7726255",
+              "name": "input.platform_to_use",
+              "value": "={{ $json.platform_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "792d8934-261c-4c2b-af4d-80eae22a7171",
+              "name": "input.duration",
+              "value": "={{ $json.duration }}",
+              "type": "number"
+            },
+            {
+              "id": "d53adda3-4e68-4834-83f6-03c5a9be9418",
+              "name": "input.videoIncludesNativeSound?",
+              "value": "={{ $json['videoIncludesNativeSound?'] }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -208
+      ],
+      "id": "cb78d786-674c-447a-8c86-37fbb9f83bfc",
+      "name": "Set Fields Set JSON Veo 3 Fast"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "64436c4b-0397-4806-b4aa-b8796b21eb34",
+              "name": "output.video_gen_api_responses",
+              "value": "={{ \n[{\"Call seedance-v1-pro-t2v-480p\": $('Call seedance-v1-pro-t2v-480p').item.json } ]\n}}",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1072,
+        464
+      ],
+      "id": "e45be5f6-e955-4daa-9720-92db5348c2f6",
+      "name": "see seedance"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e2957781-be9a-49cf-93ff-ba2ee75dbd3a",
+              "name": "=output.video_gen_api_responses",
+              "value": "={{ $('see seedance').item.json.output.video_gen_api_responses.append({\"Get Task Status\": $('Get Task Status').item.json}) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        288
+      ],
+      "id": "4132b20e-77bd-422e-a87b-8383abd5d730",
+      "name": "Append Task Status"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e2957781-be9a-49cf-93ff-ba2ee75dbd3a",
+              "name": "=output.video_gen_api_responses",
+              "value": "={{ $('Append Add Sound').item.json.output.video_gen_api_responses.append({\"Get Sound\": $('Get Sound').item.json}) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2992,
+        160
+      ],
+      "id": "e555b613-e4da-4f4c-a591-c5df8306656b",
+      "name": "Append Get Sound"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e2957781-be9a-49cf-93ff-ba2ee75dbd3a",
+              "name": "=output.video_gen_api_responses",
+              "value": "={{ $('Append Task Status').item.json.output.video_gen_api_responses.append({\"Add Sound\": $('Add Sound').item.json}) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2368,
+        368
+      ],
+      "id": "d98232ee-b88f-4235-9175-b0828cc11a78",
+      "name": "Append Add Sound"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "64436c4b-0397-4806-b4aa-b8796b21eb34",
+              "name": "output.video_gen_api_responses",
+              "value": "={{ [ {\n\"Veo 3 Fast | kie.ai\" : $('Veo 3 Fast | kie.ai').item.json } \n] }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1152,
+        -224
+      ],
+      "id": "f9499286-5e09-48be-ac40-d3bb9b6948cb",
+      "name": "append veo3 fast"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "64436c4b-0397-4806-b4aa-b8796b21eb34",
+              "name": "output.video_gen_api_responses",
+              "value": "={{ \noutput.video_gen_api_responses.append(\n{\n\"Get Video Details\": $('Get Video Details').item.json }\n) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2368,
+        -240
+      ],
+      "id": "2a77dedc-500c-42f3-8932-1817e76ea783",
+      "name": "append video details"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "WMweoFWyxEEc3EVg",
+          "mode": "list",
+          "cachedResultName": "Active — Save Studio Asset to Drive"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "google_drive_file_name": "={{ $('When Executed by Another Workflow').item.json.google_drive_file_name }}",
+            "google_drive_folder_id": "={{$ifEmpty($('When Executed by Another Workflow').item.json['google_drive_folder_id'],\"1NIhZrcDa5fwmcl5Ipuv4oChGhkKcz3Im\")}}",
+            "source_url": "={{ $json.output.source_url }}"
+          },
+          "matchingColumns": [
+            "google_drive_file_name",
+            ""
+          ],
+          "schema": [
+            {
+              "id": "google_drive_file_name",
+              "displayName": "google_drive_file_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "google_drive_folder_id",
+              "displayName": "google_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "DSE_Shot_List_Component",
+              "displayName": "DSE_Shot_List_Component",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            },
+            {
+              "id": "source_url",
+              "displayName": "source_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5504,
+        -208
+      ],
+      "name": "Call Save Studio Asset to Drive",
+      "id": "a2efcf36-c67f-4b03-ba64-81324929d52a",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.output.source_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5056,
+        -352
+      ],
+      "id": "f57f59dc-9934-4f8f-bdd2-6a42d175133e",
+      "name": "GET: Download via content_url1"
+    }
+  ],
+  "connections": {
+    "Call seedance-v1-pro-t2v-480p": {
+      "main": [
+        [
+          {
+            "node": "Wait 32s5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Sound": {
+      "main": [
+        [
+          {
+            "node": "If video{ } url exists, else poll",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Sound": {
+      "main": [
+        [
+          {
+            "node": "Append Add Sound",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate native video audio?": {
+      "main": [
+        [
+          {
+            "node": "Add Sound",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Seedance Output Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Set Fields Set JSON Veo 3 Fast",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Fields seedance-v1-pro-t2v-480p",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Get Video Details": {
+      "main": [
+        [
+          {
+            "node": "Switch: KIE.AI (task_id.successFlag)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Task Status": {
+      "main": [
+        [
+          {
+            "node": "If status == completed, else wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If status == completed, else wait": {
+      "main": [
+        [
+          {
+            "node": "Append Task Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 32s4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If video{ } url exists, else poll": {
+      "main": [
+        [
+          {
+            "node": "Append Get Sound",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 32s2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 32s": {
+      "main": [
+        [
+          {
+            "node": "Get Video Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 32s2": {
+      "main": [
+        [
+          {
+            "node": "Get Sound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 32s3": {
+      "main": [
+        [
+          {
+            "node": "Get Sound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 32s4": {
+      "main": [
+        [
+          {
+            "node": "Get Task Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 32s5": {
+      "main": [
+        [
+          {
+            "node": "see seedance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Save To Drive is Yes": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Call Save Studio Asset to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Some Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch: KIE.AI (task_id.successFlag)": {
+      "main": [
+        [
+          {
+            "node": "Wait 32s",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "append video details",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 30s": {
+      "main": [
+        [
+          {
+            "node": "Get Video Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Seedance Output Values": {
+      "main": [
+        [
+          {
+            "node": "Add Inputs and all",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Metadata": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 20s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish1": {
+      "main": [
+        [
+          {
+            "node": "Get File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 20s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Wait 10s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Add Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Metadata Request Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If Save To Drive is Yes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Veo 3 Output Values": {
+      "main": [
+        [
+          {
+            "node": "Add Inputs and all",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Inputs and all": {
+      "main": [
+        [
+          {
+            "node": "Post File Metadata",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Return error fields": {
+      "main": [
+        [
+          {
+            "node": "Add Inputs and all",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Fields seedance-v1-pro-t2v-480p": {
+      "main": [
+        [
+          {
+            "node": "Call seedance-v1-pro-t2v-480p",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Veo 3 Fast | kie.ai": {
+      "main": [
+        [
+          {
+            "node": "append veo3 fast",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return error fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Fields Set JSON Veo 3 Fast": {
+      "main": [
+        [
+          {
+            "node": "Veo 3 Fast | kie.ai",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "see seedance": {
+      "main": [
+        [
+          {
+            "node": "Get Task Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Task Status": {
+      "main": [
+        [
+          {
+            "node": "generate native video audio?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Get Sound": {
+      "main": [
+        [
+          {
+            "node": "Seedance Output Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Add Sound": {
+      "main": [
+        [
+          {
+            "node": "Wait 32s3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append veo3 fast": {
+      "main": [
+        [
+          {
+            "node": "Wait 30s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append video details": {
+      "main": [
+        [
+          {
+            "node": "Veo 3 Output Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Save Studio Asset to Drive": {
+      "main": [
+        [
+          {
+            "node": "Set Some Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET: Download via content_url1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "any",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d",
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "element_id": "d1s1e1",
+          "Element": {
+            "element_id": "d1s1e1",
+            "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+            "element_asset_type": "video",
+            "videoContainsNativeAudio": true,
+            "generation_of_video_sound_prompt": "Soft rustling of delicate feathers in gentle breeze, subtle whisper-like sounds, organic texture with slight variation in intensity, peaceful and mesmerizing audio that matches the visual shimmer",
+            "video_generation_prompt": "Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.",
+            "element_start_time": 0,
+            "file_type": "mp4",
+            "duration": 5
+          },
+          "aspect_ratio": "9:16",
+          "output_file_format": "mp4",
+          "model_to_use": "seedance",
+          "platform_to_use": "kie.ai",
+          "duration": 5,
+          "videoIncludesNativeSound?": true,
+          "saveContentFileToDrive?": true,
+          "drive_folder_id_intermediate_assets": "1zLryeAeWEU6sdv6LMOGd4WWIlA8rfr89",
+          "content_id": "1Ih5Xwgv2_ZEwiSd0AE3B5iGsoOC6XtKb",
+          "google_drive_file_name": "video_element_d1s1e1"
+        }
+      }
+    ]
+  },
+  "versionId": "8f0c94cc-e269-4a36-b6a6-88f6fa67881b",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:46.046Z",
+      "updatedAt": "2025-08-29T12:30:46.046Z",
+      "role": "workflow:owner",
+      "workflowId": "aNL5AyVDk66Niqjg",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-06-20T15:22:03.165Z",
+      "updatedAt": "2025-06-20T15:22:03.165Z",
+      "id": "3I4g69S2rs2yMm1V",
+      "name": "Video Gen"
+    },
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    }
+  ]
+}
