@@ -1,0 +1,806 @@
+{
+  "createdAt": "2025-08-06T09:26:53.002Z",
+  "updatedAt": "2025-08-06T11:04:41.000Z",
+  "id": "WMweoFWyxEEc3EVg",
+  "name": "Save Studio Asset to Drive",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "name": "={{$('Start').item.json.google_drive_file_name}}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{$ifEmpty($('Start').item.json.google_drive_folder_id,\"1NIhZrcDa5fwmcl5Ipuv4oChGhkKcz3Im\")}}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5712,
+        -208
+      ],
+      "id": "ef118371-af52-4396-adf4-0ab47ac52adc",
+      "name": "Upload",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fc07710b-9c87-4881-9b06-5be606a583d7",
+              "name": "id_isNotEmpty",
+              "value": "={{ $('Upload').item.json.id.isNotEmpty }}",
+              "type": "string"
+            },
+            {
+              "id": "8347c4c2-9413-4fdb-a1d1-7c860869c208",
+              "name": "id",
+              "value": "={{ $('Upload').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "93aa0a46-a83d-4484-bd3c-2808f1f5b102",
+              "name": "webContentLink",
+              "value": "={{ $('Upload').item.json.webContentLink }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        6688,
+        -208
+      ],
+      "id": "da285374-0b7e-4eb5-b6d8-51508dddb2f3",
+      "name": "Return"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "google_drive_file_name"
+            },
+            {
+              "name": "google_drive_folder_id"
+            },
+            {
+              "name": "DSE_Shot_List_Component",
+              "type": "object"
+            },
+            {
+              "name": "source_url"
+            },
+            {
+              "name": "data",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "ff1f0f2a-2bab-45ef-9a59-ad90405a3dd9",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        4912,
+        -208
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Production Assets Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1126466568,
+          "mode": "list",
+          "cachedResultName": "Assets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit#gid=1126466568"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp_added": "={{ $now.format('yyyy-MM-dd hh:mma') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ASSET_NO",
+              "displayName": "ASSET_NO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "asset_id",
+              "displayName": "asset_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "n8n_asset_gen_workflow_execution_id",
+              "displayName": "n8n_asset_gen_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "run_id",
+              "displayName": "run_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "p_id",
+              "displayName": "p_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_added",
+              "displayName": "timestamp_added",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_content_description",
+              "displayName": "internal_content_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "asset_manifest",
+              "displayName": "asset_manifest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source_url",
+              "displayName": "source_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_url",
+              "displayName": "drive_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_file_id",
+              "displayName": "drive_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_file_name",
+              "displayName": "drive_file_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "n8n_asset_gen_workflow",
+              "displayName": "n8n_asset_gen_workflow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_count",
+              "displayName": "w_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "p_count",
+              "displayName": "p_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "r_count",
+              "displayName": "r_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        6080,
+        -208
+      ],
+      "id": "fb6427ed-8aa4-43e7-974d-d647358cb3ab",
+      "name": "Append row in 'Assets Database' / ASSETs",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Production Assets Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1126466568,
+          "mode": "list",
+          "cachedResultName": "Assets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit#gid=1126466568"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp_added": "={{ $now.format('yyyy-MM-dd hh:mma') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ASSET_NO",
+              "displayName": "ASSET_NO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "asset_id",
+              "displayName": "asset_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "n8n_asset_gen_workflow_execution_id",
+              "displayName": "n8n_asset_gen_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "run_id",
+              "displayName": "run_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "p_id",
+              "displayName": "p_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_added",
+              "displayName": "timestamp_added",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_content_description",
+              "displayName": "internal_content_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "asset_manifest",
+              "displayName": "asset_manifest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source_url",
+              "displayName": "source_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_url",
+              "displayName": "drive_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_file_id",
+              "displayName": "drive_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drive_file_name",
+              "displayName": "drive_file_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "n8n_asset_gen_workflow",
+              "displayName": "n8n_asset_gen_workflow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_count",
+              "displayName": "w_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "p_count",
+              "displayName": "p_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "r_count",
+              "displayName": "r_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        6288,
+        -208
+      ],
+      "id": "33f8d415-99e5-435c-8529-2fe27d3d669c",
+      "name": "Append row in 'Assets dB' / 'DSE Components'",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d9a2695-0220-4ad4-91d6-583c3f9b3197",
+              "leftValue": "={{ $binary ? true : undefined }}",
+              "rightValue": "={{ $binary ? true : undefined }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5120,
+        -208
+      ],
+      "id": "e5ab7d38-d4af-413a-a725-269a7afed966",
+      "name": "If $binary data exists"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5440,
+        -288
+      ],
+      "id": "a4aff5b6-e4db-455d-98bc-c8d439684499",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.output.source_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5440,
+        -128
+      ],
+      "id": "fc14b2b7-ba81-4cf9-a5c5-18f073ba3cf2",
+      "name": "GET: Download via source_url"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5872,
+        -208
+      ],
+      "id": "8b65a8e6-df9e-4a2c-9b94-4a6c2f4dcd6d",
+      "name": "Share",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Get webContentLink for sending to other api's/tools. "
+    }
+  ],
+  "connections": {
+    "Upload": {
+      "main": [
+        [
+          {
+            "node": "Share",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "If $binary data exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in 'Assets Database' / ASSETs": {
+      "main": [
+        [
+          {
+            "node": "Append row in 'Assets dB' / 'DSE Components'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in 'Assets dB' / 'DSE Components'": {
+      "main": [
+        [
+          {
+            "node": "Return",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If $binary data exists": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GET: Download via source_url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET: Download via source_url": {
+      "main": [
+        [
+          {
+            "node": "Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share": {
+      "main": [
+        [
+          {
+            "node": "Append row in 'Assets Database' / ASSETs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "7e0fb1ca-65ba-4c9a-a814-5d2a2ac4e1db",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:46.055Z",
+      "updatedAt": "2025-08-29T12:30:46.055Z",
+      "role": "workflow:owner",
+      "workflowId": "WMweoFWyxEEc3EVg",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-07-12T17:35:37.343Z",
+      "updatedAt": "2025-07-12T17:35:37.343Z",
+      "id": "sLc1HXtJn1OeOOhZ",
+      "name": "🚧"
+    }
+  ]
+}
