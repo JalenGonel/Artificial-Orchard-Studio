@@ -1,0 +1,47 @@
+{
+  "createdAt": "2025-08-06T11:21:49.208Z",
+  "updatedAt": "2025-08-29T12:32:06.000Z",
+  "id": "7AvPbI6KeWIJ2Wdt",
+  "name": "Post Final Package — AOS V2",
+  "active": false,
+  "isArchived": true,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "96940f97-1aff-497c-baf4-762de3b295a6",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-06T11:21:49.214Z",
+      "updatedAt": "2025-08-06T11:21:49.214Z",
+      "role": "workflow:owner",
+      "workflowId": "7AvPbI6KeWIJ2Wdt",
+      "projectId": "jrqD8iLW9DGtgZLP"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-07-12T17:35:37.343Z",
+      "updatedAt": "2025-07-12T17:35:37.343Z",
+      "id": "sLc1HXtJn1OeOOhZ",
+      "name": "🚧"
+    }
+  ]
+}
