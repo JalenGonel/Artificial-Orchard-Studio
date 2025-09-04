@@ -1,0 +1,235 @@
+{
+  "createdAt": "2025-07-29T06:32:45.290Z",
+  "updatedAt": "2025-08-29T12:30:33.000Z",
+  "id": "JmLYbqCl9FcjEn1d",
+  "name": "Log Error — AOS V2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        512,
+        -128
+      ],
+      "id": "43810e21-b4ab-428a-8bef-25ecd7fec447",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — System Stats & Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Workflow Execution Errors",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now.format('yyyy-MM-dd hh:mma') }}",
+            "Workflow": "={{ $json.workflow.name }}",
+            "URL": "={{ $json.execution.url }}",
+            "Node": "={{ $json.execution.error.node.name }}",
+            "Error Message": "={{ $json.execution.error.message }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Workflow",
+              "displayName": "Workflow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Node",
+              "displayName": "Node",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        848,
+        -256
+      ],
+      "id": "2cd4b5ea-924a-4bfc-ae1f-b5df4edb24ce",
+      "name": "Log Error",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C098KN96CCV",
+          "mode": "list",
+          "cachedResultName": "aos-studio-logs"
+        },
+        "text": "=Orchard Studios Workflow Error: {{ $json.workflow.name }}\n\n{{ $json.execution.error.node.name }} errored at {{ $now.format('yyyy-MM-dd hh:mma') }}.\n\nThe error message was: {{ $json.execution.error.message }}\n\nError (full):\n{{ $json ?? undefined }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        848,
+        64
+      ],
+      "id": "4e6f1333-33cd-4c56-8aa7-f1c3c95cbe4a",
+      "name": "Notification",
+      "webhookId": "0b27dba8-e082-4065-a2f6-15e86857a15b",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "i1ehKH0CWcfieZGy",
+          "name": "AO Slack OAuth 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Error Logger",
+        "height": 580,
+        "width": 740,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -320
+      ],
+      "id": "aac68d4f-2e8a-4982-8b09-02f70a70a1bd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# 🛠️ Setup Guide  \n**Author:** [Nate Herk](https://www.youtube.com/@nateherk)\n\n---\n### 1️⃣ Link This as Your Error Workflow  \n- Go to **Settings** → **Error Workflow** → Select this workflow as your global error handler.\n- The parent workflow must be active.\n---\n\n#### 2️⃣ Error Logger (Google Sheets)  \n🔗 **[Make a copy of the template](https://docs.google.com/spreadsheets/d/1Aiz1cpv1k6Qlmp1Cjmj0ZtNuG6fC_cG24O_XaiP8NOs/edit?usp=sharing)**  \n- Set up your Google Sheets credentials  \n- Connect your Google credential  \n- Customize the sheet as needed (optional)\n---\n\n#### 3️⃣ Slack Notifications (Optional)  \n- Connect your Slack credential in the Slack node  \n- Choose a channel or user to send error alerts to\n",
+        "height": 580,
+        "width": 600
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -320
+      ],
+      "id": "61ced014-59dd-4d61-985f-182163dd2b1c",
+      "name": "Sticky Note1"
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Log Error",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "0aa375b5-17ba-4b19-a49f-e5c94a5c1b2d",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:33.302Z",
+      "updatedAt": "2025-08-29T12:30:33.302Z",
+      "role": "workflow:owner",
+      "workflowId": "JmLYbqCl9FcjEn1d",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-07-10T02:57:43.859Z",
+      "updatedAt": "2025-07-10T02:57:43.859Z",
+      "id": "q2dSzISNDOwt6IiP",
+      "name": "logs/metadata/eval"
+    },
+    {
+      "createdAt": "2025-07-12T17:35:37.343Z",
+      "updatedAt": "2025-07-12T17:35:37.343Z",
+      "id": "sLc1HXtJn1OeOOhZ",
+      "name": "🚧"
+    }
+  ]
+}
