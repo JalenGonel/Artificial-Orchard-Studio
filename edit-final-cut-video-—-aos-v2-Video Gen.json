@@ -1,0 +1,2696 @@
+{
+  "createdAt": "2025-07-29T06:26:28.457Z",
+  "updatedAt": "2025-08-11T02:37:14.000Z",
+  "id": "BNnkh56MHtnzrfo2",
+  "name": "Edit Final Cut Video — AOS V2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/compose",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"tracks\": {{ $json.tracks.toJsonString() }}\n}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 10000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4336,
+        2032
+      ],
+      "id": "39db78c7-8441-4b0b-a1b5-fccbb6f08866",
+      "name": "Sequence Video",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## | Step 1: Render relevant sequences (elements>1)",
+        "height": 100,
+        "width": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3504,
+        1984
+      ],
+      "id": "a22f30c4-38ad-4b72-9748-ff3bff9bae3b",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Video Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4736,
+        2032
+      ],
+      "id": "c1a0a7a4-fe5a-45d0-bdd5-23852548a389",
+      "name": "If Status == Success, else Wait to Finish1"
+    },
+    {
+      "parameters": {
+        "amount": 28
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4496,
+        1888
+      ],
+      "id": "4ce776da-b267-428b-bb25-33cc600d0f7d",
+      "name": "Wait 29",
+      "webhookId": "e279abbc-c950-4990-8971-383303d57764",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "deliverable_id"
+            },
+            {
+              "name": "Deliverable",
+              "type": "object"
+            },
+            {
+              "name": "upload_to_google_drive",
+              "type": "boolean"
+            },
+            {
+              "name": "final_file_name_google_drive"
+            },
+            {
+              "name": "final_folder_id_google_drive"
+            },
+            {
+              "name": "intermediary_folder_id_google_drive"
+            },
+            {
+              "name": "use_editor_agent",
+              "type": "any"
+            },
+            {
+              "name": "query_for_editor_agent",
+              "type": "any"
+            },
+            {
+              "name": "additional_info",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "774f699a-cfde-4a39-b75c-05031b5d0d36",
+      "typeVersion": 1.1,
+      "name": "When Executed By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        3408,
+        1984
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Deliverable.sequences",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        2080
+      ],
+      "id": "50fe1c83-274b-4e6f-affd-da5acbe4c948",
+      "name": "Split Deliverable.Sequences[ ]"
+    },
+    {
+      "parameters": {
+        "content": "## Step 2: Render Final Deliverable",
+        "height": 100,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        2304
+      ],
+      "id": "eca8743d-0a49-4298-bdca-9ba30e3aa24f",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Step 4: Upload to google drive",
+        "height": 100,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3744,
+        2992
+      ],
+      "id": "f57ebd74-6bf7-4c8a-b589-6c6a66262d8b",
+      "name": "Upload final file to google drive"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "seq"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3744,
+        2304
+      ],
+      "id": "180909ff-2f12-4d71-b5c6-d30ca4440074",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{$json.request_id}}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4592,
+        2032
+      ],
+      "id": "d5a3858a-1be5-475d-9a5b-eea15feb56eb",
+      "name": "Poll Video Status",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3872,
+        2080
+      ],
+      "id": "61304b4b-18e5-4ec9-9c6e-5188b16ad95a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5216,
+        2064
+      ],
+      "id": "202ed2af-fcb5-444e-822e-40e94e7adc6f",
+      "name": "No Operation, do nothing3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "14673cf4-f4b2-4a98-855e-46e07e597fc3",
+              "name": "seq",
+              "value": "={{ $('sequence element size').item.json }}",
+              "type": "object"
+            },
+            {
+              "id": "b5ff39e8-0bed-4b4f-983e-329b3ceecd84",
+              "name": "seq.COMPONENT_GENERATION_COMPLETE",
+              "value": "={{ $ifEmpty($('Get Sequence Video URL').item.json.video_url.isNotEmpty(), false ) }}",
+              "type": "boolean"
+            },
+            {
+              "id": "f6f97110-f522-4224-b5df-d112fadb6a8f",
+              "name": "seq.content_url",
+              "value": "={{ $('Get Sequence Video URL').item.json.video_url.isNotEmpty() ? $('Get Sequence Video URL').item.json.video_url : undefined }}",
+              "type": "string"
+            },
+            {
+              "id": "19bb7cbf-3179-4ee8-83ba-f8a27b5c439f",
+              "name": "seq.output.source_url",
+              "value": "={{ $('Get Sequence Video URL').item.json.video_url.isNotEmpty() ? $('Get Sequence Video URL').item.json.video_url : undefined }}",
+              "type": "string"
+            },
+            {
+              "id": "4f84d52a-bb8d-4de3-844c-746794135d9f",
+              "name": "seq.output.content_gen_success",
+              "value": "={{ $ifEmpty($('Get Sequence Video URL').item.json.video_url.isNotEmpty(), false ) }}",
+              "type": "boolean"
+            },
+            {
+              "id": "29d36409-cb16-49c5-9639-bfb0e5112e56",
+              "name": "seq.output.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ? \n{\n\"node_that_failed\": $prevNode.name,\n\"code\": $json.error.code,\n\"name\": $json.error.name,\n\"status\": $json.error.status,\n\"message\": $json.error.message,\n\"workflow_execution_id\": $execution.id\n} \n: undefined) }}",
+              "type": "object"
+            },
+            {
+              "id": "60d45ee8-9981-4272-a92a-04ab75138f6f",
+              "name": "seq.output.request_id",
+              "value": "={{ $('Sequence Video').item.json.request_id }}",
+              "type": "string"
+            },
+            {
+              "id": "794d6783-000f-479b-86f7-b0c11a9dd751",
+              "name": "seq.timestamp",
+              "value": "={{ $ifEmpty( $('sequence element size').item.json.elements[0].element_start_time , 0) * 1000 }}",
+              "type": "number"
+            },
+            {
+              "id": "8c23544c-f8f9-450e-b1c1-4e901a5352cc",
+              "name": "seq.duration",
+              "value": "={{ $ifEmpty($('sequence element size').item.json.elements[0].output.duration , $ifEmpty($('sequence element size').item.json.elements[0].duration , 5 ) ) * 1000 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5072,
+        1952
+      ],
+      "id": "c543b46f-34de-417e-82eb-ff9e44fcad36",
+      "name": "add output { }"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4800,
+        2320
+      ],
+      "id": "a39608c2-0216-49bd-bb88-7b2d51480483",
+      "name": "If Status == Success, else Wait to Finish2"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f1229e93-dfae-4897-a802-4f864fb7cad6",
+                    "leftValue": "={{ $json.COMPONENT_GENERATION_COMPLETE }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "✅ Sequence Already Complete"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.elements.length }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    },
+                    "id": "dff76c25-15c6-4cff-9d51-f2810bef1541"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "> 1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9672299f-46b9-4117-9355-59a25c9d92c3",
+                    "leftValue": "={{ $json.elements.length }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "<= 1"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none",
+          "allMatchingOutputs": false
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4080,
+        2064
+      ],
+      "id": "75338db3-cb69-4a23-b278-98bced14b7db",
+      "name": "sequence element size"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "14673cf4-f4b2-4a98-855e-46e07e597fc3",
+              "name": "Deliverable",
+              "value": "={{ $('Update Deliverable { }').item.json.Deliverable }}",
+              "type": "object"
+            },
+            {
+              "id": "4f84d52a-bb8d-4de3-844c-746794135d9f",
+              "name": "final_manifest.content_gen_complete",
+              "value": "={{ $json.video_url.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "19bb7cbf-3179-4ee8-83ba-f8a27b5c439f",
+              "name": "final_manifest.source_url",
+              "value": "={{ $json.video_url ?? undefined  }}",
+              "type": "string"
+            },
+            {
+              "id": "a726b1a3-f804-4d47-ab23-362a3fc9592b",
+              "name": "final_manifest.platform_used_for_final_cut",
+              "value": "ffmpeg/compose",
+              "type": "string"
+            },
+            {
+              "id": "452c3d45-46af-4210-a2f9-bbfc7237df5f",
+              "name": "final_manifest.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ?  { \"node_that_failed\": $prevNode.name, \"code\": $json.error.code, \"name\": $json.error.name, \"status\": $json.error.status, \"message\": $json.error.message, \"workflow_execution_id\": $execution.id }  : undefined) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5152,
+        2352
+      ],
+      "id": "903fc5ed-4e5c-4ff6-9f7f-ec35a3aa8469",
+      "name": "add final_manifest"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $('Deliverable Video').item.json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4656,
+        2320
+      ],
+      "id": "db0d3c27-96d5-4143-be5d-3c47f41cd3c0",
+      "name": "Poll Status",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 28
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4464,
+        2032
+      ],
+      "id": "0b1c7740-9efe-428a-9e92-af60f51352e8",
+      "name": "Wait 28s",
+      "webhookId": "63e4a868-0c1c-4ad1-a5ec-98b776e477e2",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/compose",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"tracks\": [\n    {\n      \"id\": {{$json.Deliverable.deliverable_id.toJsonString()}},\n      \"type\": \"video\",\n      \"keyframes\": {{$jmespath($json.Deliverable.sequences, '[].{url: content_url, timestamp: timestamp, duration: duration }').toJsonString()}}\n    }\n  ]\n}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 10000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4224,
+        2320
+      ],
+      "id": "f18fdc23-6735-45a5-be04-5b17cf8098dd",
+      "name": "Deliverable Video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 33
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4528,
+        2352
+      ],
+      "id": "98ebbcb0-18b6-4258-84a3-91f4fb471c2c",
+      "name": "Wait 33s",
+      "webhookId": "40b9ceca-8bb4-4b2e-95e2-be8e1c281291",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4352,
+        2992
+      ],
+      "id": "fa18fd50-630a-4125-a33b-44c3b34d2893",
+      "name": "Share",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "clashHandling": {
+            "values": {
+              "resolveClash": "preferInput1"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4704,
+        2864
+      ],
+      "id": "c9366d7f-c130-4890-874e-a30b44e8d406",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "name": "={{ $(\"When Executed By Another Workflow\").item.json.final_file_name_google_drive }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{$ifEmpty($('When Executed By Another Workflow').item.json.final_folder_id_google_drive,\"1gFNrPekMmUyKNPI12XRidKiZdecSp1_N\")}}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4144,
+        2992
+      ],
+      "id": "528a90a5-259b-47d1-a783-4f2d960e59d0",
+      "name": "Upload Final Video File To Drive",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a9aa22b8-c6d6-4d15-b459-fb4a8a56390c",
+              "leftValue": "={{ true }}",
+              "rightValue": "ffmpeg",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3488,
+        2080
+      ],
+      "id": "ffc1d0c9-a54d-4992-931c-a8b266d39f75",
+      "name": "If FFMPEG, else CREATEOMATE"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b69e679-a4ff-456f-95fc-24ae5faf8dad",
+              "leftValue": "={{ true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3648,
+        2992
+      ],
+      "id": "159136c7-6109-4553-9b2c-cbf2a0e60920",
+      "name": "UploadToDrive?"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.final_manifest.source_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3952,
+        2992
+      ],
+      "id": "09642900-dc58-47d6-baef-ad67bbf8b91f",
+      "name": "Get Video1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $('Poll Status').item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4976,
+        2288
+      ],
+      "id": "d53b144e-1ffb-4518-9af6-a4e36f18ae6b",
+      "name": "FINAL Video URL",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $('Poll Video Status').item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4912,
+        1968
+      ],
+      "id": "4fcf36f7-32d3-4ec2-9818-3ec654b4b2ce",
+      "name": "Get Sequence Video URL",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2edfa9c8-0cc5-4f39-93c9-4149f29c9f32",
+              "name": "final_manifest.google_drive_is_file_uploaded",
+              "value": "={{ $('Upload Final Video File To Drive').item.json.id.isNotEmpty()}}",
+              "type": "boolean"
+            },
+            {
+              "id": "fc9cae9f-7153-4d84-a6d6-610de68187f0",
+              "name": "final_manifest.google_drive_file_id",
+              "value": "={{ $('Upload Final Video File To Drive').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "5a7fc22b-a30f-4120-9c04-c54c8017fc0b",
+              "name": "final_manifest.drive_url",
+              "value": "={{ $ifEmpty($('Upload Final Video File To Drive').item.json.webContentLink,$ifEmpty($('FINAL Video URL').video_url, null))\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4544,
+        2992
+      ],
+      "id": "9f9fa9e4-03a0-45bc-abfe-2e2548503acb",
+      "name": "Set Some Fields1",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput",
+      "notes": "Edit Element object field to now contain image location url. In OpenAI's case, \n\ncurrent contend id folder/current package deliverable folder/intermediate production assets folder"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "99740e86-6e37-45d0-9c2e-a50d3744e98f",
+              "name": "final_manifest.media_type",
+              "value": "={{ $json.media.media_type }}",
+              "type": "string"
+            },
+            {
+              "id": "9c4c0960-39c9-41ea-bc29-0a73d0856b92",
+              "name": "final_manifest.source_url",
+              "value": "={{ $json.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "f6f9d10b-1ce2-4194-acb4-243194ec1e80",
+              "name": "final_manifest.file_type",
+              "value": "={{ $json.media.container }}",
+              "type": "string"
+            },
+            {
+              "id": "98462461-eae9-440a-a323-2fcedd47a80f",
+              "name": "final_manifest.duration",
+              "value": "={{ $json.media.duration }}",
+              "type": "number"
+            },
+            {
+              "id": "928a6092-391f-4e23-aace-b0631cf8d5c4",
+              "name": "final_manifest.resolution",
+              "value": "={{ $json.media.resolution }}",
+              "type": "object"
+            },
+            {
+              "id": "a056ed3b-9035-4117-aab2-f151176324e9",
+              "name": "final_manifest.fps",
+              "value": "={{ $json.media.fps }}",
+              "type": "number"
+            },
+            {
+              "id": "27ba0a4a-bf32-4e20-a1c5-033ad3d3c282",
+              "name": "final_manifest.frame_count",
+              "value": "={{ $json.media.frame_count }}",
+              "type": "number"
+            },
+            {
+              "id": "3657a55a-c918-4306-b86a-82bb03878527",
+              "name": "final_manifest.format.video_codec",
+              "value": "={{ $json.media.codec }}",
+              "type": "string"
+            },
+            {
+              "id": "e4b8668d-1ca7-44d1-8248-aa49d50bcc95",
+              "name": "final_manifest.format.bitrate",
+              "value": "={{ $json.media.format.bitrate }}",
+              "type": "number"
+            },
+            {
+              "id": "bb5fd5f2-0b1e-4a42-aa19-3ca39bcd36c1",
+              "name": "final_manifest.audio",
+              "value": "={{ $json.media.audio }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4912,
+        2592
+      ],
+      "id": "0f884fb0-0296-473c-bb6b-43b81f80bce2",
+      "name": "Add Metadata",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4208,
+        2688
+      ],
+      "id": "00e96a42-f7e8-4f3d-90f1-5f01ae951d19",
+      "name": "Wait 20s",
+      "webhookId": "1c9f4ed9-0664-4787-90c8-3901b24628ba",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/metadata",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "media_url",
+              "value": "={{ $json.final_manifest.source_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3840,
+        2672
+      ],
+      "id": "0059b939-1b1d-4c00-8b20-fac81366bc35",
+      "name": "Post File Metadata",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Fal.ai's FFMpeg/metadata API endpoint.\n\nhttps://fal.ai/models/fal-ai/ffmpeg-api/metadata/api"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $(\"Post File Metadata\").item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4768,
+        2592
+      ],
+      "id": "a439dcab-0b53-4506-b52b-61f2e3dc0be9",
+      "name": "Get File Metadata",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{$json.request_id}}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4352,
+        2672
+      ],
+      "id": "62f6de8d-c63f-4993-8a16-9009302aa1a7",
+      "name": "Poll Metadata Request Status",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Metadata Request Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4544,
+        2592
+      ],
+      "id": "44e7bdf2-6670-4244-99db-8c6b64529f9a",
+      "name": "If Status == Success, else Wait to Finish3",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        5040,
+        2768
+      ],
+      "id": "d925cfdf-33af-4a9f-8457-070eeeca0b0f",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "content": "## Step 3: Get Content Metadata",
+        "height": 100,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3648,
+        2672
+      ],
+      "id": "ff6bdcaf-f6f8-49f3-bf2c-447aaae2e7f3",
+      "name": "Upload final file to google drive1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        4880,
+        2928
+      ],
+      "id": "9b75fca6-c967-42d9-bcd8-986887e718dd",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5737f6a1-0dfc-4b87-a074-8b49b9348fe3",
+              "name": "Deliverable.final_manifest",
+              "value": "={{ $ifEmpty($json.final_manifest, {\"content_gen_complete\": false}) }}",
+              "type": "object"
+            },
+            {
+              "id": "f1b80319-ef77-4f74-8b6e-dbb9582f846d",
+              "name": "Deliverable",
+              "value": "={{ $ifEmpty($('add final_manifest').item.json.Deliverable, null) }}",
+              "type": "object"
+            },
+            {
+              "id": "b00f2b50-b9cd-47de-9423-98fb4279bcc2",
+              "name": "=final_manifest",
+              "value": "={{ $json.final_manifest }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5248,
+        2768
+      ],
+      "id": "44f9719f-2b07-4d4d-b8c4-0c386ba969f9",
+      "name": "FINAL OUTPUT",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const tracks = [];\n\n// Always add video track if video elements exist\nconst videoElements = $json.elements.filter(el => el.element_asset_type === 'video');\nif (videoElements.length > 0) {\n  tracks.push({\n    id: `${$json.sequence_id}_video`,\n    type: \"video\",\n    keyframes: videoElements.map(el => ({\n      url: el.content_url ?? el.output?.drive_url ?? el.output?.source_url ?? '',\n      timestamp: el.element_start_time,\n      duration: el.duration * 1000 // Convert to milliseconds\n    }))\n  });\n}\n\n// Add audio track if audio elements exist\nconst audioElements = $json.elements.filter(el => el.element_asset_type === 'audio');\nif (audioElements.length > 0) {\n  tracks.push({\n    id: `${$json.sequence_id}_audio`,\n    type: \"audio\",\n    keyframes: audioElements.map(el => ({\n      url: el.content_url ?? el.output?.drive_url ?? el.output?.source_url ?? '',\n      timestamp: el.element_start_time,\n      duration: el.duration * 1000 // Convert to milliseconds\n    }))\n  });\n}\n\nreturn { tracks };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4208,
+        1952
+      ],
+      "id": "45b0449c-2790-4f2d-b0ff-658bc8b11545",
+      "name": "tracks",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput",
+      "notes": "Creates tracks array for FFMpeg/Compose Call. Splits video elements and audio elements into separate tracks, passing video track only if no audio elements exist.\n\nCoded by Claude. Chat: https://claude.ai/chat/cfb52c71-278f-45f7-aa0d-e23b14400180"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "52a8f392-6be1-41ea-8a39-67c7a04a41f8",
+              "leftValue": "={{ $json.final_manifest.content_url?.isUrl() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5344,
+        2352
+      ],
+      "id": "ee899f5a-9cd9-4b0c-97c1-68c12367d9f3",
+      "name": "If no url, error out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d9b47c3-f602-4902-95f2-54d80b414d7b",
+              "name": "seq",
+              "value": "={{ $json }}",
+              "type": "object"
+            },
+            {
+              "id": "e76fd7b0-1f76-4ac9-a19d-7060027b76d5",
+              "name": "seq.COMPONENT_GENERATION_COMPLETE",
+              "value": "={{ $json.elements[0].COMPONENT_GENERATION_COMPLETE ?? undefined }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9d0a561a-5e38-4418-9af4-558121d48273",
+              "name": "seq.output",
+              "value": "={{ $json.elements[0].output ?? undefined }}",
+              "type": "object"
+            },
+            {
+              "id": "19bb7cbf-3179-4ee8-83ba-f8a27b5c439f",
+              "name": "seq.content_url",
+              "value": "={{ $json.elements[0].content_url ?? $json.elements[0].output?.drive_url ?? $json.elements[0].output?.source_url ?? undefined }}",
+              "type": "string"
+            },
+            {
+              "id": "5e4ddf56-95fc-4a92-ba3c-eae57506e40b",
+              "name": "seq.timestamp",
+              "value": "={{ ( $json.elements[0].element_start_time ?? 0 ) * 1000 }}",
+              "type": "number"
+            },
+            {
+              "id": "c62c6961-1f31-4368-921c-71f5d2fb47d3",
+              "name": "seq.duration",
+              "value": "={{ ($json.elements[0].output.duration ?? $json.elements[0].duration ?? 1)  * 1000 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5072,
+        2112
+      ],
+      "id": "b26dd556-c89a-4c49-8736-0df8f6113d3c",
+      "name": "add first (& only) element's values to sequence"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07fb888c-5be1-4abc-852d-5571a44dc12e",
+              "name": "Deliverable",
+              "value": "={{ $('When Executed By Another Workflow').item.json.Deliverable }}",
+              "type": "object"
+            },
+            {
+              "id": "bc2e1e18-8d35-4d61-8137-94700a1f6440",
+              "name": "Deliverable.sequences",
+              "value": "={{ $json.seq }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3888,
+        2304
+      ],
+      "id": "edef7323-5ade-4206-8fcc-c342083ba3f3",
+      "name": "Update Deliverable { }"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Deliverable.sequences.length }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    },
+                    "id": "dff76c25-15c6-4cff-9d51-f2810bef1541"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "> 1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9672299f-46b9-4117-9355-59a25c9d92c3",
+                    "leftValue": "={{ $json.Deliverable.sequences.length }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "<= 1"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none",
+          "allMatchingOutputs": false
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4048,
+        2320
+      ],
+      "id": "38329b53-d593-486b-a3c0-f6505ce44a1b",
+      "name": "sequence.length"
+    },
+    {
+      "parameters": {
+        "amount": 27
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4368,
+        2320
+      ],
+      "id": "95b0ddc8-8029-4be0-8442-c4ae76e3c5d6",
+      "name": "Wait 27s",
+      "webhookId": "05ce78d7-6c93-4e58-a68c-b7393c49b46d",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 12
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4032,
+        2672
+      ],
+      "id": "a424f7f4-61b7-4f22-8393-e8d03e056068",
+      "name": "Wait 12s",
+      "webhookId": "69c36dc9-9529-44bd-adae-1879a67ec9d3",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3632,
+        2416
+      ],
+      "id": "1e301d85-0a6f-47d0-9501-5e6a74864b57",
+      "name": "_"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "51414803-6878-455c-8bb7-b82a689d048e",
+              "name": "video_url",
+              "value": "={{ $json.Deliverable.sequences[0].content_url ?? $json.Deliverable.sequences[0].output?.drive_url ?? $json.Deliverable.sequences[0].output?.source_url ?? undefined }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4976,
+        2416
+      ],
+      "id": "a0d83cf1-eacd-42ab-9a0b-09378e49ecda",
+      "name": "Deliverable.Seq[0]'s URL"
+    },
+    {
+      "parameters": {
+        "content": "## July 24, 2025, 2:09AM \n### Successful Output of 4 elements, 1 Sequence Deliverable",
+        "width": 224
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2752,
+        1984
+      ],
+      "id": "34a8dc21-6137-4d75-bc8a-e7645d91dc1e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 224
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        1984
+      ],
+      "id": "87e2b93a-4dc4-4ba1-a67e-2644d7755f39",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "03d4d50e-c809-4a28-97b1-8a9c37de62d2",
+              "name": "INPUT",
+              "value": "=[\n  {\n    \"deliverable_id\": \"d5\",\n    \"Deliverable\": {\n      \"deliverable_id\": \"d5\",\n      \"deliverable_asset_type\": \"video\",\n      \"file_type\": \"mp4\",\n      \"internal_use_only_deliverable_description\": \"this is the d5 deliverable video, 3 videos over 1 audio sound\",\n      \"sequences\": [\n        {\n          \"sequence_id\": \"d5s1\",\n          \"internal_use_only_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \",\n          \"elements\": [\n            {\n              \"element_id\": \"d5s1e1\",\n              \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": false,\n              \"generation_of_video_sound_prompt\": null,\n              \"video_generation_prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n              \"element_start_time\": 0,\n              \"file_type\": \"mp4\",\n              \"duration\": 5,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH&export=download\",\n              \"workflow_execution_id\": \"2537\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 5.042,\n                \"source_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"14b8e4e354d34c3b973962edcf0d9e6b\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/14b8e4e354d34c3b973962edcf0d9e6b/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:44:52.879Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"14b8e4e354d34c3b973962edcf0d9e6b\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/14b8e4e354d34c3b973962edcf0d9e6b/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:44:52.877622256Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 35501,\n                        \"timings\": {\n                          \"inference\": 35501\n                        }\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 5,\n                  \"prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e1\",\n                  \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": false,\n                  \"generation_of_video_sound_prompt\": null,\n                  \"video_generation_prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n                  \"element_start_time\": 0,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 5\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 5,\n                \"videoIncludesNativeSound?\": false\n              }\n            },\n            {\n              \"element_id\": \"d5s1e2\",\n              \"internal_use_only_element_description\": \"na\",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": false,\n              \"generation_of_video_sound_prompt\": null,\n              \"video_generation_prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n              \"element_start_time\": 5,\n              \"file_type\": \"mp4\",\n              \"duration\": 10,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW&export=download\",\n              \"workflow_execution_id\": \"2538\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 10.042,\n                \"source_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"99e60889f20d44e89920eec168a32793\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/99e60889f20d44e89920eec168a32793/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:46:18.509Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"99e60889f20d44e89920eec168a32793\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/99e60889f20d44e89920eec168a32793/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:46:18.508001802Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 70744,\n                        \"timings\": {\n                          \"inference\": 70744\n                        }\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 10,\n                  \"prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e2\",\n                  \"internal_use_only_element_description\": \"na\",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": false,\n                  \"generation_of_video_sound_prompt\": null,\n                  \"video_generation_prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n                  \"element_start_time\": 5,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 10\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 10,\n                \"videoIncludesNativeSound?\": false\n              }\n            },\n            {\n              \"element_id\": \"d5s1e3\",\n              \"internal_use_only_element_description\": \"claude m\",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": true,\n              \"generation_of_video_sound_prompt\": \"Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace\",\n              \"video_generation_prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n              \"element_start_time\": 15,\n              \"file_type\": \"mp4\",\n              \"duration\": 5,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o&export=download\",\n              \"workflow_execution_id\": \"2539\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 5.016,\n                \"source_url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"a6a789048ebd40ffbea85af6469f2b89\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/a6a789048ebd40ffbea85af6469f2b89/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:48:17.807Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"a6a789048ebd40ffbea85af6469f2b89\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/a6a789048ebd40ffbea85af6469f2b89/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/a6a789048ebd40ffbea85af6469f2b89/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:48:17.806247052Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 33057,\n                        \"timings\": {\n                          \"inference\": 33057\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Add Sound\": {\n                      \"status\": \"IN_QUEUE\",\n                      \"request_id\": \"4aba561c-a477-435c-9c2a-bcc8c26befa0\",\n                      \"response_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0\",\n                      \"status_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0/status\",\n                      \"cancel_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0/cancel\",\n                      \"logs\": null,\n                      \"metrics\": {},\n                      \"queue_position\": 1\n                    }\n                  },\n                  {\n                    \"Get Sound\": {\n                      \"video\": {\n                        \"url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                        \"content_type\": \"application/octet-stream\",\n                        \"file_name\": \"1.mp4\",\n                        \"file_size\": 780185\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 5,\n                  \"prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e3\",\n                  \"internal_use_only_element_description\": \"claude m\",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": true,\n                  \"generation_of_video_sound_prompt\": \"Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace\",\n                  \"video_generation_prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n                  \"element_start_time\": 15,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 5\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 5,\n                \"videoIncludesNativeSound?\": true\n              }\n            },\n            {\n              \"element_id\": \"d5s1e4\",\n              \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n              \"element_asset_type\": \"audio\",\n              \"file_type\": \"mp3\",\n              \"element_start_time\": 0,\n              \"duration\": 20,\n              \"audio_generation_prompt\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.\",\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n              \"workflow_execution_id\": \"2540\",\n              \"output\": {\n                \"media_type\": \"audio\",\n                \"file_type\": \"mp3\",\n                \"duration\": 20.062,\n                \"source_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n                \"content_gen_complete\": true,\n                \"model_used_for_generation\": \"Eleven Labs Sound\",\n                \"platform_used_for_generation\": \"Eleven Labs\",\n                \"api_call_error\": null\n              },\n              \"input\": {\n                \"sound_gen_input_body\": {\n                  \"text\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. \",\n                  \"duration_seconds\": \"20\"\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e4\",\n                  \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n                  \"element_asset_type\": \"audio\",\n                  \"file_type\": \"mp3\",\n                  \"element_start_time\": 0,\n                  \"duration\": 20,\n                  \"audio_generation_prompt\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.\"\n                },\n                \"output_file_format\": \"mp3\",\n                \"model_to_use\": \"eleven_labs\",\n                \"platform_to_use\": \"multingualv2\"\n              }\n            }\n          ],\n          \"output\": {\n            \"content_url\": null,\n            \"content_gen_success\": false,\n            \"api_call_error\": {\n              \"node_that_failed\": \"Get Sequence Video URL\",\n              \"code\": \"ERR_BAD_REQUEST\",\n              \"name\": \"AxiosError\",\n              \"status\": 422,\n              \"message\": \"422 - \\\"{\\\\\\\"detail\\\\\\\":[{\\\\\\\"type\\\\\\\":\\\\\\\"missing\\\\\\\",\\\\\\\"loc\\\\\\\":[\\\\\\\"body\\\\\\\",\\\\\\\"tracks\\\\\\\",1,\\\\\\\"keyframes\\\\\\\",0,\\\\\\\"url\\\\\\\"],\\\\\\\"msg\\\\\\\":\\\\\\\"Field required\\\\\\\",\\\\\\\"input\\\\\\\":{\\\\\\\"timestamp\\\\\\\":0,\\\\\\\"duration\\\\\\\":20000}}]}\\\"\",\n              \"workflow_execution_id\": \"2543\"\n            },\n            \"request_id\": \"b5d0ea7a-765b-4b41-b4c1-1493d3d24961\"\n          },\n          \"COMPONENT_GENERATION_COMPLETE\": false,\n          \"timestamp\": 0,\n          \"duration\": 5042\n        }\n      ]\n    },\n    \"upload_to_google_drive\": true,\n    \"final_file_name_google_drive\": \"Deliverable_d5\",\n    \"final_folder_id_google_drive\": \"1EKP3HYdhBDJe8KDlVNV9-woeaIL-NbYY\",\n    \"intermediary_folder_id_google_drive\": \"1IZH_HkuS_ibZAgMvPVBrwiGaThpr3w2a\",\n    \"use_editor_agent\": null,\n    \"additional_info\": null\n  }\n]",
+              "type": "object"
+            },
+            {
+              "id": "de33e4db-8914-46c5-9574-e276e4791280",
+              "name": "OUTPUT",
+              "value": "=[\n  {\n    \"final_manifest\": {\n      \"media_type\": \"video\",\n      \"source_url\": \"https://v3.fal.media/files/panda/Eqo7NjnyAliX4AkcibYko_output.mp4\",\n      \"file_type\": \"mov\",\n      \"duration\": 20.063,\n      \"resolution\": {\n        \"aspect_ratio\": \"5:9\",\n        \"width\": 480,\n        \"height\": 864\n      },\n      \"fps\": 24,\n      \"frame_count\": 362,\n      \"format\": {\n        \"video_codec\": \"h264\",\n        \"bitrate\": 1614243\n      },\n      \"audio\": {\n        \"codec\": \"aac\",\n        \"channels\": 2,\n        \"sample_rate\": 44100,\n        \"bitrate\": 128349\n      },\n      \"google_drive_is_file_uploaded\": true,\n      \"google_drive_file_id\": \"1Doq_1_9MLYz11F_gT9IbbqmxhcrRetyX\",\n      \"drive_url\": \"https://drive.google.com/uc?id=1Doq_1_9MLYz11F_gT9IbbqmxhcrRetyX&export=download\",\n      \"content_gen_complete\": true,\n      \"platform_used_for_final_cut\": \"ffmpeg/compose\",\n      \"api_call_error\": null\n    },\n    \"Deliverable\": {\n      \"deliverable_id\": \"d5\",\n      \"deliverable_asset_type\": \"video\",\n      \"file_type\": \"mp4\",\n      \"internal_use_only_deliverable_description\": \"this is the d5 deliverable video, 3 videos over 1 audio sound\",\n      \"sequences\": [\n        {\n          \"sequence_id\": \"d5s1\",\n          \"internal_use_only_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \",\n          \"elements\": [\n            {\n              \"element_id\": \"d5s1e1\",\n              \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": false,\n              \"generation_of_video_sound_prompt\": null,\n              \"video_generation_prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n              \"element_start_time\": 0,\n              \"file_type\": \"mp4\",\n              \"duration\": 5,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH&export=download\",\n              \"workflow_execution_id\": \"2537\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1sB2TdwCxph_0shJCTKpy9DrTksvXA1dH&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 5.042,\n                \"source_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"14b8e4e354d34c3b973962edcf0d9e6b\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/14b8e4e354d34c3b973962edcf0d9e6b/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:44:52.879Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"14b8e4e354d34c3b973962edcf0d9e6b\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/14b8e4e354d34c3b973962edcf0d9e6b/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/14b8e4e354d34c3b973962edcf0d9e6b/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:44:52.877622256Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 35501,\n                        \"timings\": {\n                          \"inference\": 35501\n                        }\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 5,\n                  \"prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e1\",\n                  \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": false,\n                  \"generation_of_video_sound_prompt\": null,\n                  \"video_generation_prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n                  \"element_start_time\": 0,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 5\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 5,\n                \"videoIncludesNativeSound?\": false\n              }\n            },\n            {\n              \"element_id\": \"d5s1e2\",\n              \"internal_use_only_element_description\": \"na\",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": false,\n              \"generation_of_video_sound_prompt\": null,\n              \"video_generation_prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n              \"element_start_time\": 5,\n              \"file_type\": \"mp4\",\n              \"duration\": 10,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW&export=download\",\n              \"workflow_execution_id\": \"2538\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1IAjnUUzgdcIvsm-jOEwv12NjmLCnMEJW&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 10.042,\n                \"source_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"99e60889f20d44e89920eec168a32793\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/99e60889f20d44e89920eec168a32793/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:46:18.509Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"99e60889f20d44e89920eec168a32793\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/99e60889f20d44e89920eec168a32793/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/99e60889f20d44e89920eec168a32793/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:46:18.508001802Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 70744,\n                        \"timings\": {\n                          \"inference\": 70744\n                        }\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 10,\n                  \"prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e2\",\n                  \"internal_use_only_element_description\": \"na\",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": false,\n                  \"generation_of_video_sound_prompt\": null,\n                  \"video_generation_prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n                  \"element_start_time\": 5,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 10\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 10,\n                \"videoIncludesNativeSound?\": false\n              }\n            },\n            {\n              \"element_id\": \"d5s1e3\",\n              \"internal_use_only_element_description\": \"claude m\",\n              \"element_asset_type\": \"video\",\n              \"videoContainsNativeAudio\": true,\n              \"generation_of_video_sound_prompt\": \"Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace\",\n              \"video_generation_prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n              \"element_start_time\": 15,\n              \"file_type\": \"mp4\",\n              \"duration\": 5,\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o&export=download\",\n              \"workflow_execution_id\": \"2539\",\n              \"output\": {\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1HTCib_K8GFQ1VTID8SkgaY39K6CFdc5o&export=download\",\n                \"media_type\": \"video\",\n                \"file_type\": \"mov\",\n                \"duration\": 5.016,\n                \"source_url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                \"resolution\": {\n                  \"aspect_ratio\": \"5:9\",\n                  \"width\": 480,\n                  \"height\": 864\n                },\n                \"fps\": 24,\n                \"content_gen_complete\": true,\n                \"content_url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                \"model_used_for_generation\": \"seedance-v1-pro-t2v-480p\",\n                \"platform_used_for_generation\": \"wavespeed.ai\",\n                \"content_gen_api_call_info\": \"video gen success\",\n                \"video_gen_api_responses\": [\n                  {\n                    \"Call seedance-v1-pro-t2v-480p\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"a6a789048ebd40ffbea85af6469f2b89\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/a6a789048ebd40ffbea85af6469f2b89/result\"\n                        },\n                        \"has_nsfw_contents\": [],\n                        \"status\": \"created\",\n                        \"created_at\": \"2025-07-24T01:48:17.807Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 0,\n                        \"timings\": {\n                          \"inference\": 0\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Get Task Status\": {\n                      \"code\": 200,\n                      \"message\": \"success\",\n                      \"data\": {\n                        \"id\": \"a6a789048ebd40ffbea85af6469f2b89\",\n                        \"model\": \"bytedance/seedance-v1-pro-t2v-480p\",\n                        \"outputs\": [\n                          \"https://d1q70pf5vjeyhc.cloudfront.net/predictions/a6a789048ebd40ffbea85af6469f2b89/1.mp4\"\n                        ],\n                        \"urls\": {\n                          \"get\": \"https://api.wavespeed.ai/api/v3/predictions/a6a789048ebd40ffbea85af6469f2b89/result\"\n                        },\n                        \"has_nsfw_contents\": [\n                          false\n                        ],\n                        \"status\": \"completed\",\n                        \"created_at\": \"2025-07-24T01:48:17.806247052Z\",\n                        \"error\": \"\",\n                        \"executionTime\": 33057,\n                        \"timings\": {\n                          \"inference\": 33057\n                        }\n                      }\n                    }\n                  },\n                  {\n                    \"Add Sound\": {\n                      \"status\": \"IN_QUEUE\",\n                      \"request_id\": \"4aba561c-a477-435c-9c2a-bcc8c26befa0\",\n                      \"response_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0\",\n                      \"status_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0/status\",\n                      \"cancel_url\": \"https://queue.fal.run/fal-ai/mmaudio-v2/requests/4aba561c-a477-435c-9c2a-bcc8c26befa0/cancel\",\n                      \"logs\": null,\n                      \"metrics\": {},\n                      \"queue_position\": 1\n                    }\n                  },\n                  {\n                    \"Get Sound\": {\n                      \"video\": {\n                        \"url\": \"https://v3.fal.media/files/zebra/oJn63skurKCX7s6_Eo3pc_1.mp4\",\n                        \"content_type\": \"application/octet-stream\",\n                        \"file_name\": \"1.mp4\",\n                        \"file_size\": 780185\n                      }\n                    }\n                  }\n                ]\n              },\n              \"input\": {\n                \"video_gen_input_body\": {\n                  \"aspect_ratio\": \"9:16\",\n                  \"duration\": 5,\n                  \"prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n                  \"seed\": -1\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e3\",\n                  \"internal_use_only_element_description\": \"claude m\",\n                  \"element_asset_type\": \"video\",\n                  \"videoContainsNativeAudio\": true,\n                  \"generation_of_video_sound_prompt\": \"Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace\",\n                  \"video_generation_prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n                  \"element_start_time\": 15,\n                  \"file_type\": \"mp4\",\n                  \"duration\": 5\n                },\n                \"aspect_ratio\": \"9:16\",\n                \"output_file_format\": \"mp4\",\n                \"model_to_use\": \"seedance\",\n                \"platform_to_use\": \"kie.ai\",\n                \"duration\": 5,\n                \"videoIncludesNativeSound?\": true\n              }\n            },\n            {\n              \"element_id\": \"d5s1e4\",\n              \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n              \"element_asset_type\": \"audio\",\n              \"file_type\": \"mp3\",\n              \"element_start_time\": 0,\n              \"duration\": 20,\n              \"audio_generation_prompt\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.\",\n              \"COMPONENT_GENERATION_COMPLETE\": true,\n              \"content_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n              \"workflow_execution_id\": \"2540\",\n              \"output\": {\n                \"media_type\": \"audio\",\n                \"file_type\": \"mp3\",\n                \"duration\": 20.062,\n                \"source_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n                \"google_drive_is_file_uploaded\": true,\n                \"google_drive_file_id\": \"1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36\",\n                \"drive_url\": \"https://drive.google.com/uc?id=1-s7J-Z8sUdzy6_7jL0fp4eM5tyW-ZM36&export=download\",\n                \"content_gen_complete\": true,\n                \"model_used_for_generation\": \"Eleven Labs Sound\",\n                \"platform_used_for_generation\": \"Eleven Labs\",\n                \"api_call_error\": null\n              },\n              \"input\": {\n                \"sound_gen_input_body\": {\n                  \"text\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. \",\n                  \"duration_seconds\": \"20\"\n                },\n                \"Element\": {\n                  \"element_id\": \"d5s1e4\",\n                  \"internal_use_only_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \",\n                  \"element_asset_type\": \"audio\",\n                  \"file_type\": \"mp3\",\n                  \"element_start_time\": 0,\n                  \"duration\": 20,\n                  \"audio_generation_prompt\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.\"\n                },\n                \"output_file_format\": \"mp3\",\n                \"model_to_use\": \"eleven_labs\",\n                \"platform_to_use\": \"multingualv2\"\n              }\n            }\n          ],\n          \"output\": {\n            \"content_url\": null,\n            \"content_gen_success\": true,\n            \"api_call_error\": null,\n            \"request_id\": \"7ca88f45-ad92-4692-a5de-07895211f5be\",\n            \"source_url\": \"https://v3.fal.media/files/panda/Eqo7NjnyAliX4AkcibYko_output.mp4\"\n          },\n          \"COMPONENT_GENERATION_COMPLETE\": true,\n          \"timestamp\": 0,\n          \"duration\": 5042,\n          \"content_url\": \"https://v3.fal.media/files/panda/Eqo7NjnyAliX4AkcibYko_output.mp4\"\n        }\n      ]\n    }\n  }\n]",
+              "type": "object"
+            },
+            {
+              "id": "5162fa36-8cf7-43a7-b1b3-f48c42701483",
+              "name": "this.workflow_execution_id",
+              "value": 2552,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3024,
+        2000
+      ],
+      "id": "8106db8f-cedb-465b-bc32-3eedb999f154",
+      "name": "Successful Test #1"
+    }
+  ],
+  "connections": {
+    "Sequence Video": {
+      "main": [
+        [
+          {
+            "node": "Wait 28s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish1": {
+      "main": [
+        [
+          {
+            "node": "Get Sequence Video URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 29",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 29": {
+      "main": [
+        [
+          {
+            "node": "Poll Video Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed By Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "If FFMPEG, else CREATEOMATE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Deliverable.Sequences[ ]": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Update Deliverable { }",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Video Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "sequence element size",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add output { }": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish2": {
+      "main": [
+        [
+          {
+            "node": "FINAL Video URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 33s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sequence element size": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "tracks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add first (& only) element's values to sequence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add final_manifest": {
+      "main": [
+        [
+          {
+            "node": "If no url, error out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 28s": {
+      "main": [
+        [
+          {
+            "node": "Poll Video Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deliverable Video": {
+      "main": [
+        [
+          {
+            "node": "Wait 27s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 33s": {
+      "main": [
+        [
+          {
+            "node": "Poll Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share": {
+      "main": [
+        [
+          {
+            "node": "Set Some Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Final Video File To Drive": {
+      "main": [
+        [
+          {
+            "node": "Share",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If FFMPEG, else CREATEOMATE": {
+      "main": [
+        [
+          {
+            "node": "Split Deliverable.Sequences[ ]",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UploadToDrive?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Get Video1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Video1": {
+      "main": [
+        [
+          {
+            "node": "Upload Final Video File To Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FINAL Video URL": {
+      "main": [
+        [
+          {
+            "node": "add final_manifest",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Get Sequence Video URL": {
+      "main": [
+        [
+          {
+            "node": "add output { }",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Some Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 20s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Wait 12s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Add Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Metadata Request Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish3": {
+      "main": [
+        [
+          {
+            "node": "Get File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 20s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "FINAL OUTPUT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Add Metadata": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tracks": {
+      "main": [
+        [
+          {
+            "node": "Sequence Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If no url, error out": {
+      "main": [
+        [
+          {
+            "node": "FINAL OUTPUT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post File Metadata",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "UploadToDrive?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add first (& only) element's values to sequence": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Deliverable { }": {
+      "main": [
+        [
+          {
+            "node": "sequence.length",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sequence.length": {
+      "main": [
+        [
+          {
+            "node": "Deliverable Video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "_",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 27s": {
+      "main": [
+        [
+          {
+            "node": "Poll Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 12s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "_": {
+      "main": [
+        [
+          {
+            "node": "Deliverable.Seq[0]'s URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deliverable.Seq[0]'s URL": {
+      "main": [
+        [
+          {
+            "node": "add final_manifest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d",
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "When Executed By Another Workflow": [
+      {
+        "json": {
+          "deliverable_id": "d1",
+          "Deliverable": {
+            "deliverable_id": "d1",
+            "deliverable_asset_type": "video",
+            "internal_use_only_deliverable_description": "the 3 sequence behemoth",
+            "file_type": "mp4",
+            "sequences": [
+              {
+                "sequence_id": "d1s1",
+                "internal_use_only_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff ",
+                "elements": [
+                  {
+                    "element_id": "d1s1e1",
+                    "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                    "element_asset_type": "video",
+                    "videoContainsNativeAudio": true,
+                    "generation_of_video_sound_prompt": "Soft rustling of delicate feathers in gentle breeze, subtle whisper-like sounds, organic texture with slight variation in intensity, peaceful and mesmerizing audio that matches the visual shimmer",
+                    "video_generation_prompt": "Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.",
+                    "element_start_time": 0,
+                    "file_type": "mp4",
+                    "duration": 5,
+                    "COMPONENT_GENERATION_COMPLETE": true,
+                    "content_url": "https://drive.google.com/uc?id=1aCZ4LHnhh31Jeg4blj89dFFBASqv9je7&export=download",
+                    "workflow_execution_id": "2554",
+                    "output": {
+                      "google_drive_is_file_uploaded": true,
+                      "google_drive_file_id": "1aCZ4LHnhh31Jeg4blj89dFFBASqv9je7",
+                      "drive_url": "https://drive.google.com/uc?id=1aCZ4LHnhh31Jeg4blj89dFFBASqv9je7&export=download",
+                      "media_type": "video",
+                      "file_type": "mov",
+                      "duration": 5.016,
+                      "source_url": "https://v3.fal.media/files/zebra/fbcooHyPfjEN8NkfxVXP4_1.mp4",
+                      "resolution": {
+                        "aspect_ratio": "5:9",
+                        "width": 480,
+                        "height": 864
+                      },
+                      "fps": 24,
+                      "content_gen_complete": true,
+                      "content_url": "https://v3.fal.media/files/zebra/fbcooHyPfjEN8NkfxVXP4_1.mp4",
+                      "model_used_for_generation": "seedance-v1-pro-t2v-480p",
+                      "platform_used_for_generation": "wavespeed.ai",
+                      "content_gen_api_call_info": "video gen success",
+                      "video_gen_api_responses": [
+                        {
+                          "Call seedance-v1-pro-t2v-480p": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "7ecf4e0ee53d454ba25c88888468271f",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/7ecf4e0ee53d454ba25c88888468271f/result"
+                              },
+                              "has_nsfw_contents": [],
+                              "status": "created",
+                              "created_at": "2025-07-24T06:28:37.4Z",
+                              "error": "",
+                              "executionTime": 0,
+                              "timings": {
+                                "inference": 0
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Get Task Status": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "7ecf4e0ee53d454ba25c88888468271f",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [
+                                "https://d1q70pf5vjeyhc.cloudfront.net/predictions/7ecf4e0ee53d454ba25c88888468271f/1.mp4"
+                              ],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/7ecf4e0ee53d454ba25c88888468271f/result"
+                              },
+                              "has_nsfw_contents": [
+                                false
+                              ],
+                              "status": "completed",
+                              "created_at": "2025-07-24T06:28:37.399117874Z",
+                              "error": "",
+                              "executionTime": 45374,
+                              "timings": {
+                                "inference": 45374
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Add Sound": {
+                            "status": "IN_QUEUE",
+                            "request_id": "65cbfc16-2d57-4115-baa6-3950e87eeeab",
+                            "response_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/65cbfc16-2d57-4115-baa6-3950e87eeeab",
+                            "status_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/65cbfc16-2d57-4115-baa6-3950e87eeeab/status",
+                            "cancel_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/65cbfc16-2d57-4115-baa6-3950e87eeeab/cancel",
+                            "logs": null,
+                            "metrics": {},
+                            "queue_position": 0
+                          }
+                        },
+                        {
+                          "Get Sound": {
+                            "video": {
+                              "url": "https://v3.fal.media/files/zebra/fbcooHyPfjEN8NkfxVXP4_1.mp4",
+                              "content_type": "application/octet-stream",
+                              "file_name": "1.mp4",
+                              "file_size": 775980
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "input": {
+                      "video_gen_input_body": {
+                        "aspect_ratio": "9:16",
+                        "duration": 5,
+                        "prompt": "Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.",
+                        "seed": -1
+                      },
+                      "Element": {
+                        "element_id": "d1s1e1",
+                        "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                        "element_asset_type": "video",
+                        "videoContainsNativeAudio": true,
+                        "generation_of_video_sound_prompt": "Soft rustling of delicate feathers in gentle breeze, subtle whisper-like sounds, organic texture with slight variation in intensity, peaceful and mesmerizing audio that matches the visual shimmer",
+                        "video_generation_prompt": "Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.",
+                        "element_start_time": 0,
+                        "file_type": "mp4",
+                        "duration": 5
+                      },
+                      "aspect_ratio": "9:16",
+                      "output_file_format": "mp4",
+                      "model_to_use": "seedance",
+                      "platform_to_use": "kie.ai",
+                      "duration": 5,
+                      "videoIncludesNativeSound?": true
+                    }
+                  },
+                  {
+                    "element_id": "d1s1e2",
+                    "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                    "element_asset_type": "audio",
+                    "file_type": "mp3",
+                    "duration": 5,
+                    "element_start_time": 0,
+                    "audio_generation_prompt": "Ambient opening with soft piano arpeggios and gentle string pads, building anticipation. Organic, nature-inspired soundscape with subtle electronic textures. 5-second intro that creates wonder and draws viewer in. Tempo: 70 BPM, Key: C major, warm and inviting tone.",
+                    "COMPONENT_GENERATION_COMPLETE": true,
+                    "content_url": "https://drive.google.com/uc?id=1bfsTXH0OL4Hy2gywrtNNVHGIVJoc1g_e&export=download",
+                    "workflow_execution_id": "2555",
+                    "output": {
+                      "media_type": "audio",
+                      "file_type": "mp3",
+                      "duration": 5.041625,
+                      "source_url": "https://drive.google.com/uc?id=1bfsTXH0OL4Hy2gywrtNNVHGIVJoc1g_e&export=download",
+                      "google_drive_is_file_uploaded": true,
+                      "google_drive_file_id": "1bfsTXH0OL4Hy2gywrtNNVHGIVJoc1g_e",
+                      "drive_url": "https://drive.google.com/uc?id=1bfsTXH0OL4Hy2gywrtNNVHGIVJoc1g_e&export=download",
+                      "content_gen_complete": true,
+                      "model_used_for_generation": "Eleven Labs Sound",
+                      "platform_used_for_generation": "Eleven Labs",
+                      "api_call_error": null
+                    },
+                    "input": {
+                      "sound_gen_input_body": {
+                        "text": "Ambient opening with soft piano arpeggios and gentle string pads, building anticipation. Organic, nature-inspired soundscape with subtle electronic textures. 5-second intro that creates wonder and draws viewer in. Tempo: 70 BPM, Key: C major, warm and inviting tone.",
+                        "duration_seconds": "5"
+                      },
+                      "Element": {
+                        "element_id": "d1s1e2",
+                        "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                        "element_asset_type": "audio",
+                        "file_type": "mp3",
+                        "duration": 5,
+                        "element_start_time": 0,
+                        "audio_generation_prompt": "Ambient opening with soft piano arpeggios and gentle string pads, building anticipation. Organic, nature-inspired soundscape with subtle electronic textures. 5-second intro that creates wonder and draws viewer in. Tempo: 70 BPM, Key: C major, warm and inviting tone."
+                      },
+                      "output_file_format": "mp3",
+                      "model_to_use": "eleven_labs",
+                      "platform_to_use": "multingualv2"
+                    }
+                  }
+                ],
+                "COMPONENT_GENERATION_COMPLETE": true,
+                "content_url": "https://v3.fal.media/files/tiger/dx5I28LrPUwZSyx_r51pv_output.mp4",
+                "output": {
+                  "source_url": "https://v3.fal.media/files/tiger/dx5I28LrPUwZSyx_r51pv_output.mp4",
+                  "content_gen_success": true,
+                  "api_call_error": null,
+                  "request_id": "a6481f1f-f1f9-409d-acc7-44af843937b3"
+                },
+                "timestamp": 0,
+                "duration": 5016
+              },
+              {
+                "sequence_id": "d1s2",
+                "internal_use_only_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff ",
+                "elements": [
+                  {
+                    "element_id": "d1s2e1",
+                    "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                    "element_asset_type": "video",
+                    "videoContainsNativeAudio": false,
+                    "generation_of_video_sound_prompt": null,
+                    "video_generation_prompt": "Seamless transition from feather close-up to reveal a majestic bird in natural habitat. Elegant slow-motion flight sequence showing wing detail and graceful movement through dappled forest light. Camera follows bird's movement with smooth tracking, showcasing the connection between individual feathers and the complete creature. Rich depth of field, cinematic composition, golden hour lighting continues.",
+                    "element_start_time": 0,
+                    "file_type": "mp4",
+                    "duration": 10,
+                    "COMPONENT_GENERATION_COMPLETE": true,
+                    "content_url": "https://drive.google.com/uc?id=1HDEQK90rGbGKyswTnV1tPwnk69Ifhmp2&export=download",
+                    "workflow_execution_id": "2556",
+                    "output": {
+                      "google_drive_is_file_uploaded": true,
+                      "google_drive_file_id": "1HDEQK90rGbGKyswTnV1tPwnk69Ifhmp2",
+                      "drive_url": "https://drive.google.com/uc?id=1HDEQK90rGbGKyswTnV1tPwnk69Ifhmp2&export=download",
+                      "media_type": "video",
+                      "file_type": "mov",
+                      "duration": 10.042,
+                      "source_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/97de45dc001842a1b59497f91b86cd5e/1.mp4",
+                      "resolution": {
+                        "aspect_ratio": "5:9",
+                        "width": 480,
+                        "height": 864
+                      },
+                      "fps": 24,
+                      "content_gen_complete": true,
+                      "content_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/97de45dc001842a1b59497f91b86cd5e/1.mp4",
+                      "model_used_for_generation": "seedance-v1-pro-t2v-480p",
+                      "platform_used_for_generation": "wavespeed.ai",
+                      "content_gen_api_call_info": "video gen success",
+                      "video_gen_api_responses": [
+                        {
+                          "Call seedance-v1-pro-t2v-480p": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "97de45dc001842a1b59497f91b86cd5e",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/97de45dc001842a1b59497f91b86cd5e/result"
+                              },
+                              "has_nsfw_contents": [],
+                              "status": "created",
+                              "created_at": "2025-07-24T06:30:59.815Z",
+                              "error": "",
+                              "executionTime": 0,
+                              "timings": {
+                                "inference": 0
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Get Task Status": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "97de45dc001842a1b59497f91b86cd5e",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [
+                                "https://d1q70pf5vjeyhc.cloudfront.net/predictions/97de45dc001842a1b59497f91b86cd5e/1.mp4"
+                              ],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/97de45dc001842a1b59497f91b86cd5e/result"
+                              },
+                              "has_nsfw_contents": [
+                                false
+                              ],
+                              "status": "completed",
+                              "created_at": "2025-07-24T06:30:59.814185837Z",
+                              "error": "",
+                              "executionTime": 70370,
+                              "timings": {
+                                "inference": 70370
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "input": {
+                      "video_gen_input_body": {
+                        "aspect_ratio": "9:16",
+                        "duration": 10,
+                        "prompt": "Seamless transition from feather close-up to reveal a majestic bird in natural habitat. Elegant slow-motion flight sequence showing wing detail and graceful movement through dappled forest light. Camera follows bird's movement with smooth tracking, showcasing the connection between individual feathers and the complete creature. Rich depth of field, cinematic composition, golden hour lighting continues.",
+                        "seed": -1
+                      },
+                      "Element": {
+                        "element_id": "d1s2e1",
+                        "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                        "element_asset_type": "video",
+                        "videoContainsNativeAudio": false,
+                        "generation_of_video_sound_prompt": null,
+                        "video_generation_prompt": "Seamless transition from feather close-up to reveal a majestic bird in natural habitat. Elegant slow-motion flight sequence showing wing detail and graceful movement through dappled forest light. Camera follows bird's movement with smooth tracking, showcasing the connection between individual feathers and the complete creature. Rich depth of field, cinematic composition, golden hour lighting continues.",
+                        "element_start_time": 0,
+                        "file_type": "mp4",
+                        "duration": 10
+                      },
+                      "aspect_ratio": "9:16",
+                      "output_file_format": "mp4",
+                      "model_to_use": "seedance",
+                      "platform_to_use": "kie.ai",
+                      "duration": 10,
+                      "videoIncludesNativeSound?": false
+                    }
+                  },
+                  {
+                    "element_id": "d1s2e2",
+                    "internal_use_only_element_description": "",
+                    "element_asset_type": "audio",
+                    "audio_generation_prompt": "Musical development building from intro - piano melody joined by soft strings and subtle percussion. Organic, flowing composition that mirrors bird flight with rising and falling phrases. Nature-inspired harmony with gentle electronic ambience. 10-second progression that supports visual storytelling without overwhelming. Maintains 70 BPM, evolving from C major to related keys.",
+                    "duration": 10,
+                    "element_start_time": 0,
+                    "file_type": "wav",
+                    "COMPONENT_GENERATION_COMPLETE": true,
+                    "content_url": "https://drive.google.com/uc?id=1-kdJGaW6sUP038e4KFw2iSVvxN6PHum8&export=download",
+                    "workflow_execution_id": "2557",
+                    "output": {
+                      "media_type": "audio",
+                      "file_type": "mp3",
+                      "duration": 10.057125,
+                      "source_url": "https://drive.google.com/uc?id=1-kdJGaW6sUP038e4KFw2iSVvxN6PHum8&export=download",
+                      "google_drive_is_file_uploaded": true,
+                      "google_drive_file_id": "1-kdJGaW6sUP038e4KFw2iSVvxN6PHum8",
+                      "drive_url": "https://drive.google.com/uc?id=1-kdJGaW6sUP038e4KFw2iSVvxN6PHum8&export=download",
+                      "content_gen_complete": true,
+                      "model_used_for_generation": "Eleven Labs Sound",
+                      "platform_used_for_generation": "Eleven Labs",
+                      "api_call_error": null
+                    },
+                    "input": {
+                      "sound_gen_input_body": {
+                        "text": "Musical development building from intro - piano melody joined by soft strings and subtle percussion. Organic, flowing composition that mirrors bird flight with rising and falling phrases. Nature-inspired harmony with gentle electronic ambience. 10-second progression that supports visual storytelling without overwhelming. Maintains 70 BPM, evolving from C major to related keys.",
+                        "duration_seconds": "10"
+                      },
+                      "Element": {
+                        "element_id": "d1s2e2",
+                        "internal_use_only_element_description": "",
+                        "element_asset_type": "audio",
+                        "audio_generation_prompt": "Musical development building from intro - piano melody joined by soft strings and subtle percussion. Organic, flowing composition that mirrors bird flight with rising and falling phrases. Nature-inspired harmony with gentle electronic ambience. 10-second progression that supports visual storytelling without overwhelming. Maintains 70 BPM, evolving from C major to related keys.",
+                        "duration": 10,
+                        "element_start_time": 0,
+                        "file_type": "wav"
+                      },
+                      "output_file_format": "wav",
+                      "model_to_use": "eleven_labs",
+                      "platform_to_use": "multingualv2"
+                    }
+                  }
+                ],
+                "COMPONENT_GENERATION_COMPLETE": true,
+                "content_url": "https://v3.fal.media/files/koala/T0etZGCSK-vfhWdobjL1p_output.mp4",
+                "output": {
+                  "source_url": "https://v3.fal.media/files/koala/T0etZGCSK-vfhWdobjL1p_output.mp4",
+                  "content_gen_success": true,
+                  "api_call_error": null,
+                  "request_id": "743d53f9-7d7f-4320-a6cf-cfdbe3d7f1e4"
+                },
+                "timestamp": 0,
+                "duration": 10042
+              },
+              {
+                "sequence_id": "d1s3",
+                "internal_use_only_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff ",
+                "elements": [
+                  {
+                    "element_id": "d1s3e1",
+                    "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                    "element_asset_type": "video",
+                    "videoContainsNativeAudio": true,
+                    "generation_of_video_sound_prompt": "Gentle landing sounds with feathers settling, soft rustling diminishing to peaceful whisper, creating sense of completion and rest, maintaining the signature feather texture but with resolution and calm",
+                    "video_generation_prompt": "Final dramatic moment - bird lands gracefully on branch, feathers settling into place. Extreme close-up return to individual feathers but now with context of the complete story. Feathers catch final rays of golden light, creating a sense of completion and beauty. Shallow focus emphasizing feather details with soft background blur. Peaceful, satisfying conclusion with gentle camera movement.",
+                    "element_start_time": 0,
+                    "file_type": "mp4",
+                    "duration": 5,
+                    "COMPONENT_GENERATION_COMPLETE": true,
+                    "content_url": "https://drive.google.com/uc?id=1lsKGDFUttCk3MHNd_cDr1CTYX9kggUPY&export=download",
+                    "workflow_execution_id": "2558",
+                    "output": {
+                      "google_drive_is_file_uploaded": true,
+                      "google_drive_file_id": "1lsKGDFUttCk3MHNd_cDr1CTYX9kggUPY",
+                      "drive_url": "https://drive.google.com/uc?id=1lsKGDFUttCk3MHNd_cDr1CTYX9kggUPY&export=download",
+                      "media_type": "video",
+                      "file_type": "mov",
+                      "duration": 5.016,
+                      "source_url": "https://v3.fal.media/files/elephant/h019FSo22LCTPuiW-ZkYQ_1.mp4",
+                      "resolution": {
+                        "aspect_ratio": "5:9",
+                        "width": 480,
+                        "height": 864
+                      },
+                      "fps": 24,
+                      "content_gen_complete": true,
+                      "content_url": "https://v3.fal.media/files/elephant/h019FSo22LCTPuiW-ZkYQ_1.mp4",
+                      "model_used_for_generation": "seedance-v1-pro-t2v-480p",
+                      "platform_used_for_generation": "wavespeed.ai",
+                      "content_gen_api_call_info": "video gen success",
+                      "video_gen_api_responses": [
+                        {
+                          "Call seedance-v1-pro-t2v-480p": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "db7f3c6d05dd4f4094f9b1ebc6a63ff6",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/db7f3c6d05dd4f4094f9b1ebc6a63ff6/result"
+                              },
+                              "has_nsfw_contents": [],
+                              "status": "created",
+                              "created_at": "2025-07-24T06:33:23.024Z",
+                              "error": "",
+                              "executionTime": 0,
+                              "timings": {
+                                "inference": 0
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Get Task Status": {
+                            "code": 200,
+                            "message": "success",
+                            "data": {
+                              "id": "db7f3c6d05dd4f4094f9b1ebc6a63ff6",
+                              "model": "bytedance/seedance-v1-pro-t2v-480p",
+                              "outputs": [
+                                "https://d1q70pf5vjeyhc.cloudfront.net/predictions/db7f3c6d05dd4f4094f9b1ebc6a63ff6/1.mp4"
+                              ],
+                              "urls": {
+                                "get": "https://api.wavespeed.ai/api/v3/predictions/db7f3c6d05dd4f4094f9b1ebc6a63ff6/result"
+                              },
+                              "has_nsfw_contents": [
+                                false
+                              ],
+                              "status": "completed",
+                              "created_at": "2025-07-24T06:33:23.023316389Z",
+                              "error": "",
+                              "executionTime": 33746,
+                              "timings": {
+                                "inference": 33746
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Add Sound": {
+                            "status": "IN_QUEUE",
+                            "request_id": "da0141cd-87d4-4d78-8265-351748b0cf48",
+                            "response_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/da0141cd-87d4-4d78-8265-351748b0cf48",
+                            "status_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/da0141cd-87d4-4d78-8265-351748b0cf48/status",
+                            "cancel_url": "https://queue.fal.run/fal-ai/mmaudio-v2/requests/da0141cd-87d4-4d78-8265-351748b0cf48/cancel",
+                            "logs": null,
+                            "metrics": {},
+                            "queue_position": 0
+                          }
+                        },
+                        {
+                          "Get Sound": {
+                            "video": {
+                              "url": "https://v3.fal.media/files/elephant/h019FSo22LCTPuiW-ZkYQ_1.mp4",
+                              "content_type": "application/octet-stream",
+                              "file_name": "1.mp4",
+                              "file_size": 631957
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "input": {
+                      "video_gen_input_body": {
+                        "aspect_ratio": "9:16",
+                        "duration": 5,
+                        "prompt": "Final dramatic moment - bird lands gracefully on branch, feathers settling into place. Extreme close-up return to individual feathers but now with context of the complete story. Feathers catch final rays of golden light, creating a sense of completion and beauty. Shallow focus emphasizing feather details with soft background blur. Peaceful, satisfying conclusion with gentle camera movement.",
+                        "seed": -1
+                      },
+                      "Element": {
+                        "element_id": "d1s3e1",
+                        "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                        "element_asset_type": "video",
+                        "videoContainsNativeAudio": true,
+                        "generation_of_video_sound_prompt": "Gentle landing sounds with feathers settling, soft rustling diminishing to peaceful whisper, creating sense of completion and rest, maintaining the signature feather texture but with resolution and calm",
+                        "video_generation_prompt": "Final dramatic moment - bird lands gracefully on branch, feathers settling into place. Extreme close-up return to individual feathers but now with context of the complete story. Feathers catch final rays of golden light, creating a sense of completion and beauty. Shallow focus emphasizing feather details with soft background blur. Peaceful, satisfying conclusion with gentle camera movement.",
+                        "element_start_time": 0,
+                        "file_type": "mp4",
+                        "duration": 5
+                      },
+                      "aspect_ratio": "9:16",
+                      "output_file_format": "mp4",
+                      "model_to_use": "seedance",
+                      "platform_to_use": "kie.ai",
+                      "duration": 5,
+                      "videoIncludesNativeSound?": true
+                    }
+                  },
+                  {
+                    "element_id": "d1s3e2",
+                    "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+                    "element_asset_type": "audio",
+                    "element_start_time": 0,
+                    "file_type": "wav",
+                    "duration": 5,
+                    "audio_generation_prompt": "imagine this is suno music",
+                    "COMPONENT_GENERATION_COMPLETE": false,
+                    "COMPONENT_GENERATION_ATTEMPTS": [
+                      {
+                        "workflow_execution_id": "2559",
+                        "error": {
+                          "message": "422 - \"{\\\"detail\\\":[{\\\"type\\\":\\\"missing\\\",\\\"loc\\\":[\\\"body\\\",\\\"text\\\"],\\\"msg\\\":\\\"Field required\\\",\\\"input\\\":null}]}\"",
+                          "name": "AxiosError",
+                          "stack": "AxiosError: Request failed with status code 422\n    at settle (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.8.3/node_modules/axios/lib/core/settle.js:19:12)\n    at RedirectableRequest.handleResponse (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.8.3/node_modules/axios/lib/adapters/http.js:547:9)\n    at RedirectableRequest.emit (node:events:530:35)\n    at RedirectableRequest._processResponse (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:409:10)\n    at ClientRequest.RedirectableRequest._onNativeResponse (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)\n    at Object.onceWrapper (node:events:633:26)\n    at ClientRequest.emit (node:events:518:28)\n    at HTTPParser.parserOnIncomingClient [as onIncoming] (node:_http_client:716:27)\n    at HTTPParser.parserOnHeadersComplete (node:_http_common:117:17)\n    at TLSSocket.socketOnData (node:_http_client:558:22)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at TLSSocket.Readable.push (node:internal/streams/readable:392:5)\n    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)\n    at TLSWrap.callbackTrampoline (node:internal/async_hooks:130:17)\n    at Axios.request (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.8.3/node_modules/axios/lib/core/Axios.js:45:41)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at invokeAxios (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_openai@5.8.1_ws@8.17.1_zod@3.25.67_/node_modules/n8n-core/src/execution-engine/node-execution-context/utils/request-helper-functions.ts:315:10)\n    at proxyRequestToAxios (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_openai@5.8.1_ws@8.17.1_zod@3.25.67_/node_modules/n8n-core/src/execution-engine/node-execution-context/utils/request-helper-functions.ts:707:20)\n    at Object.request (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_openai@5.8.1_ws@8.17.1_zod@3.25.67_/node_modules/n8n-core/src/execution-engine/node-execution-context/utils/request-helper-functions.ts:1753:4)",
+                          "code": "ERR_BAD_REQUEST",
+                          "status": 422
+                        },
+                        "content_gen_output": {
+                          "content_gen_complete": false,
+                          "media_type": "audio",
+                          "model_used_for_generation": "eleven_flash_v2_5",
+                          "platform_used_for_generation": "Eleven Labs",
+                          "api_call_error": {
+                            "node_that_failed": "ElevenLabs Speech",
+                            "code": "ERR_BAD_REQUEST",
+                            "name": "AxiosError",
+                            "status": 422,
+                            "message": "422 - \"{\\\"detail\\\":[{\\\"type\\\":\\\"missing\\\",\\\"loc\\\":[\\\"body\\\",\\\"text\\\"],\\\"msg\\\":\\\"Field required\\\",\\\"input\\\":null}]}\"",
+                            "workflow_execution_id": "2559"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "COMPONENT_GENERATION_COMPLETE": false,
+                "content_url": null,
+                "output": {
+                  "source_url": null,
+                  "content_gen_success": false,
+                  "api_call_error": {
+                    "node_that_failed": "Get Sequence Video URL",
+                    "code": "ERR_BAD_REQUEST",
+                    "name": "AxiosError",
+                    "status": 422,
+                    "message": "422 - \"{\\\"detail\\\":[{\\\"loc\\\":[\\\"body\\\",\\\"url\\\"],\\\"msg\\\":\\\"Could not download , please provide a valid url\\\",\\\"type\\\":\\\"value_error\\\"}]}\"",
+                    "workflow_execution_id": "2560"
+                  },
+                  "request_id": "b430b4c0-7d75-482c-add7-180d6c47c794"
+                },
+                "timestamp": 0,
+                "duration": 5016
+              }
+            ]
+          },
+          "upload_to_google_drive": null,
+          "final_file_name_google_drive": "Deliverable_d1",
+          "final_folder_id_google_drive": "1KapklizrRjtwV4CWvkAfmZGWck0hzb5g",
+          "intermediary_folder_id_google_drive": "1frKC0X7PK02EenO5L3EjxLeiKBR5XQWN",
+          "use_editor_agent": false,
+          "query_for_editor_agent": null,
+          "additional_info": null
+        }
+      }
+    ]
+  },
+  "versionId": "8e0bf278-5dbf-4213-b84e-ad7a24120196",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:46.053Z",
+      "updatedAt": "2025-08-29T12:30:46.053Z",
+      "role": "workflow:owner",
+      "workflowId": "BNnkh56MHtnzrfo2",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-06-20T15:22:03.165Z",
+      "updatedAt": "2025-06-20T15:22:03.165Z",
+      "id": "3I4g69S2rs2yMm1V",
+      "name": "Video Gen"
+    },
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-07-12T16:00:04.639Z",
+      "updatedAt": "2025-07-12T16:00:04.639Z",
+      "id": "ALCkxuxSkzDkajSI",
+      "name": "✅"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    }
+  ]
+}
