@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-10T04:14:05.158Z",
-  "updatedAt": "2025-09-04T06:57:26.000Z",
+  "updatedAt": "2025-09-04T07:18:00.000Z",
   "id": "VtqDp5dJIy3K37BF",
   "name": "MacGuyver - Shot List Agent As Workflow",
   "active": false,
@@ -16,8 +16,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        848,
-        608
+        672,
+        624
       ],
       "id": "a76ac217-b9df-4afa-9ed7-735803d6e131",
       "name": "Sticky Note7"
@@ -30,8 +30,8 @@
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        1584,
-        688
+        1408,
+        704
       ],
       "id": "71894570-4b8f-414b-a6f4-a5c91b8e2841",
       "name": "Official Social Platform Format Standards & Requirements",
@@ -51,8 +51,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        1824,
-        688
+        1648,
+        704
       ],
       "id": "8b47dd3f-2493-4ed1-8b7e-3e0047fba125",
       "name": "Structured Output Parser",
@@ -335,8 +335,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        2224,
-        32
+        2128,
+        272
       ],
       "id": "4cd279af-7296-46b7-a0bb-2352ad26cbd7",
       "name": "Status ('Shot_List'): ✅ Done",
@@ -355,8 +355,8 @@
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        1456,
-        688
+        1280,
+        704
       ],
       "id": "4dac6fa2-d51b-4282-9205-c15fa374a5ff",
       "name": "Artificial Orchard Studios: Company Guidelines",
@@ -369,66 +369,23 @@
       "disabled": true
     },
     {
-      "parameters": {
-        "mode": "chooseBranch",
-        "useDataOfInput": 2
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3.2,
-      "position": [
-        2544,
-        288
-      ],
-      "id": "3798fde2-f249-4af0-9119-290fe87470f6",
-      "name": "Merge"
-    },
-    {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1,
       "position": [
-        1360,
-        688
+        1184,
+        704
       ],
       "id": "59d93506-9559-42f1-adb6-61fc3b569140",
       "name": "Think"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "e304df9b-9091-4eef-8349-6a5c5a78df7b",
-              "name": "Shot_List",
-              "value": "={{ $json.output.Shot_List }}",
-              "type": "object"
-            },
-            {
-              "id": "771db1ce-26d9-40a5-aa12-b798a75c088d",
-              "name": "summary_abstract",
-              "value": "={{ $json.output.summary_abstract }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        2224,
-        304
-      ],
-      "id": "4e9fd9fc-e2e2-44c2-a67d-90dfba769873",
-      "name": "Edit Fields"
     },
     {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolCalculator",
       "typeVersion": 1,
       "position": [
-        1248,
-        688
+        1072,
+        704
       ],
       "id": "63641387-cc3a-474f-9939-b5dddfe67f2b",
       "name": "Calculator"
@@ -551,8 +508,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        864,
-        688
+        688,
+        704
       ],
       "id": "b899ced6-2c89-4a01-8951-39fb9474fde9",
       "name": "GPT 5",
@@ -661,7 +618,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2336,
+        2160,
         480
       ],
       "id": "a23aae2a-a00b-4193-8ae5-6d0336f80273",
@@ -770,7 +727,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        2480,
+        2288,
         480
       ],
       "id": "74a2969b-a954-43e8-85d5-bd47cef7d9f5",
@@ -910,8 +867,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2768,
-        112
+        1600,
+        176
       ],
       "id": "9a067bd6-cd36-4794-ba42-3829e9840bc7",
       "name": "Sticky Note3"
@@ -957,8 +914,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2816,
-        208
+        1648,
+        272
       ],
       "id": "b20e2900-796a-4999-8d7e-9ec84d1bc5b4",
       "name": "Final Output1"
@@ -1064,8 +1021,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        992,
-        688
+        816,
+        704
       ],
       "id": "21b9c100-8133-4d3e-9e29-6925a1ab7c9a",
       "name": "OpenRouter gpt-5",
@@ -1084,8 +1041,8 @@
       "type": "@tavily/n8n-nodes-tavily.tavilyTool",
       "typeVersion": 1,
       "position": [
-        1712,
-        688
+        1536,
+        704
       ],
       "id": "45715fbb-e939-49c0-b662-2a9fc04d811b",
       "name": "Search in Tavily",
@@ -1130,8 +1087,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        1120,
-        656
+        944,
+        672
       ],
       "id": "b6b10bc1-5ca3-42a6-8716-70606d150f96",
       "name": "Postgres Memory - MacGyver",
@@ -1219,22 +1176,6 @@
             "node": "MacGyver",
             "type": "ai_tool",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        []
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -1514,7 +1455,7 @@
       }
     ]
   },
-  "versionId": "2ebf6ed7-f4da-47dc-8af5-8db44e31ccfc",
+  "versionId": "f17e19b9-6528-4c7a-8979-cbf509bb3c92",
   "triggerCount": 0,
   "shared": [
     {
