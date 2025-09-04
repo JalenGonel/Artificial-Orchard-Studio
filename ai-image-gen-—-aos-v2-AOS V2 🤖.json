@@ -1,0 +1,1144 @@
+{
+  "createdAt": "2025-07-29T06:24:56.557Z",
+  "updatedAt": "2025-08-14T06:11:02.000Z",
+  "id": "c5DN9DFIsfPq7OWH",
+  "name": "AI Image Gen — AOS V2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "",
+        "height": 100,
+        "width": 580,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        1920
+      ],
+      "id": "1855d455-b9df-4404-bd3e-bb1781b98614",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "#  OPENAI",
+        "height": 100,
+        "width": 230,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        1920
+      ],
+      "id": "808414ac-20ae-4936-83d3-b49c75a8947b",
+      "name": "Sticky Note28"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.{{$json.platform}}.com/v1/images/generations",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.image_gen_input_body.toJsonString() }}",
+        "options": {}
+      },
+      "id": "c5c7c10f-c486-42d0-acd7-208f8105c39d",
+      "name": "OpenAI - Image-Gen t2i",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2336,
+        1920
+      ],
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "O38qltZmjubnlhtn",
+          "name": "OpenAI (Bredcrums Org.)"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 100,
+        "width": 260,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        1920
+      ],
+      "id": "d1878e36-e1c7-491b-b7dc-dafb6bd2cfb2",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "id": "40396043-9899-404d-9252-07abb315e100",
+      "name": "Convert b64_json data binary to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "position": [
+        2528,
+        1920
+      ],
+      "typeVersion": 1.1,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "name": "={{ $ifEmpty($('Start').item.json.google_drive_file_name, $now.toLocaleString())}}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{$ifEmpty($('Start').item.json['google_drive_folder-id'],\"1gFNrPekMmUyKNPI12XRidKiZdecSp1_N\")}}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2768,
+        1920
+      ],
+      "id": "24c1b5a3-dd10-471b-adde-6e9a07a9194f",
+      "name": "Upload Image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "element_id",
+              "type": "any"
+            },
+            {
+              "name": "Element",
+              "type": "any"
+            },
+            {
+              "name": "google_drive_file_name"
+            },
+            {
+              "name": "upload_to_google_drive",
+              "type": "boolean"
+            },
+            {
+              "name": "google_drive_folder-id",
+              "type": "any"
+            },
+            {
+              "name": "platform_to_use",
+              "type": "any"
+            },
+            {
+              "name": "aspect_ratio"
+            },
+            {
+              "name": "quality",
+              "type": "any"
+            },
+            {
+              "name": "file_type"
+            },
+            {
+              "name": "image_model_to_use",
+              "type": "any"
+            },
+            {
+              "name": "image_generation_prompt"
+            },
+            {
+              "name": "content_moderation",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "0a64b15a-d693-4051-8d6d-50b365c67342",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        1744,
+        1920
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "=Failed Node: {{$prevNode.name}}\nError Body: {{ $json }}"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        2272,
+        2208
+      ],
+      "id": "cf0f90ca-2845-4c5c-b110-dd4c9ea95299",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "915b47ca-ea53-46e7-a030-b3d103409866",
+              "name": "element_id",
+              "value": "={{ $('Start').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "edca1969-94ca-41e3-8437-69a90615a080",
+              "name": "output.content_gen_complete",
+              "value": "={{\n$if($('OpenAI - Image-Gen t2i').item.json.error,\nfalse,\ntrue)\n}}",
+              "type": "boolean"
+            },
+            {
+              "id": "a11691ec-7328-4874-82df-b1c1ed3723ea",
+              "name": "output.drive_url",
+              "value": "={{ $('Upload Image').item.json.webContentLink }}",
+              "type": "string"
+            },
+            {
+              "id": "99740e86-6e37-45d0-9c2e-a50d3744e98f",
+              "name": "output.media_type",
+              "value": "={{ $json.media.media_type }}",
+              "type": "string"
+            },
+            {
+              "id": "f6f9d10b-1ce2-4194-acb4-243194ec1e80",
+              "name": "output.file_type",
+              "value": "={{ $json.media.container }}",
+              "type": "string"
+            },
+            {
+              "id": "9c4c0960-39c9-41ea-bc29-0a73d0856b92",
+              "name": "output.source_url",
+              "value": "={{ $json.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "928a6092-391f-4e23-aace-b0631cf8d5c4",
+              "name": "output.resolution",
+              "value": "={{ $json.media.resolution }}",
+              "type": "object"
+            },
+            {
+              "id": "76ebbada-13da-45a0-8b5e-f04c6d5c7bdd",
+              "name": "=output.google_drive_is_file_uploaded",
+              "value": "={{ $('Upload Image').isExecuted }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e32d1317-9504-4ef8-849b-7a1b24394bea",
+              "name": "output.google_drive_file_id",
+              "value": "={{ $('Upload Image').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "af09b468-0a33-4252-8971-768fab49bf84",
+              "name": "output.model_used_for_generation",
+              "value": "gpt-image-1",
+              "type": "string"
+            },
+            {
+              "id": "569565f2-1c7f-4fb7-9d95-cf0a1ae78755",
+              "name": "output.platform_used_for_generation",
+              "value": "OpenAI",
+              "type": "string"
+            },
+            {
+              "id": "12f3a6f0-69a2-42c3-ada5-3f4004c46fb3",
+              "name": "output.content_gen_api_call_info",
+              "value": "={{ $ifEmpty($('OpenAI - Image-Gen t2i').item.json.error, \"image gen success\") }}",
+              "type": "string"
+            },
+            {
+              "id": "8ae59d1c-3978-45bc-a0ab-b86658ce16e6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4240,
+        1808
+      ],
+      "id": "e08f6564-3911-46ce-9da4-97a97ffc8814",
+      "name": "Add Metadata",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4016,
+        1968
+      ],
+      "id": "b7df1138-11af-4550-8dd0-3903a509bf3d",
+      "name": "Wait 20s",
+      "webhookId": "ade3b69f-f3c2-47a1-9056-18f3f3ad970e"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Metadata Request Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3792,
+        1840
+      ],
+      "id": "3baec365-420e-4770-90f7-5ab76693c63a",
+      "name": "If Status == Success, else Wait to Finish1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/metadata",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "media_url",
+              "value": "={{ $('Upload Image').item.json.webContentLink }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3136,
+        1920
+      ],
+      "id": "028ed0cb-e0db-4519-80b6-02d86e4f699f",
+      "name": "Post File Metadata",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Fal.ai's FFMpeg/metadata API endpoint.\n\nhttps://fal.ai/models/fal-ai/ffmpeg-api/metadata/api"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $(\"Post File Metadata\").item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4016,
+        1808
+      ],
+      "id": "1ef0b292-79fa-4ab7-a7b8-9a64fe5d3d37",
+      "name": "Get File Metadata",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3360,
+        1920
+      ],
+      "id": "de53138e-dbc4-4794-84f6-ef12e745a077",
+      "name": "Wait 10s",
+      "webhookId": "68423834-df02-4a4e-9210-da45c673f5f1"
+    },
+    {
+      "parameters": {
+        "content": "# Get Content Metadata",
+        "height": 320,
+        "width": 1280,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3088,
+        1792
+      ],
+      "id": "91551c3b-08af-48ff-9768-bd9646795261",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{$json.request_id}}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3568,
+        1920
+      ],
+      "id": "0e9a44ae-60ac-4c37-a826-d05157ec40a2",
+      "name": "Poll Metadata Request Status",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "731d020a-27e0-4d21-9f3e-c3b575d09ec0",
+              "name": "output.usage",
+              "value": "={{ $('OpenAI - Image-Gen t2i').item.json.usage }}",
+              "type": "object"
+            },
+            {
+              "id": "2663f96f-ef83-480c-a93d-fa5f2e9b1d30",
+              "name": "output.quality",
+              "value": "={{ $('OpenAI - Image-Gen t2i').item.json.quality }}",
+              "type": "string"
+            },
+            {
+              "id": "99439557-e6e3-468c-ae60-969c459febca",
+              "name": "input.image_gen_input_body",
+              "value": "={{ $('Image Gen input body').item.json.image_gen_input_body }}",
+              "type": "object"
+            },
+            {
+              "id": "ece3fa3e-c707-4128-9b6d-32a8f4e31330",
+              "name": "input.image_gen_input_body.platform",
+              "value": "={{ $('Image Gen input body').item.json.platform }}",
+              "type": "string"
+            },
+            {
+              "id": "97f91034-b44e-4d0a-a059-6e3ea619ece2",
+              "name": "input.platform_to_use",
+              "value": "={{ $('Start').item.json.platform_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "074d0847-dce7-487f-8979-a0d09365d7ef",
+              "name": "input.file_type",
+              "value": "={{ $('Start').item.json.file_type }}",
+              "type": "string"
+            },
+            {
+              "id": "e82f8500-d53b-4461-b5d1-b5bc7e7529c5",
+              "name": "input.aspect_ratio",
+              "value": "={{ $('Start').item.json.aspect_ratio }}",
+              "type": "string"
+            },
+            {
+              "id": "c6e4b3e7-5522-4f8f-b695-5554d1916138",
+              "name": "input.file_type",
+              "value": "={{ $('Start').item.json.file_type }}",
+              "type": "string"
+            },
+            {
+              "id": "69bab931-f465-4dbd-917a-5b3dfe02f168",
+              "name": "input.image_model_to_use",
+              "value": "={{ $('Start').item.json.image_model_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "bcbfefb5-d7e2-4f0c-a280-30b08c27a1fa",
+              "name": "input.content_moderation",
+              "value": "={{ $('Start').item.json.content_moderation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4400,
+        2240
+      ],
+      "id": "94a5f9ea-e777-4b45-8ed6-ad9b8f647b80",
+      "name": "Edit Fields",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4704,
+        2096
+      ],
+      "id": "bee91f4b-babd-4b50-b8ef-28a787e928ce",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1952
+      ],
+      "id": "950d0a46-f8dd-4cb7-a68f-e9c8341202de",
+      "name": "_"
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4912,
+        2096
+      ],
+      "id": "343f6534-20c1-473f-9b7f-29461146547f",
+      "name": "FINAL IMAGE OUTPUT",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        2240
+      ],
+      "id": "b24152e3-1eff-4c15-9df8-57473c4085ed",
+      "name": "___"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2928,
+        1920
+      ],
+      "id": "cf26ad91-ab93-4305-9afa-71c5b5197033",
+      "name": "Share",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Get webContentLink for sending to other api's/tools. "
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "56a9ddaa-efb6-4779-8080-1626c88e9a4c",
+              "name": "image_gen_input_body",
+              "value": "={\n  \"model\": {{ $ifEmpty($json.image_model_to_use , \"gpt-image-1\").toJsonString()}},\n  \"prompt\": {{ $ifEmpty($json.image_generation_prompt.toJsonString(), \"a happy yellow smiley face\").toJsonString() }},\n  \"n\": 1,\n  \"size\": {{ $ifEmpty($json.aspect_ratio,\"auto\").toJsonString() }},\n  \"output_format\": {{ $ifEmpty($json.file_type,\"jpeg\").toJsonString() }},\n  \"moderation\": {{ $ifEmpty($json.content_moderation,\"low\").toJsonString()}},\n  \"quality\": {{ $ifEmpty($json.quality,\"auto\").toJsonString() }}\n}",
+              "type": "object"
+            },
+            {
+              "id": "3bcb79e1-7e7e-4697-b4b4-213aa620a8aa",
+              "name": "platform",
+              "value": "openai",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2064,
+        1920
+      ],
+      "id": "289f0476-0737-455c-a1fe-f69c014a7427",
+      "name": "Image Gen input body"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2096,
+        2336
+      ],
+      "id": "b5c5207a-61e6-4860-834f-aa13fa429084",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "O38qltZmjubnlhtn",
+          "name": "OpenAI (Bredcrums Org.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1744,
+        2352
+      ],
+      "id": "d1d86fe3-1ce9-4f6d-acc9-75226e62f4af",
+      "name": "Telegram Trigger",
+      "webhookId": "72b6c306-8eca-4696-98ee-6213977ae0a5",
+      "credentials": {
+        "telegramApi": {
+          "id": "q0oWlq3ffaOp8PwB",
+          "name": "Orchard Studios | OrchardStudios_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2576,
+        2272
+      ],
+      "id": "380449fc-41d7-488f-8063-2530feeec063",
+      "name": "Send an audio file",
+      "webhookId": "d1280194-1816-4cf9-92d2-c40b97deedd8",
+      "credentials": {
+        "telegramApi": {
+          "id": "q0oWlq3ffaOp8PwB",
+          "name": "Orchard Studios | OrchardStudios_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2576,
+        2576
+      ],
+      "id": "dbd2827f-5f7d-49e6-8475-b837b5469052",
+      "name": "Send a text message",
+      "webhookId": "acf5d3f5-c7ad-4b6d-aa9a-076cbf80a6c3",
+      "credentials": {
+        "telegramApi": {
+          "id": "q0oWlq3ffaOp8PwB",
+          "name": "Orchard Studios | OrchardStudios_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "model": "tts-1-hd",
+        "input": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2400,
+        2368
+      ],
+      "id": "1f0bfbac-e2a1-410b-b376-243144f8d069",
+      "name": "Generate audio",
+      "credentials": {
+        "openAiApi": {
+          "id": "O38qltZmjubnlhtn",
+          "name": "OpenAI (Bredcrums Org.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "99583f85-dff4-4bd8-b222-618eb575d728",
+      "name": "Download Voice File",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1872,
+        2480
+      ],
+      "webhookId": "fbabedc9-09fa-4cd9-9816-1167ad664313",
+      "credentials": {
+        "telegramApi": {
+          "id": "q0oWlq3ffaOp8PwB",
+          "name": "Orchard Studios | OrchardStudios_bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "OpenAI - Image-Gen t2i": {
+      "main": [
+        [
+          {
+            "node": "Convert b64_json data binary to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert b64_json data binary to File": {
+      "main": [
+        [
+          {
+            "node": "Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Image": {
+      "main": [
+        [
+          {
+            "node": "Share",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Image Gen input body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Metadata": {
+      "main": [
+        [
+          {
+            "node": "_",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 20s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish1": {
+      "main": [
+        [
+          {
+            "node": "Get File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 20s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Wait 10s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Add Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Metadata Request Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "_",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "FINAL IMAGE OUTPUT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "_": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "___": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share": {
+      "main": [
+        [
+          {
+            "node": "___",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Gen input body": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Image-Gen t2i",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download Voice File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Generate audio",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate audio": {
+      "main": [
+        [
+          {
+            "node": "Send an audio file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Voice File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "Start": [
+      {
+        "json": {
+          "element_id": "d4s1e1",
+          "Element": {
+            "element_id": "d4s1e1",
+            "internal_use_only_element_description": "this is the jalen photo lmao",
+            "element_asset_type": "image",
+            "file_type": "png",
+            "image_generation_prompt": "a man in bora bora wearing an apple vision pro, grainy, candid, at a resort. Ever so slight tinge. He is young, short, 25 years old, 'killmonger' hairstyle. It is dusk"
+          },
+          "google_drive_file_name": "image_element_d4s1e1",
+          "upload_to_google_drive": null,
+          "google_drive_folder-id": "1frKC0X7PK02EenO5L3EjxLeiKBR5XQWN",
+          "platform_to_use": "openai",
+          "aspect_ratio": "auto",
+          "quality": "auto",
+          "file_type": "png",
+          "image_model_to_use": "gpt-image-1",
+          "image_generation_prompt": "a man in bora bora wearing an apple vision pro, grainy, candid, at a resort. Ever so slight tinge. He is young, short, 25 years old, 'killmonger' hairstyle. It is dusk",
+          "content_moderation": "auto"
+        }
+      }
+    ]
+  },
+  "versionId": "481deaab-00a2-42ef-a7c0-d6a706a5e8fc",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:46.049Z",
+      "updatedAt": "2025-08-29T12:30:46.049Z",
+      "role": "workflow:owner",
+      "workflowId": "c5DN9DFIsfPq7OWH",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-07-02T06:06:38.275Z",
+      "updatedAt": "2025-07-02T06:06:38.275Z",
+      "id": "5T9hro9oDJkIXYXX",
+      "name": "Image Gen"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    }
+  ]
+}
