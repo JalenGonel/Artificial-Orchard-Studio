@@ -1,0 +1,2208 @@
+{
+  "createdAt": "2025-08-06T11:00:30.535Z",
+  "updatedAt": "2025-09-04T06:52:17.000Z",
+  "id": "cX54t783dMpKDNvf",
+  "name": "Create New Database Thing — AOS V2",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Greenlight Path\nProcesses greenlight database operations:\n1. Gets row from Google Sheets using relevant_id\n2. Maps column values to append a new row\n\n**Required Setup:**\n- Google Sheets credential configured\n- Correct sheet ID and range specified"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -208
+      ],
+      "id": "6c56ee71-df2e-43d7-b998-b0eb90040163",
+      "name": "Greenlight Info"
+    },
+    {
+      "parameters": {
+        "content": "## Draft Path\nProcesses draft database operations:\n1. Gets row from Google Sheets using relevant_id\n2. Maps column values to append a new row\n\n**Required Setup:**\n- Google Sheets credential configured\n- Correct sheet ID and range specified"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        16
+      ],
+      "id": "f4bdd94c-cc19-4d28-b56c-92e6a73f5aec",
+      "name": "Draft Info"
+    },
+    {
+      "parameters": {
+        "content": "## Lock Path\nProcesses lock database operations:\n1. Gets row from Google Sheets using relevant_id\n2. Maps column values to append a new row\n\n**Required Setup:**\n- Google Sheets credential configured\n- Correct sheet ID and range specified"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        224
+      ],
+      "id": "199aece0-ebfc-4065-a29a-ce154e9c2667",
+      "name": "Lock Info"
+    },
+    {
+      "parameters": {
+        "content": "## Run Path\nProcesses run database operations:\n1. Gets row from Google Sheets using relevant_id\n2. Maps column values to append a new row\n\n**Required Setup:**\n- Google Sheets credential configured\n- Correct sheet ID and range specified"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        448
+      ],
+      "id": "1627ba72-ed9b-4265-b131-e8d3cae11f6d",
+      "name": "Run Info"
+    },
+    {
+      "parameters": {
+        "content": "## Final Path\nProcesses final database operations:\n1. Gets row from Google Sheets using relevant_id\n2. Maps column values to append a new row\n\n**Required Setup:**\n- Google Sheets credential configured\n- Correct sheet ID and range specified"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        656
+      ],
+      "id": "c8f9a1dd-f805-4905-9008-a973ed0c0cb3",
+      "name": "Final Info"
+    },
+    {
+      "parameters": {
+        "content": "## Output Processing\nThis node consolidates all the different paths back together and formats the final output.\n\nThe output contains the newly appended row values including:\n- Original input data\n- Processed timestamp\n- Any additional fields from the source data\n\nThis is the final result returned by the workflow."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        512
+      ],
+      "id": "0fbb0257-d883-454a-8f8c-d6221bd57d6a",
+      "name": "Output Info"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1472,
+        240
+      ],
+      "id": "055c1472-b709-404b-9bac-51e6a7a439b4",
+      "name": "Output"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Start').item.json.database_thing }}",
+                    "rightValue": "greenlit",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9e6a62a1-c477-47fb-a4e3-1bdb216f8f6a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "greenlit"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a7d27c52-cb76-4675-8107-e1de8bd0f550",
+                    "leftValue": "={{ $('Start').item.json.database_thing }}",
+                    "rightValue": "draft",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "draft"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c0bd3d24-8bc4-4f2d-8625-828cc888f2ae",
+                    "leftValue": "={{ $('Start').item.json.database_thing }}",
+                    "rightValue": "lock",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "lock"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "569b76d9-4936-4faa-b909-076370021f3a",
+                    "leftValue": "={{ $('Start').item.json.database_thing }}",
+                    "rightValue": "run",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "run"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b673fbb1-735e-45f9-a440-61f2d859e540",
+                    "leftValue": "={{ $('Start').item.json.database_thing }}",
+                    "rightValue": "final",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "final"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -512,
+        176
+      ],
+      "id": "61c459f6-2632-4cee-bcbe-33781e0b7dff",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "database_thing"
+            },
+            {
+              "name": "relevant_id"
+            },
+            {
+              "name": "query"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -752,
+        224
+      ],
+      "id": "02d16c7f-76c1-4462-a0f4-508cf42e9d4a",
+      "name": "Start"
+    },
+    {
+      "parameters": {
+        "content": "# Choices:\n## greenlit, draft, lock, run, final",
+        "width": 208
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        432
+      ],
+      "id": "ae78b161-635a-4a0f-8d48-c2b8c66df929",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "i_id",
+              "lookupValue": "={{ $json.relevant_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        128,
+        -192
+      ],
+      "id": "f751bd2d-de06-4774-99bd-f166ac7c7990",
+      "name": "Get Idea",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "Greenlit Projects (Content Initiatives)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Greenlit #",
+              "displayName": "Greenlit #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_greenlit_project_created",
+              "displayName": "timestamp_greenlit_project_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Project Status",
+              "displayName": "Project Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "greenlit project title (internal reference)",
+              "displayName": "greenlit project title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "greenlit project description (internal reference)",
+              "displayName": "greenlit project description (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "treatment_status_📜",
+              "displayName": "treatment_status_📜",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "shot_list_status_🎬",
+              "displayName": "shot_list_status_🎬",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_status_🎥",
+              "displayName": "production_status_🎥",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_status_🚀",
+              "displayName": "publish_status_🚀",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "completed_production_versions_ids",
+              "displayName": "completed_production_versions_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_versions_total",
+              "displayName": "production_versions_total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "completed_run_ids",
+              "displayName": "completed_run_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ids_all_production_runs",
+              "displayName": "ids_all_production_runs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_runs_total",
+              "displayName": "production_runs_total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_post_ids",
+              "displayName": "publish_post_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Type",
+              "displayName": "Approval Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Status",
+              "displayName": "Approval Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        -192
+      ],
+      "id": "aea3d879-e28a-489a-89e0-ea6654ff1f76",
+      "name": "Append Greenlight Initiative",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "Greenlit Projects (Content Initiatives)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "g_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        128,
+        16
+      ],
+      "id": "35348095-da05-4894-83f9-2a27765c9410",
+      "name": "Get Greenlit Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "Working Drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1706833144"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Working Draft #",
+              "displayName": "Working Draft #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working Draft Status",
+              "displayName": "Working Draft Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "execution-activity",
+              "displayName": "execution-activity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-wd_count",
+              "displayName": "ci-wd_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_drafted_created",
+              "displayName": "timestamp_drafted_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Publishing-Platform ",
+              "displayName": "Working-Draft-Publishing-Platform ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Final-Package-For-Publish-Format",
+              "displayName": "Working-Draft-Final-Package-For-Publish-Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Tech-Specs",
+              "displayName": "Working-Draft-Tech-Specs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Creative-Outline",
+              "displayName": "Working-Draft-Creative-Outline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Treatment",
+              "displayName": "Working-Draft-Treatment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Prompts",
+              "displayName": "Working-Draft-Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Publish-Date (optional)",
+              "displayName": "Working-Draft-Publish-Date (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Caption (optional)",
+              "displayName": "Working-Draft-Caption (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Additional-Notes-Space (optional)",
+              "displayName": "Working-Draft-Additional-Notes-Space (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Shot-List",
+              "displayName": "Working-Draft-Shot-List",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Penultimate-Shot-List",
+              "displayName": "Penultimate-Shot-List",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Updates#",
+              "displayName": "Working-Draft-Updates#",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Initial_Greenlit_Idea",
+              "displayName": "Initial_Greenlit_Idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Type",
+              "displayName": "Approval Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Status",
+              "displayName": "Approval Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Working-Draft-Log",
+              "displayName": "Working-Draft-Log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working draft title (internal reference)",
+              "displayName": "working draft title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working draft description (internal reference)",
+              "displayName": "working draft description (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        16
+      ],
+      "id": "1093d666-c69b-4922-896a-0b85117fdec0",
+      "name": "Append Working Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "Production Version Locks (Run-Locked)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Production Version Lock #",
+              "displayName": "Production Version Lock #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Production Version Lock Status",
+              "displayName": "Production Version Lock Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_version_lock_id",
+              "displayName": "production_version_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "p_id",
+              "displayName": "p_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-wd_count",
+              "displayName": "ci-wd_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-pv_count",
+              "displayName": "ci-pv_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_version_lock_created",
+              "displayName": "timestamp_version_lock_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deliverable-Choice-Manifest",
+              "displayName": "Deliverable-Choice-Manifest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Run IDs (all)",
+              "displayName": "Run IDs (all)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PV_LOCK_SHOT_LIST",
+              "displayName": "PV_LOCK_SHOT_LIST",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PV_GOOGLE_DRIVE_FOLDER_ID",
+              "displayName": "PV_GOOGLE_DRIVE_FOLDER_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Type",
+              "displayName": "Approval Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Status",
+              "displayName": "Approval Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Production-Version-Lock-Log",
+              "displayName": "Production-Version-Lock-Log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production version lock title (internal reference)",
+              "displayName": "production version lock title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production version lock description (internal reference)",
+              "displayName": "production version lock description (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        240
+      ],
+      "id": "34a66b6b-1893-4ca7-b4cd-13cc863ef2da",
+      "name": "Append Version Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "Greenlit Projects (Content Initiatives)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "g_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        128,
+        240
+      ],
+      "id": "a8554cba-c97c-40b9-a612-ea1f7ca46083",
+      "name": "Get Working Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "Production Version Locks (Run-Locked)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "production_version_lock_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        128,
+        448
+      ],
+      "id": "f473e9ea-6f12-43e1-a1eb-5b0f3c4a3ef2",
+      "name": "Get Version Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Production Assets Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1164410298,
+          "mode": "list",
+          "cachedResultName": "Production Runs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEXNRrM_kSLtraxOROXHHRypLEVWK-nyW-lDoji1g_M/edit#gid=1164410298"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Run Status": "Ready"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Production Run #",
+              "displayName": "Production Run #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Run Status",
+              "displayName": "Run Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "RUN_TYPE",
+              "displayName": "RUN_TYPE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_run_id",
+              "displayName": "production_run_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "run_id",
+              "displayName": "run_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "p_id",
+              "displayName": "p_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-wd_count",
+              "displayName": "ci-wd_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-pv_count",
+              "displayName": "ci-pv_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-run_count",
+              "displayName": "ci-run_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_run_started",
+              "displayName": "timestamp_run_started",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_run_completed",
+              "displayName": "timestamp_run_completed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "# of D's",
+              "displayName": "# of D's",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "# of Seq's",
+              "displayName": "# of Seq's",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "# of E's",
+              "displayName": "# of E's",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "RUN_SHOT_LIST",
+              "displayName": "RUN_SHOT_LIST",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_shot_list",
+              "displayName": "working_shot_list",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PV_GOOGLE_DRIVE_FOLDER_ID",
+              "displayName": "PV_GOOGLE_DRIVE_FOLDER_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PV_LOCK_SHOT_LIST",
+              "displayName": "PV_LOCK_SHOT_LIST",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Production-Run-Log",
+              "displayName": "Production-Run-Log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production run title (internal reference)",
+              "displayName": "production run title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal reference description",
+              "displayName": "internal reference description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_version_lock_id",
+              "displayName": "production_version_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        448
+      ],
+      "id": "47cd3859-2bdf-494a-883c-c64b5dc08fab",
+      "name": "Append Production Run",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1825956263,
+          "mode": "list",
+          "cachedResultName": "FINAL PACKAGEs (for Publish)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1825956263"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "FINAL #",
+              "displayName": "FINAL #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Final Package Status",
+              "displayName": "Final Package Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FINAL_PACKAGE_ID",
+              "displayName": "FINAL_PACKAGE_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "f_id",
+              "displayName": "f_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "p_id",
+              "displayName": "p_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-wd_count",
+              "displayName": "ci-wd_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-pv_count",
+              "displayName": "ci-pv_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ci-fp_count",
+              "displayName": "ci-fp_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp_final_package_created",
+              "displayName": "timestamp_final_package_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PACKAGE_FORMAT",
+              "displayName": "PACKAGE_FORMAT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PLATFORM",
+              "displayName": "PLATFORM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cdn_ingest_date",
+              "displayName": "cdn_ingest_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_date",
+              "displayName": "publish_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MANIFEST",
+              "displayName": "MANIFEST",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Caption",
+              "displayName": "Caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cdn_method",
+              "displayName": "cdn_method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cdn_post_id",
+              "displayName": "cdn_post_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_notes",
+              "displayName": "publish_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Type",
+              "displayName": "Approval Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Approval Status",
+              "displayName": "Approval Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "final_package_for_publish_log",
+              "displayName": "final_package_for_publish_log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "final package title (internal reference)",
+              "displayName": "final package title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "final package description (internal reference)",
+              "displayName": "final package description (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        1152,
+        688
+      ],
+      "id": "e5498b77-6c34-4285-9317-39ad0cd4828d",
+      "name": "Append FINAL Package",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "Production Version Locks (Run-Locked)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "p_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            }
+          ]
+        },
+        "options": {
+          "returnAllMatches": "returnFirstMatch"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        128,
+        688
+      ],
+      "id": "08446fad-d525-43a2-a4bf-17582df34660",
+      "name": "Get Version Lock (Choice Deliverables)",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "Production Version Locks (Run-Locked)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "production_version_lock_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        528,
+        688
+      ],
+      "id": "875ec811-afe4-48b7-b79b-0e63058dc53d",
+      "name": "Get Production Run's Deliverables",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "FINAL_PACKAGE_",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        928,
+        688
+      ],
+      "id": "bf61a6e4-47f8-485d-97c5-47f2b2307447",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "Production Version Locks (Run-Locked)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "p_id",
+              "lookupValue": "={{ $('Start').item.json.database_thing }}"
+            },
+            {
+              "lookupColumn": "w_id",
+              "lookupValue": "={{ $json.w_id }}"
+            },
+            {
+              "lookupColumn": "g_id",
+              "lookupValue": "={{ $json.g_id }}"
+            },
+            {
+              "lookupColumn": "i_id",
+              "lookupValue": "={{ $json.i_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnAllMatches": "returnAllMatches"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        688
+      ],
+      "id": "08360e44-5eb3-4c30-8425-52e61ef01db4",
+      "name": "Get All 'PVLock's' Production Runs",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Post to Twitter": {
+      "main": [
+        [
+          {
+            "node": "Update Twitter Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Update LinkedIn Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Update Facebook Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Idea",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Greenlit Project",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Working Draft",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Version Lock",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Version Lock (Choice Deliverables)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Idea": {
+      "main": [
+        [
+          {
+            "node": "Append Greenlight Initiative",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Greenlight Initiative": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Greenlit Project": {
+      "main": [
+        [
+          {
+            "node": "Append Working Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Working Draft": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Version Lock": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Working Draft": {
+      "main": [
+        [
+          {
+            "node": "Append Version Lock",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Version Lock": {
+      "main": [
+        [
+          {
+            "node": "Append Production Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Production Run": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append FINAL Package": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Version Lock (Choice Deliverables)": {
+      "main": [
+        [
+          {
+            "node": "Get All 'PVLock's' Production Runs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Production Run's Deliverables": {
+      "main": [
+        [
+          {
+            "node": "Create folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder": {
+      "main": [
+        [
+          {
+            "node": "Append FINAL Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All 'PVLock's' Production Runs": {
+      "main": [
+        [
+          {
+            "node": "Get Production Run's Deliverables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "425fac6c-b0c8-4a54-b3ad-d1e32e1671fd",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-03T20:17:26.841Z",
+      "updatedAt": "2025-09-03T20:17:26.841Z",
+      "role": "workflow:owner",
+      "workflowId": "cX54t783dMpKDNvf",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-07-12T17:35:37.343Z",
+      "updatedAt": "2025-07-12T17:35:37.343Z",
+      "id": "sLc1HXtJn1OeOOhZ",
+      "name": "🚧"
+    }
+  ]
+}
