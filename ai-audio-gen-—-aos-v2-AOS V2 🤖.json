@@ -1,0 +1,1228 @@
+{
+  "createdAt": "2025-07-29T06:25:16.292Z",
+  "updatedAt": "2025-08-06T11:04:23.000Z",
+  "id": "5zuxVAFnhHI9DH5s",
+  "name": "AI Audio Gen — AOS V2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.{{ $json.input.sound_gen_input_body.platform }}.io/v1/sound-generation",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.input.sound_gen_input_body.text }}"
+            },
+            {
+              "name": "duration_seconds",
+              "value": "={{ $json.input.sound_gen_input_body.duration_seconds }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2624,
+        2288
+      ],
+      "id": "cbe2e8d0-22b1-4e91-8596-9a4f1a31ff5b",
+      "name": "New Sound",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "8R6PZ4lmAvBtgGMi",
+          "name": "ElevenLabs (Bredcrums API Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "element_id",
+              "type": "any"
+            },
+            {
+              "name": "Element",
+              "type": "any"
+            },
+            {
+              "name": "output_file_format"
+            },
+            {
+              "name": "model_to_use"
+            },
+            {
+              "name": "platform_to_use"
+            },
+            {
+              "name": "duration",
+              "type": "any"
+            },
+            {
+              "name": "saveContentFileToDrive?",
+              "type": "boolean"
+            },
+            {
+              "name": "drive_folder_id_intermediate_assets",
+              "type": "any"
+            },
+            {
+              "name": "content_id"
+            },
+            {
+              "name": "google_drive_file-name",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "72fe7f9e-0486-4db7-9e5d-70ed2347ffad",
+      "typeVersion": 1.1,
+      "name": "When Executed By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        1328,
+        2144
+      ]
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.toJsonString() }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Speech",
+              "description": "dialogue, voice or speech narration (further detail if necessary:distinctly spoken by single entity)"
+            },
+            {
+              "category": "Sounds",
+              "description": "Non-speech/ non-narrated voice audio; sounds"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other",
+          "systemPromptTemplate": "=Please classify the text provided by the user into one of the following categories: {categories}, and use the provided formatting instructions below. Don't explain, and only output the json.\n\nYour thought process: \n\nAnalyze the technical sheet for the audio element to generate and choose ideal type of audio to generate. Audio type is categorized into one of the following: \n1. Speech - dialogue, voice or speech narration\n2. Sound(s) - non speech/narrated voice audio; sounds\n\nUse info parsed from the element object. Especially note the parameter 'internal_use_only_element_description' for element info & production context, as well as 'model_to_use' for choosing classifiaction. For example, if 'internal_use_only_element_description' states that the audio is a narration, then choose Speech. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        2128
+      ],
+      "id": "079bc525-0626-4d08-9b8f-2b38553a5cf9",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('When Executed By Another Workflow').item.json.google_drive_file_name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{$ifEmpty($('When Executed By Another Workflow').item.json.drive_folder_id_intermediate_assets,\"1gFNrPekMmUyKNPI12XRidKiZdecSp1_N\")}}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3456,
+        2032
+      ],
+      "id": "2d3607d7-4d16-42f5-a5fe-bf35029aa525",
+      "name": "Upload",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3648,
+        2032
+      ],
+      "id": "365ba464-c2d7-4f20-b66a-e129a61d4f68",
+      "name": "Share",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Get webContentLink for sending to other api's/tools. "
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        2272
+      ],
+      "id": "76e0fb85-f159-464c-9d5d-67bf16e48d70",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pwj1L3d2Ror7G0eW",
+          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.{{ $json.input.sound_gen_input_body.platform }}.io/v1/text-to-speech/{{ ['iP95p4xoKVk53GoZ742B', 'cjVigY5qzO86Huf0OWal', 'FGY2WhTYpPnrIDTdsKH5', 'pqHfZKP75CvOlQylNhV4', 'cgSgspJ2msm6clMCkdW9', 'XB0fDUnXU5powFXDhCwa', 'XrExE9yKIg1WjnnlVkGX'][Math.floor(Math.random() * 7)] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "output_format",
+              "value": "={{ $json.input.sound_gen_input_body.output_format }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.input.sound_gen_input_body.text }}"
+            },
+            {
+              "name": "model_id",
+              "value": "={{ $json.input.sound_gen_input_body.model_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2624,
+        1984
+      ],
+      "id": "d5141d46-b73a-4574-9632-866569ac2048",
+      "name": "ElevenLabs Speech",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "8R6PZ4lmAvBtgGMi",
+          "name": "ElevenLabs (Bredcrums API Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e0d5676c-06d8-421f-bb5a-a3f5c0af3dfc",
+              "name": "element_id",
+              "value": "={{ $('When Executed By Another Workflow').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "85b38b04-abf3-4767-bfd1-652729bfff2a",
+              "name": "output.content_gen_complete",
+              "value": "={{ $binary.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "152f20e0-8827-4acf-9bce-5b91684c2c66",
+              "name": "output.media_type",
+              "value": "audio",
+              "type": "string"
+            },
+            {
+              "id": "fe4537a1-b9a3-42d1-a486-5227802a4a6e",
+              "name": "output.model_used_for_generation",
+              "value": "=eleven_flash_v2_5",
+              "type": "string"
+            },
+            {
+              "id": "08fb08d6-ba7d-41dd-bb0f-4772204001d8",
+              "name": "output.platform_used_for_generation",
+              "value": "=Eleven Labs",
+              "type": "string"
+            },
+            {
+              "id": "d0e33970-287d-446b-8b8a-b7fcbe956fb0",
+              "name": "output.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ? \n{\n\"node_that_failed\": $prevNode.name,\n\"code\": $json.error.code,\n\"name\": $json.error.name,\n\"status\": $json.error.status,\n\"message\": $json.error.message,\n\"workflow_execution_id\": $execution.id\n} \n: undefined) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2912,
+        1984
+      ],
+      "id": "96335fb8-bc13-4447-8cdb-650d97b3533e",
+      "name": "SPEECH return fields",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e0d5676c-06d8-421f-bb5a-a3f5c0af3dfc",
+              "name": "element_id",
+              "value": "={{ $('When Executed By Another Workflow').item.json.element_id }}",
+              "type": "string"
+            },
+            {
+              "id": "85b38b04-abf3-4767-bfd1-652729bfff2a",
+              "name": "output.content_gen_complete",
+              "value": "={{ $binary.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "152f20e0-8827-4acf-9bce-5b91684c2c66",
+              "name": "output.media_type",
+              "value": "audio",
+              "type": "string"
+            },
+            {
+              "id": "fe4537a1-b9a3-42d1-a486-5227802a4a6e",
+              "name": "output.model_used_for_generation",
+              "value": "=Eleven Labs Sound",
+              "type": "string"
+            },
+            {
+              "id": "08fb08d6-ba7d-41dd-bb0f-4772204001d8",
+              "name": "output.platform_used_for_generation",
+              "value": "=Eleven Labs",
+              "type": "string"
+            },
+            {
+              "id": "4b55149d-ea76-4c1b-97b3-668a39d503a1",
+              "name": "output.api_call_error",
+              "value": "={{ ($json.error.isNotEmpty() ? \n{\n\"node_that_failed\": $prevNode.name,\n\"code\": $json.error.code,\n\"name\": $json.error.name,\n\"status\": $json.error.status,\n\"message\": $json.error.message,\n\"workflow_execution_id\": $execution.id\n} \n: undefined) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2912,
+        2288
+      ],
+      "id": "0e234290-784e-45ff-bc79-0383dba3a59b",
+      "name": "SOUND return fields",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5296,
+        2240
+      ],
+      "id": "7ed59ba2-2942-4210-8ae9-9c7bbe57e37f",
+      "name": "Final Output",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "99740e86-6e37-45d0-9c2e-a50d3744e98f",
+              "name": "output.media_type",
+              "value": "={{ $json.media.media_type }}",
+              "type": "string"
+            },
+            {
+              "id": "a11691ec-7328-4874-82df-b1c1ed3723ea",
+              "name": "output.drive_url",
+              "value": "={{ $('Upload').item.json.webContentLink }}",
+              "type": "string"
+            },
+            {
+              "id": "e32d1317-9504-4ef8-849b-7a1b24394bea",
+              "name": "output.google_drive_file_id",
+              "value": "={{ $('Upload').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "9c4c0960-39c9-41ea-bc29-0a73d0856b92",
+              "name": "output.source_url",
+              "value": "={{ $json.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "f6f9d10b-1ce2-4194-acb4-243194ec1e80",
+              "name": "output.file_type",
+              "value": "={{ $json.media.container }}",
+              "type": "string"
+            },
+            {
+              "id": "98462461-eae9-440a-a323-2fcedd47a80f",
+              "name": "output.duration",
+              "value": "={{ $json.media.duration }}",
+              "type": "number"
+            },
+            {
+              "id": "76ebbada-13da-45a0-8b5e-f04c6d5c7bdd",
+              "name": "=output.google_drive_is_file_uploaded",
+              "value": "={{ $('Upload').item.json.id.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9357b81e-79d4-4611-990c-2c4a18645851",
+              "name": "output..codec",
+              "value": "={{ $json.media.codec }}",
+              "type": "string"
+            },
+            {
+              "id": "e3017aa1-c05d-4f21-bbe7-b23cf66f70d5",
+              "name": "output..channels",
+              "value": "={{ $json.media.channels }}",
+              "type": "number"
+            },
+            {
+              "id": "2996a1b4-4ea2-46cf-b3cc-02e2d33fd97f",
+              "name": "output.bitrate",
+              "value": "={{ $json.media.bitrate }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4960,
+        1904
+      ],
+      "id": "c976aac2-d006-4059-b5b2-dce8edaa64bb",
+      "name": "Add Metadata",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4736,
+        2064
+      ],
+      "id": "df65d2d5-4a2f-4ce0-8328-6a29c31b8bf3",
+      "name": "Wait 20s",
+      "webhookId": "84c2789d-a6bc-4b6c-bde8-dd3ed1fe1a3a"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2afdca0c-67e9-458c-a6e8-71d0b9b91b42",
+              "leftValue": "={{ $('Poll Metadata Request Status').item.json.status }}",
+              "rightValue": "COMPLETED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4528,
+        1952
+      ],
+      "id": "ce1e543d-b533-4cf8-b53c-82ef177ed8d8",
+      "name": "If Status == Success, else Wait to Finish1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/ffmpeg-api/metadata",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "media_url",
+              "value": "={{ $('Upload').item.json.webContentLink }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3856,
+        2032
+      ],
+      "id": "99023717-7006-4b9b-84c2-e302e4fac1c3",
+      "name": "Post File Metadata",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Fal.ai's FFMpeg/metadata API endpoint.\n\nhttps://fal.ai/models/fal-ai/ffmpeg-api/metadata/api"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{ $(\"Post File Metadata\").item.json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4736,
+        1904
+      ],
+      "id": "af0a7ebd-732c-47c4-b246-0c91b0dc63c0",
+      "name": "Get File Metadata",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4080,
+        2032
+      ],
+      "id": "3aba8ccf-f8db-4825-adb1-8ea524a842b9",
+      "name": "Wait 10s",
+      "webhookId": "bd5ae374-08db-4c44-bb07-438eff94ed57"
+    },
+    {
+      "parameters": {
+        "content": "# Get Content Metadata",
+        "height": 320,
+        "width": 1280,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3408,
+        1904
+      ],
+      "id": "d52714c6-d5ae-4a35-a64f-313e651f2f7c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/ffmpeg-api/requests/{{$json.request_id}}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4304,
+        2032
+      ],
+      "id": "60dd8606-8322-4529-8227-78c5c6a01867",
+      "name": "Poll Metadata Request Status",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "auHwg1TkivAtjRlx",
+          "name": "fal.ai 🇨🇳 | AO Workspace ALL - 062025"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        5152,
+        2128
+      ],
+      "id": "3ab8424b-2a06-404b-8e96-1f338772bfd8",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3456,
+        2240
+      ],
+      "id": "07e1fe01-a616-4d92-87de-29000eeaf75a",
+      "name": "___"
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {
+          "stripBinary": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4960,
+        2144
+      ],
+      "id": "b4c952e1-2e36-4b0a-b961-de65e2394da8",
+      "name": "BLOCK binary file",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "62bc8776-a928-4b91-94b8-184d2711e22a",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "76dfdd7b-1dd3-4d19-a81f-a83525f6d2cc",
+              "name": "input.output_file_format",
+              "value": "={{ $('When Executed By Another Workflow').item.json.output_file_format }}",
+              "type": "string"
+            },
+            {
+              "id": "fbbfa25b-9272-4642-a4f8-09a38f13a459",
+              "name": "input.model_to_use",
+              "value": "={{ $('When Executed By Another Workflow').item.json.model_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "6699aa42-b201-40ac-af1e-509354d89a7f",
+              "name": "input.platform_to_use",
+              "value": "={{ $('When Executed By Another Workflow').item.json.platform_to_use }}",
+              "type": "string"
+            },
+            {
+              "id": "13cad55e-6ef5-4996-8bbb-3f3e6f9ac1c7",
+              "name": "input.sound_gen_input_body",
+              "value": "={{  $prevNode.name === 'SPEECH return fields' ?  $('Speech').item.json.input.sound_gen_input_body  :  $('Sound').item.json.input.sound_gen_input_body  }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3040,
+        2144
+      ],
+      "id": "1249d5b6-cfd0-4885-9b13-7b0dd6ac08e5",
+      "name": "INPUT fields",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "455c7204-59ec-4d49-a7b6-13424d4cd790",
+              "name": "input.sound_gen_input_body.platform",
+              "value": "elevenlabs",
+              "type": "string"
+            },
+            {
+              "id": "ce0171fc-d0ff-43b6-b841-6907ac87a358",
+              "name": "input.sound_gen_input_body.model_id",
+              "value": "=eleven_flash_v2_5",
+              "type": "string"
+            },
+            {
+              "id": "84744e16-bd3c-4d76-b0f5-1dbc185e2fd2",
+              "name": "input.sound_gen_input_body.output_format",
+              "value": "mp3_44100_128",
+              "type": "string"
+            },
+            {
+              "id": "298202dd-3023-48ef-99a8-3fde8e152a0b",
+              "name": "input.sound_gen_input_body.text",
+              "value": "={{ $json.Element.audio_generation_prompt.trim().substring(0,40000) }}",
+              "type": "string"
+            },
+            {
+              "id": "851d6226-789c-4e2d-83af-89019ee5cda0",
+              "name": "=input.Element",
+              "value": "={{ $json.Element }}",
+              "type": "object"
+            },
+            {
+              "id": "ee62fd18-e64d-4b3e-a762-310049d7d338",
+              "name": "input.model_id",
+              "value": "=eleven_flash_v2_5",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2416,
+        1984
+      ],
+      "id": "cdd60401-d666-45eb-8835-acc21a319ab5",
+      "name": "Speech"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6ffc4de0-ca62-4199-aa40-8769a3aa702b",
+              "name": "input.sound_gen_input_body.platform",
+              "value": "elevenlabs",
+              "type": "string"
+            },
+            {
+              "id": "468e9306-fab8-4709-8910-380d265150bb",
+              "name": "input.sound_gen_input_body.text",
+              "value": "={{ $json.Element.audio_generation_prompt.trim().substring(0,444) }}",
+              "type": "string"
+            },
+            {
+              "id": "d5653329-3279-4f54-8288-995c90897e8b",
+              "name": "input.sound_gen_input_body.duration_seconds",
+              "value": "={{ $json.Element.duration }}",
+              "type": "string"
+            },
+            {
+              "id": "942240de-baed-4c08-979e-7264739b61b4",
+              "name": "input.Element",
+              "value": "={{ $json.Element }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2416,
+        2288
+      ],
+      "id": "5f84a22b-6638-4388-b1ac-5d813b45d8e6",
+      "name": "Sound"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "722d0ade-e8b1-4229-9d5d-a072f5d83749",
+              "leftValue": "={{ $binary.isNotEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3280,
+        2144
+      ],
+      "id": "7d4334eb-4b74-416a-b4a2-eea1064f8966",
+      "name": "If $binary isNotEmpty()"
+    }
+  ],
+  "connections": {
+    "New Sound": {
+      "main": [
+        [
+          {
+            "node": "SOUND return fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "When Executed By Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Speech",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sound",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload": {
+      "main": [
+        [
+          {
+            "node": "Share",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share": {
+      "main": [
+        [
+          {
+            "node": "Post File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs Speech": {
+      "main": [
+        [
+          {
+            "node": "SPEECH return fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "SPEECH return fields": {
+      "main": [
+        [
+          {
+            "node": "INPUT fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SOUND return fields": {
+      "main": [
+        [
+          {
+            "node": "INPUT fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Metadata": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 20s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status == Success, else Wait to Finish1": {
+      "main": [
+        [
+          {
+            "node": "Get File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 20s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Wait 10s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Add Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s": {
+      "main": [
+        [
+          {
+            "node": "Poll Metadata Request Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Metadata Request Status": {
+      "main": [
+        [
+          {
+            "node": "If Status == Success, else Wait to Finish1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "___": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BLOCK binary file": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "INPUT fields": {
+      "main": [
+        [
+          {
+            "node": "If $binary isNotEmpty()",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Speech": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs Speech",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sound": {
+      "main": [
+        [
+          {
+            "node": "New Sound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If $binary isNotEmpty()": {
+      "main": [
+        [
+          {
+            "node": "Upload",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BLOCK binary file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "___",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JmLYbqCl9FcjEn1d"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {
+    "When Executed By Another Workflow": [
+      {
+        "json": {
+          "element_id": "d1s3e2",
+          "Element": {
+            "element_id": "d1s3e2",
+            "internal_use_only_element_description": "this is the ai agent/workflow context dump of element generation and stuff ",
+            "element_asset_type": "audio",
+            "element_start_time": 0,
+            "file_type": "wav",
+            "duration": 5,
+            "audio_generation_prompt": "imagine this is suno music"
+          },
+          "output_file_format": "wav",
+          "model_to_use": "eleven_labs",
+          "platform_to_use": "multingualv2",
+          "duration": 5,
+          "saveContentFileToDrive?": null,
+          "drive_folder_id_intermediate_assets": "1frKC0X7PK02EenO5L3EjxLeiKBR5XQWN",
+          "content_id": "1Ih5Xwgv2_ZEwiSd0AE3B5iGsoOC6XtKb",
+          "google_drive_file-name": "audio_element_d1s3e2"
+        }
+      }
+    ]
+  },
+  "versionId": "224361a5-5a10-447b-aab9-3a3dccbcc459",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:30:46.051Z",
+      "updatedAt": "2025-08-29T12:30:46.051Z",
+      "role": "workflow:owner",
+      "workflowId": "5zuxVAFnhHI9DH5s",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-06T22:49:36.954Z",
+      "updatedAt": "2025-06-06T22:49:36.954Z",
+      "id": "JnA0ZRluU2MEpPCZ",
+      "name": "sub-flow"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    },
+    {
+      "createdAt": "2025-07-02T08:50:15.985Z",
+      "updatedAt": "2025-07-02T08:50:15.985Z",
+      "id": "gMQWIn3rusQ9aWBN",
+      "name": "Audio Gen"
+    }
+  ]
+}
