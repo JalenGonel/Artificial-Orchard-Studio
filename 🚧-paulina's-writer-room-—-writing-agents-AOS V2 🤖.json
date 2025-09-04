@@ -1,0 +1,1668 @@
+{
+  "createdAt": "2025-08-27T16:30:45.729Z",
+  "updatedAt": "2025-09-04T06:14:16.000Z",
+  "id": "sen58nBLFsrtyzo3",
+  "name": "🚧 Paulina's Writer Room — Writing Agents",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "chatid"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "query"
+            },
+            {
+              "name": "additional_info"
+            },
+            {
+              "name": "aos_prompts_and_contexts",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -64,
+        336
+      ]
+    },
+    {
+      "parameters": {
+        "text": "=Urgent Email: \n{{ $fromAI(\"summary\") }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegramTool",
+      "typeVersion": 1.2,
+      "position": [
+        1712,
+        -16
+      ],
+      "id": "a8f7f5a8-22bb-4e1d-a697-a55d7cbddc1d",
+      "name": "Telegram",
+      "webhookId": "4a005847-6ed4-48c6-99bd-d09e9d7271af"
+    },
+    {
+      "parameters": {
+        "content": "# \"Paulina\" (pt. 1)",
+        "height": 80,
+        "width": 278,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        224
+      ],
+      "id": "2bf2d60e-af00-4ff3-b823-ffa25a93e1bb",
+      "name": "Sticky Note31"
+    },
+    {
+      "parameters": {
+        "content": "# \"Hemingway\"",
+        "height": 80,
+        "width": 262,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        160
+      ],
+      "id": "e58a4ea8-db83-45c6-83f2-1d13e792d764",
+      "name": "Sticky Note33"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "protoyping of AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "working_title",
+              "displayName": "working_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "logline",
+              "displayName": "logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "additional_notes",
+              "displayName": "additional_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_updated",
+              "displayName": "last_updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1696,
+        672
+      ],
+      "id": "5629e770-0f65-4786-ba83-882555b92754",
+      "name": "Update row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Eddie",
+              "description": "Quick Pitches, Sketches, and Concepting"
+            },
+            {
+              "category": "Hemingway",
+              "description": "Treatment writing, creative writing, or any other medium plus writing tasks."
+            },
+            {
+              "category": "Paulina",
+              "description": "Making final edits, if no actions prompted, or when prompt requests answers about data"
+            },
+            {
+              "category": "Caesar",
+              "description": "Writing prompts for ai generated media content."
+            },
+            {
+              "category": "Kim",
+              "description": "Regarding technical specifications, requirements, or any content constraints. "
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Please classify the text provided by the user into one of the following categories: {categories}, and use the provided formatting instructions below. Don't explain, and only output the json."
+        }
+      },
+      "id": "7dcde085-f37a-41ca-8b0f-619799cecf48",
+      "name": "route task to most qualified",
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        672,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2208,
+        336
+      ],
+      "id": "10a385d2-a585-486f-ad11-5bfad3a09b4f",
+      "name": "FINAL OUTPUT"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "needsFallback": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        528
+      ],
+      "id": "c00e12d9-59c4-4e4c-91f7-7d82bb8958a3",
+      "name": "Caesar - Prompt Engineering Agent1"
+    },
+    {
+      "parameters": {
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are Paulina, an AI Writing Agent Assistant responsible for updating the studio's working draft as well as fleshing out a working draft's content  as requested.\n\nYou are responsible for all changes made to a working draft. You are the head of the writing room. Call relevant AI Assistant Agents when filling a draft's values. You are the head writing assistant. Make sure to fill them with context so they can adequately do their job. \n\nAgent Tools: \n1. Scotty - ideation and concepting\n2. Hemingway - general writing\n3. Cesar: Prompt engineering\n4. Q: Technical Specifications\n\nPersonal Tools: \n1. Thinking Tool - Use to think out loud\n\nIf intending to alter multiple values to an individual working draft, wait until you are done with all the values you mean to change, and make all changes to the draft in one singular tool call at the end.\n\nMake sure to summarize what actions you performed. Default to no more than 2 sentences unless more detail regarding your output is explicitly requested in the initial query. \n\nIf you don't have a working draft id or getting the current row data of a working draft using the working_draft_id passed in yields no results, stop any further action and report back what issues you are currently experiencing."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1792,
+        336
+      ],
+      "id": "f4bb6bd0-da11-40a9-997d-18ff1bd5ed56",
+      "name": "Paulina - Head Writer Agent"
+    },
+    {
+      "parameters": {
+        "content": "# \"Eddie\"",
+        "height": 80,
+        "width": 182,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        -80
+      ],
+      "id": "807a57f1-bbe4-430f-8e90-a5b705c4d33e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# \"Caesar\"",
+        "height": 80,
+        "width": 182,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        416
+      ],
+      "id": "6d84a6da-4f04-4103-b747-eafc6f9aaa15",
+      "name": "Sticky Note34"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "options": {
+          "systemMessage": "={{ $('start').item.json.agents.agents[6].system_prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        800
+      ],
+      "id": "45626a6a-b152-436c-bccb-07374b28b03f",
+      "name": "Kim - Technical Specifications Agent1"
+    },
+    {
+      "parameters": {
+        "content": "### LLMs OpenAI",
+        "width": 464,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        624
+      ],
+      "id": "c5ea6d53-f70d-4d64-96c4-968e5e091ad9",
+      "name": "Sticky Note78"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1856,
+        672
+      ],
+      "id": "683ddf6b-9db0-47b1-a9d3-7c882afcc8ae",
+      "name": "OpenAI gpt-5",
+      "credentials": {
+        "openAiApi": {
+          "id": "O38qltZmjubnlhtn",
+          "name": "OpenAI (Bredcrums Org.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2080,
+        672
+      ],
+      "id": "07823970-0008-42c7-bd20-f521ecbe403b",
+      "name": "5-mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "O38qltZmjubnlhtn",
+          "name": "OpenAI (Bredcrums Org.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-5",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1968,
+        672
+      ],
+      "id": "20fb088d-2223-48d8-a98a-78223867743f",
+      "name": "OpenAI Gpt-5",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pwj1L3d2Ror7G0eW",
+          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-5-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2192,
+        672
+      ],
+      "id": "a5d2f1b5-c6e1-4d44-b089-0a2fb07426fe",
+      "name": "gpt-5-mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pwj1L3d2Ror7G0eW",
+          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# \"Paulina\" (pt. 2)",
+        "height": 80,
+        "width": 278,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1776,
+        256
+      ],
+      "id": "1bee639e-dcfb-4c7f-8102-3eabeb0ae00c",
+      "name": "Sticky Note35"
+    },
+    {
+      "parameters": {
+        "content": "# \"Kim\"",
+        "height": 80,
+        "width": 150,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        736
+      ],
+      "id": "aa4f86fd-feef-4c3c-b77b-075fc6202d6f",
+      "name": "Sticky Note36"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        160
+      ],
+      "id": "186bf3ab-a16f-4151-af4b-e02377b1fd07",
+      "name": "Get IDEA in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        336
+      ],
+      "id": "7ba24d4a-cfb7-41d2-8939-565312835d21",
+      "name": "Get DRAFT in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        512
+      ],
+      "id": "c30e4d89-1edd-452b-9efb-dd83de543d84",
+      "name": "Get FINAL_PACKAGE in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        336
+      ],
+      "id": "8e9a6edf-9457-48f7-8148-900e34474900",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "8bb62474-95dd-47e4-911f-903598a48e49"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1768ece9-c0ec-4b62-a9de-549fc1be3152",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5a6dd1bc-deb9-4387-990c-5de37e6d25b5",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        320
+      ],
+      "id": "65be3741-7106-4b5d-9057-600484c9ac96",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "Working Draft",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1706833144"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Working-Draft-Treatment": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Treatment', ``, 'string') }}",
+            "Working-Draft-Prompts": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Prompts', ``, 'string') }}",
+            "Working-Draft-Tech-Specs": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Tech-Specs', ``, 'string') }}",
+            "Working-Draft-Shot-List": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Shot-List', ``, 'string') }}",
+            "Working-Draft-Publishing-Platform ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Publishing-Platform_', ``, 'string') }}",
+            "Working-Draft-Final-Package-For-Publish-Format": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Final-Package-For-Publish-Format', ``, 'string') }}",
+            "Working-Draft-Creative-Outline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Creative-Outline', ``, 'string') }}",
+            "Working-Draft-Publish-Date (optional)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Publish-Date__optional_', ``, 'string') }}",
+            "Working-Draft-Caption (optional)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Caption__optional_', ``, 'string') }}",
+            "Working-Draft-Additional-Notes-Space (optional)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Working-Draft-Additional-Notes-Space__optional_', ``, 'string') }}",
+            "w_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('w_id__using_to_match_', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "w_id"
+          ],
+          "schema": [
+            {
+              "id": "Working Draft #",
+              "displayName": "Working Draft #",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Working Draft Status",
+              "displayName": "Working Draft Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "execution-activity",
+              "displayName": "execution-activity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "working_draft_SKU",
+              "displayName": "working_draft_SKU",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "w_id",
+              "displayName": "w_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "g_id",
+              "displayName": "g_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "i_id",
+              "displayName": "i_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ci-wd_count",
+              "displayName": "ci-wd_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "timestamp_drafted_created",
+              "displayName": "timestamp_drafted_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Working-Draft-Publishing-Platform ",
+              "displayName": "Working-Draft-Publishing-Platform ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Final-Package-For-Publish-Format",
+              "displayName": "Working-Draft-Final-Package-For-Publish-Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Tech-Specs",
+              "displayName": "Working-Draft-Tech-Specs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Creative-Outline",
+              "displayName": "Working-Draft-Creative-Outline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Treatment",
+              "displayName": "Working-Draft-Treatment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Prompts",
+              "displayName": "Working-Draft-Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Publish-Date (optional)",
+              "displayName": "Working-Draft-Publish-Date (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Caption (optional)",
+              "displayName": "Working-Draft-Caption (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Additional-Notes-Space (optional)",
+              "displayName": "Working-Draft-Additional-Notes-Space (optional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Working-Draft-Shot-List",
+              "displayName": "Working-Draft-Shot-List",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Penultimate-Shot-List",
+              "displayName": "Penultimate-Shot-List",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Working-Draft-Updates#",
+              "displayName": "Working-Draft-Updates#",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Initial_Greenlit_Idea",
+              "displayName": "Initial_Greenlit_Idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Approval Type",
+              "displayName": "Approval Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Approval Status",
+              "displayName": "Approval Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Working-Draft-Log",
+              "displayName": "Working-Draft-Log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Human Notes",
+              "displayName": "Human Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "working draft title (internal reference)",
+              "displayName": "working draft title (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "working draft description (internal reference)",
+              "displayName": "working draft description (internal reference)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        1616,
+        848
+      ],
+      "id": "20047033-040b-4829-8f66-2e3911eda024",
+      "name": "Edit Working Draft row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1aA-VNT0c3aSJc9oy0QaENuHFn9QEyyReJd4-jNI5ppI"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        656,
+        944
+      ],
+      "id": "7e08460c-a026-41e2-b94a-9fd4b170fe14",
+      "name": "Artificial Orchard: Company Guidelines",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1i6NutK5GX5e8ND2mnH3U_8unust8lZ642R2dHDhYiw4"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        976,
+        944
+      ],
+      "id": "04d0b88d-a6c3-4bbd-b523-bd949a659d4c",
+      "name": "Important Studio Terms and Definitions",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1QiLcrz0kP3G6LjEWC9MumTmbvSEu27yy9usbE-muf4U"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        816,
+        944
+      ],
+      "id": "12ebdc8b-3af7-414d-83ba-e205cf6cef41",
+      "name": "Publish Platforms Media Format and Specs Guide",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Studio Agents Shared Docs & Guidelines",
+        "height": 224,
+        "width": 486,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        608,
+        880
+      ],
+      "id": "9140887d-d0fa-415e-89d9-b893ee807527",
+      "name": "Sticky Note42",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('start').item.json.agents.agents[10].chat_memory_session_id }}",
+        "tableName": "={{ $('start').item.json.misc.agent_memories_supabase_table }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        656
+      ],
+      "id": "934d6b0f-c481-46d8-b981-1c4b6ffd9309",
+      "name": "Postgres Memory - Caesar",
+      "credentials": {
+        "postgres": {
+          "id": "85Tuim46hYnLqadX",
+          "name": "Postgres via Supabase — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('start').item.json.agents.agents[6].chat_memory_session_id }}",
+        "tableName": "={{ $('start').item.json.misc.agent_memories_supabase_table }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1152,
+        928
+      ],
+      "id": "d4d341f3-17d8-4443-a3eb-2a04628e42ea",
+      "name": "Postgres Memory - Kim",
+      "credentials": {
+        "postgres": {
+          "id": "85Tuim46hYnLqadX",
+          "name": "Postgres via Supabase — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('start').item.json.agents.agents[5].chat_memory_session_id }}",
+        "tableName": "={{ $('start').item.json.misc.agent_memories_supabase_table }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        352
+      ],
+      "id": "f4b78617-a7a3-45c2-96ab-5dadf0f358c4",
+      "name": "Postgres Memory - Hemingway",
+      "credentials": {
+        "postgres": {
+          "id": "85Tuim46hYnLqadX",
+          "name": "Postgres via Supabase — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "options": {
+          "systemMessage": "={{ $('start').item.json.agents.agents[5].system_prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        224
+      ],
+      "id": "3c06f47d-426b-43e3-b976-d308d5d9f82d",
+      "name": "Hemingway - General Writing Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('start').item.json.agents.agents[4].chat_memory_session_id }}",
+        "tableName": "={{ $('start').item.json.misc.agent_memories_supabase_table }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1104,
+        96
+      ],
+      "id": "c8c24be6-d5b5-47ca-b607-7cdde8e7fdb2",
+      "name": "Postgres Memory - Eddie",
+      "credentials": {
+        "postgres": {
+          "id": "85Tuim46hYnLqadX",
+          "name": "Postgres via Supabase — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "options": {
+          "systemMessage": "={{ $('start').item.json.agents.agents[4].system_prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        -16
+      ],
+      "id": "fc2c35a9-7334-43dd-94f6-fffad6b96ab4",
+      "name": "Eddie - Pitch & Sketch Writer Agent"
+    }
+  ],
+  "connections": {
+    "start": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "route task to most qualified": {
+      "main": [
+        [
+          {
+            "node": "Eddie - Pitch & Sketch Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Hemingway - General Writing Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Caesar - Prompt Engineering Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Kim - Technical Specifications Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Paulina - Head Writer Agent": {
+      "main": [
+        [
+          {
+            "node": "FINAL OUTPUT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "Caesar - Prompt Engineering Agent1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "Kim - Technical Specifications Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kim - Technical Specifications Agent1": {
+      "main": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Caesar - Prompt Engineering Agent1": {
+      "main": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "route task to most qualified",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "route task to most qualified",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get FINAL_PACKAGE in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get DRAFT in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get IDEA in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get IDEA in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get DRAFT in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get FINAL_PACKAGE in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI gpt-5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Kim - Technical Specifications Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Caesar - Prompt Engineering Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Hemingway - General Writing Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Gpt-5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Caesar - Prompt Engineering Agent1",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "gpt-5-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Eddie - Pitch & Sketch Writer Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Working Draft row": {
+      "ai_tool": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Memory - Caesar": {
+      "ai_memory": [
+        [
+          {
+            "node": "Caesar - Prompt Engineering Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Memory - Kim": {
+      "ai_memory": [
+        [
+          {
+            "node": "Kim - Technical Specifications Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Memory - Hemingway": {
+      "ai_memory": [
+        [
+          {
+            "node": "Hemingway - General Writing Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hemingway - General Writing Agent": {
+      "main": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Memory - Eddie": {
+      "ai_memory": [
+        [
+          {
+            "node": "Eddie - Pitch & Sketch Writer Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eddie - Pitch & Sketch Writer Agent": {
+      "main": [
+        [
+          {
+            "node": "Paulina - Head Writer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {
+    "start": [
+      {
+        "json": {
+          "aos_context_files": {
+            "aos_stats_logs_sheet": {
+              "file_id": "1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY",
+              "content_url": "https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?usp=drive_link"
+            }
+          },
+          "agents": {
+            "agents": [
+              {
+                "name": "spielberg",
+                "system_prompt": "# Overview\nYou are Spielberg, the ultimate orchestration assistant working on behalf of Artificial Orchard Studios, a Content & Media Production Company. Your job is to send the user's (aka the CEO of Artificial Orchard) query to the correct tool. You are the head of content creation at the Studio, but should never be directly involved in the content production pipeline or even formulating elevator pitches, you just need to call the correct tool.\n\n\nAgent Tools:\n- Paulina: Working Draft Agent - Call for requests to alter values for working drafts. Pass the:\n1. working_draft_id\n2. query\n\n- MaGuyver: Writes Penultimate Shot List\n- Tars: For creating and updating data in the Studio's Google Sheet(s)\n\n\nPersonal Tools:\nThink Tool: Use to think through things step by step",
+                "human_reference_raw-notes_i-agent-o_framework": "test",
+                "chat_memory_session_id": "spielberg"
+              },
+              {
+                "name": "tars",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "tars"
+              },
+              {
+                "name": "macgyver",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "macgyver"
+              },
+              {
+                "name": "paulina",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "paulina"
+              },
+              {
+                "name": "eddie",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "eddie"
+              },
+              {
+                "name": "hemingway",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "hemingway"
+              },
+              {
+                "name": "kim",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "kim"
+              },
+              {
+                "name": "rainman",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "rainman"
+              },
+              {
+                "name": "forest",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "forest"
+              },
+              {
+                "name": "brittany",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "brittany"
+              },
+              {
+                "name": "caesar",
+                "system_prompt": "",
+                "human_reference_raw-notes_i-agent-o_framework": "",
+                "chat_memory_session_id": "caesar"
+              }
+            ]
+          },
+          "misc": {
+            "agent_memories_supabase_table": "aos_v2_agent_chat_memories"
+          }
+        }
+      }
+    ]
+  },
+  "versionId": "a5ecf821-8559-4852-897b-4e33e51a2b37",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T12:28:47.854Z",
+      "updatedAt": "2025-08-29T12:28:47.854Z",
+      "role": "workflow:owner",
+      "workflowId": "sen58nBLFsrtyzo3",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-17T01:19:45.573Z",
+      "updatedAt": "2025-06-17T01:19:45.573Z",
+      "id": "RLENJg8MGrx0Qypt",
+      "name": "Orchard Studios"
+    },
+    {
+      "createdAt": "2025-06-12T05:33:46.825Z",
+      "updatedAt": "2025-07-31T08:57:36.201Z",
+      "id": "ZDNWkpf5W9vMUubA",
+      "name": "🤖 agent"
+    }
+  ]
+}
