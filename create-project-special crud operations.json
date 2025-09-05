@@ -1,0 +1,1343 @@
+{
+  "createdAt": "2025-09-05T15:26:14.052Z",
+  "updatedAt": "2025-09-05T15:59:51.000Z",
+  "id": "dGwc8J6RIWuRsAte",
+  "name": "Create Project",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "idea_id"
+            },
+            {
+              "name": "title"
+            },
+            {
+              "name": "aos_prompts_and_contexts",
+              "type": "object"
+            },
+            {
+              "name": "chatID"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        32
+      ],
+      "id": "aecd63eb-a2e0-4264-9214-b9c68eceed99",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        144,
+        32
+      ],
+      "id": "da609e53-9728-403d-aa2d-224b431ec42e",
+      "name": "Get idea",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "idea": "={{ $('Get idea').item.json.idea }}",
+            "project_id": "={{ $json.id }}",
+            "project_name": "={{ $('Get idea').item.json.title }}",
+            "project_status": "={{ $('Start').item.json.AO_Studio_Contexts_status_enums_status_enums_project_status[0] }}",
+            "drive_folder_url": "=https://drive.google.com/drive/folders/{{ $('Create project folder').item.json.id }}",
+            "project_drive_folder_file_id": "={{ $('Create project folder').item.json.id }}",
+            "created_at": "={{ $now.toLocal().toISO() }}",
+            "updated_at": "={{ $now.toLocal().toISO() }}",
+            "last_workflow_execution_id": "={{ $execution.id }}",
+            "ideas_row_content_when_greenlit": "={{ $('Get idea').item.json }}",
+            "project_drafts_drive_folder_file_id": "={{ $json.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "project_no",
+              "displayName": "project_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_name",
+              "displayName": "project_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_status",
+              "displayName": "project_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "drive_folder_url",
+              "displayName": "drive_folder_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "project_drive_folder_file_id",
+              "displayName": "project_drive_folder_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "project_drafts_drive_folder_file_id",
+              "displayName": "project_drafts_drive_folder_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "internal_aka_refs_tags",
+              "displayName": "internal_aka_refs_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_desc",
+              "displayName": "internal_desc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_with_farthest_progress_status",
+              "displayName": "draft_with_farthest_progress_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lock_with_farthest_progress_status",
+              "displayName": "lock_with_farthest_progress_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "run_with_farthest_progress_status",
+              "displayName": "run_with_farthest_progress_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_with_farthest_progress",
+              "displayName": "final_with_farthest_progress",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "all_draft_ids",
+              "displayName": "all_draft_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "total_drafts",
+              "displayName": "total_drafts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lock_with_farthest_progress_status",
+              "displayName": "lock_with_farthest_progress_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "all_lock_ids",
+              "displayName": "all_lock_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "total_locks",
+              "displayName": "total_locks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "completed_run_ids",
+              "displayName": "completed_run_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "all_run_ids",
+              "displayName": "all_run_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "total_runs",
+              "displayName": "total_runs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "final_with_farthest_progress_status",
+              "displayName": "final_with_farthest_progress_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "all_final_ids",
+              "displayName": "all_final_ids",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "total_finals",
+              "displayName": "total_finals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ideas_row_content_when_greenlit",
+              "displayName": "ideas_row_content_when_greenlit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1264,
+        32
+      ],
+      "id": "ca2635b2-c516-42c0-80be-f81664e5ff0e",
+      "name": "Append Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "Project {{ $('Get idea').item.json.title }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9",
+          "mode": "list",
+          "cachedResultName": "Projects",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9"
+        },
+        "options": {
+          "folderColorRgb": "#20D820"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        816,
+        32
+      ],
+      "id": "a145f81f-2a4f-43e2-b0b5-192a209fedf6",
+      "name": "Create project folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=draft_folder PROJECT: {{ $json.id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create project folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        32
+      ],
+      "id": "1705c100-5926-49ba-a4fe-f590f3719b65",
+      "name": "Create Drafts Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "project_id",
+              "lookupValue": "={{ $json.project_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1712,
+        32
+      ],
+      "id": "24e96bf8-2dd3-4210-a57a-db7eeae985a2",
+      "name": "Get Greenlit Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "working_drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1706833144"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "idea": "={{ $json.idea }}",
+            "project_name": "={{ $json.project_name }}",
+            "project_no": "={{ $json.project_no }}",
+            "project_id": "={{ $json.project_id }}",
+            "wrk_drft_id": "=working-draft_no{{ $('Get Greenlit Project').item.json?.all_draft_ids ?  $('Get Greenlit Project').item.json?.all_draft_ids?.toNumber() :  1 }}_greenlit-project{{ $json.project_no }}_{{ $json.idea }}",
+            "wrk_drft_status": "={{ $('Start').item.json.AO_Studio_Contexts_status_enums_status_enums_draft_status[0] }}",
+            "drft_shotlist_status": "={{ $('Start').item.json.AO_Studio_Contexts_status_enums_status_enums_shot_list_status[0] }}",
+            "edits_made_count": "1",
+            "last_workflow_execution_id": "={{ $execution.id }}",
+            "treatment": "={{ $('Get idea').item.json.treatment }}",
+            "logline": "={{ $('Get idea').item.json.logline }}",
+            "updated_at": "={{ $now.toLocal().toISO() }}",
+            "created_at": "{{ $now.toLocal().toISO() }}",
+            "wrk_drft_name": "={{ $('Get idea').item.json.title }}, Draft #{{ $('Get Greenlit Project').item.json?.all_draft_ids ?  $('Get Greenlit Project').item.json?.all_draft_ids?.toNumber() :  1 }}",
+            "additional_notes_optional": "={{ $('Get idea').item.json.additional_notes }}\n\nraw_initial_message(s):\n{{ $('Get idea').item.json.raw_initial_messages }}",
+            "internal_aka_refs_tags": "={{ $('Get idea').item.json.internal_title }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "wrk_drft_no",
+              "displayName": "wrk_drft_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_name",
+              "displayName": "project_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_no",
+              "displayName": "project_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_wrk_drft_order_no",
+              "displayName": "project_wrk_drft_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_id",
+              "displayName": "wrk_drft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "wrk_drft_status",
+              "displayName": "wrk_drft_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drft_shotlist_status",
+              "displayName": "drft_shotlist_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_aka_refs_tags",
+              "displayName": "internal_aka_refs_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_desc",
+              "displayName": "internal_desc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "wrk_drft_name",
+              "displayName": "wrk_drft_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "logline",
+              "displayName": "logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "wrk_drft_type",
+              "displayName": "wrk_drft_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publishing_platform",
+              "displayName": "publishing_platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "final_package_format",
+              "displayName": "final_package_format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tech_specs",
+              "displayName": "tech_specs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "creative_brief",
+              "displayName": "creative_brief",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "treatment",
+              "displayName": "treatment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "asset_generation_prompts",
+              "displayName": "asset_generation_prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_date_optional",
+              "displayName": "publish_date_optional",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "caption_optional",
+              "displayName": "caption_optional",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "additional_notes_optional",
+              "displayName": "additional_notes_optional",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "edits_made_count",
+              "displayName": "edits_made_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_shot_list",
+              "displayName": "working_draft_shot_list",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2160,
+        32
+      ],
+      "id": "36795980-b514-4e5b-a2d7-a9196292dfa5",
+      "name": "Append Project Working Draft #1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1936,
+        32
+      ],
+      "id": "dc5f2379-2c4b-4c0d-9615-a50e5b65c604",
+      "name": "Wait 5s",
+      "webhookId": "67a11223-ec47-48fd-ae02-cb7cb3ef2bf6"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1488,
+        32
+      ],
+      "id": "dd074f08-09f3-481b-a536-be4124a965cc",
+      "name": "Wait 3",
+      "webhookId": "041b8e2c-2642-40b3-a34d-0ac15a40c43d"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        32
+      ],
+      "id": "8f2fe168-80d9-4aa9-b727-f50509031cb7",
+      "name": "Wait 5s1",
+      "webhookId": "bdc9e58a-6a0b-4c6b-bf51-88bb1a2b4601"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": "={{ $json?.project_id?.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "output",
+              "value": "={{ $json ?? undefined }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2384,
+        32
+      ],
+      "id": "aba0fbd7-f531-43c2-b929-8c76eeff4738",
+      "name": "Workflow OUT (to Spielberg)1"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Final Workflow Output ❎",
+        "height": 256,
+        "width": 198,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        -64
+      ],
+      "id": "b4206181-bf3b-49cd-8286-1da546e1fdf9",
+      "name": "Sticky Note85"
+    },
+    {
+      "parameters": {
+        "content": "## Dev relevant links\n- [Example Project Folder](https://drive.google.com/drive/u/1/folders/1u3rUODBaEj-jfs-bfw2zuM63TBHCD_IO)\n- [**Projects** Drive Folder URL](https://drive.google.com/drive/u/1/folders/1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9)\n- [AOS V2 Content Tracker Sheet URL](https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?gid=0#gid=0)\n- [**System Stats & Logs Sheet**](https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?gid=0#gid=0)\n- [**aos v2 google drive project folder**](https://drive.google.com/drive/u/1/folders/1O6GmygJ-if3BxUiQPY0c7QpvwjlEmRfG)",
+        "height": 256
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -288
+      ],
+      "id": "458b696c-fe56-4276-b44c-6cc44b30f5cd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "idea": "={{ $('Start').item.json.idea }}",
+            "idea_status": "={{ $('Start').item.json.AO_Studio_Contexts_status_enums_status_enums_idea_status[1] }}"
+          },
+          "matchingColumns": [
+            "idea"
+          ],
+          "schema": [
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "idea_status",
+              "displayName": "idea_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "logline",
+              "displayName": "logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "treatment",
+              "displayName": "treatment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "raw_initial_messages",
+              "displayName": "raw_initial_messages",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "additional_notes",
+              "displayName": "additional_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_title",
+              "displayName": "internal_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        592,
+        32
+      ],
+      "id": "1b810477-e602-442b-8642-ba2d0151846d",
+      "name": "Update Idea",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Get idea": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Project": {
+      "main": [
+        [
+          {
+            "node": "Wait 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create project folder": {
+      "main": [
+        [
+          {
+            "node": "Create Drafts Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Drafts Folder": {
+      "main": [
+        [
+          {
+            "node": "Append Project",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Greenlit Project": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Project Working Draft #1": {
+      "main": [
+        [
+          {
+            "node": "Workflow OUT (to Spielberg)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Append Project Working Draft #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3": {
+      "main": [
+        [
+          {
+            "node": "Get Greenlit Project",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s1": {
+      "main": [
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Idea": {
+      "main": [
+        [
+          {
+            "node": "Create project folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "image": "image_named_this",
+          "prompt": "a yellow brick road in ascii art, hieroglypics aesthetic",
+          "chatID": "8129407016"
+        }
+      }
+    ]
+  },
+  "versionId": "d97d99f3-0889-4a47-b6b3-288e9a71a2f0",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-05T15:26:14.056Z",
+      "updatedAt": "2025-09-05T15:26:14.056Z",
+      "role": "workflow:owner",
+      "workflowId": "dGwc8J6RIWuRsAte",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-09-05T15:26:38.747Z",
+      "updatedAt": "2025-09-05T15:26:38.747Z",
+      "id": "1ehm3DHrucuaAnaF",
+      "name": "special crud operations"
+    },
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-09-05T15:27:06.340Z",
+      "updatedAt": "2025-09-05T15:27:06.340Z",
+      "id": "mz1nhyPgF93AadRT",
+      "name": "flow-as-ai-tool"
+    }
+  ]
+}
