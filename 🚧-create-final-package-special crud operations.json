@@ -1,0 +1,1335 @@
+{
+  "createdAt": "2025-09-05T17:30:12.408Z",
+  "updatedAt": "2025-09-05T17:54:38.000Z",
+  "id": "HILRRX8H9Akkj76F",
+  "name": "🚧 Create Final Package",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "working_draft_id"
+            },
+            {
+              "name": "project_title"
+            },
+            {
+              "name": "aos_system_contexts",
+              "type": "object"
+            },
+            {
+              "name": "chat_id"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        32
+      ],
+      "id": "677b0436-3aa4-4dbe-90f2-a998d2b1e264",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "working_title",
+              "lookupValue": "={{ $json.idea_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        144,
+        32
+      ],
+      "id": "6abc36c5-354a-4795-9b07-a8b2b65cf6a1",
+      "name": "Get idea",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "project_id": "={{ $execution.id }}",
+            "created_at": "={{ $now.toLocal().toISO() }}",
+            "projects_drive_folder_id": "={{ $('Create project folder').item.json.id }}",
+            "projects_drive_folder_url": "=https://drive.google.com/drive/u/1/folders/{{ $('Create project folder').item.json.id }}",
+            "projects_draft_folders": "={{ [$json.id] }}",
+            "status": "={{ \"active\" }}",
+            "logline": "={{ $('Get idea').item.json.logline }}",
+            "additional_info": "={{ $('Get idea').item.json.additional_notes }}",
+            "description": "={{ $('Get idea').item.json.description }}",
+            "project_title": "={{ $('Create project folder').item.json.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_title",
+              "displayName": "project_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "internal_context_reference",
+              "displayName": "internal_context_reference",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "logline",
+              "displayName": "logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "additional_info",
+              "displayName": "additional_info",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deadline",
+              "displayName": "deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "projects_drive_folder_url",
+              "displayName": "projects_drive_folder_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "projects_drive_folder_id",
+              "displayName": "projects_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "projects_draft_folders",
+              "displayName": "projects_draft_folders",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1264,
+        32
+      ],
+      "id": "60f29877-d889-4815-b82a-a3e25aa2f6ec",
+      "name": "Append Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=Project {{ $execution.id }}{{ ': ' + $('When Executed by Another Workflow').item.json.project_title ?? ': ' + $('Get idea').item.json.working_title ?? ''.substring(48).trim() }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9",
+          "mode": "list",
+          "cachedResultName": "Projects",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9"
+        },
+        "options": {
+          "folderColorRgb": "#20D820"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        816,
+        32
+      ],
+      "id": "2333be7b-25d4-46f8-8b42-f08a3321b5ed",
+      "name": "Create project folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=proj{{$execution.id}}_working_drafts",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create project folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        32
+      ],
+      "id": "b1cde606-43ce-420c-b1eb-af65a155887b",
+      "name": "Create Drafts Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1488,
+        32
+      ],
+      "id": "9ac70b43-d9ac-49c5-ba4f-61ee28218a02",
+      "name": "Wait 3",
+      "webhookId": "53401be3-0371-43c0-8fe3-599ba444a515"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        32
+      ],
+      "id": "f5213b31-f988-403d-804c-e94e1834e042",
+      "name": "Wait 5s1",
+      "webhookId": "4652276e-57c8-44e6-896a-1f42085bc4a6"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Final Workflow Output ❎",
+        "height": 256,
+        "width": 198,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        -64
+      ],
+      "id": "89978d87-7610-42ec-ae20-fc7bec17e59e",
+      "name": "Sticky Note85"
+    },
+    {
+      "parameters": {
+        "content": "## Dev relevant links\n- [Example Project Folder](https://drive.google.com/drive/u/1/folders/1u3rUODBaEj-jfs-bfw2zuM63TBHCD_IO)\n- [**Projects** Drive Folder URL](https://drive.google.com/drive/u/1/folders/1_fxZh3HrtRkAw_YDEfSUmblE33_oS8l9)\n- [AOS V2 Content Tracker Sheet URL](https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?gid=0#gid=0)\n- [**System Stats & Logs Sheet**](https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?gid=0#gid=0)\n- [**aos v2 google drive project folder**](https://drive.google.com/drive/u/1/folders/1O6GmygJ-if3BxUiQPY0c7QpvwjlEmRfG)\n- standard format for getting current time \n\n{{ $now.toLocal().toISO() }}\n\n\n- h",
+        "height": 416
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -464
+      ],
+      "id": "2945fe65-22d2-4921-aed0-e16c8ca93d70",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "working_title": "={{ $json.working_title }}",
+            "status": "=greenlit",
+            "last_updated": "={{ $now.toUTC().toISO() }}"
+          },
+          "matchingColumns": [
+            "working_title"
+          ],
+          "schema": [
+            {
+              "id": "working_title",
+              "displayName": "working_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "logline",
+              "displayName": "logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "additional_notes",
+              "displayName": "additional_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "last_updated",
+              "displayName": "last_updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        592,
+        32
+      ],
+      "id": "2c30de65-66dc-4376-96a3-aa681f7de8a2",
+      "name": "Update Idea",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": "={{ true }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "4fe540a9-ef46-4bc9-b922-46492db2cbce",
+              "name": "response",
+              "value": "=task_successful: true\n\nResponse: \n\n## Idea (greenlit)\n\n{{ $('Get idea').item.json.toJsonString() }}\n\n\n## Project\n\n{{ $('Append Project').item.json.toJsonString() }}\n\n\n## 1st Working Draft\n\n{{ $('append working draft in sheet').item.json.toJsonString() }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1936,
+        32
+      ],
+      "id": "8abad721-bd4b-4d14-8147-b658bf1fb9ba",
+      "name": "Final Output"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "working_drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=1706833144"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "working_draft_title": "=1st Draft: proj_{{ $('Append Project').item.json.project_id }}",
+            "working_draft_id": "=wd_{{ $execution.id }}",
+            "project_working_draft_no": "1",
+            "draft_status": "=started",
+            "created_at": "={{ $now.toLocal().toISO() }}",
+            "project_id": "=proj_{{ $('Append Project').item.json.project_id }}",
+            "draft_approve_status": "incomplete",
+            "last_workflow_execution_id": "=={{ $execution.id }}",
+            "drafts_drive_folder_id": "={{ $('Create Drafts Folder').item.json.id }}",
+            "drafts_drive_folder_url": "=https://drive.google.com/drive/u/1/folders/{{ $('Create Drafts Folder').item.json.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_title",
+              "displayName": "working_draft_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_title",
+              "displayName": "project_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_working_draft_no",
+              "displayName": "project_working_draft_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_reference_info",
+              "displayName": "internal_reference_info",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_status",
+              "displayName": "draft_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_approve_status",
+              "displayName": "draft_approve_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_due",
+              "displayName": "draft_due",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_date",
+              "displayName": "publish_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "publish_platform",
+              "displayName": "publish_platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content_package_format",
+              "displayName": "content_package_format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deliverables_logline",
+              "displayName": "deliverables_logline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tech_specs_and_reqs",
+              "displayName": "tech_specs_and_reqs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "treatment",
+              "displayName": "treatment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_generation_prompts",
+              "displayName": "media_generation_prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "additional_working_draft_notes",
+              "displayName": "additional_working_draft_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "caption_optional",
+              "displayName": "caption_optional",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drafts_drive_folder_url",
+              "displayName": "drafts_drive_folder_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "drafts_drive_folder_id",
+              "displayName": "drafts_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        32
+      ],
+      "id": "24438aad-cc82-43f2-b1be-bd94e525a012",
+      "name": "append working draft in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "version_locks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=177585841"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "version_lock_id",
+              "displayName": "version_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_title",
+              "displayName": "version_lock_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "internal_reference_info",
+              "displayName": "internal_reference_info",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_status",
+              "displayName": "version_lock_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_shot_list_status",
+              "displayName": "version_lock_shot_list_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_eligible_for_publish",
+              "displayName": "version_lock_eligible_for_publish",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "selected_for_publish_list_of_deliverables_produced",
+              "displayName": "selected_for_publish_list_of_deliverables_produced",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "shot_list_last_updated_at",
+              "displayName": "shot_list_last_updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_drive_folder_id",
+              "displayName": "version_lock_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "version_lock_shot_list_file_id",
+              "displayName": "version_lock_shot_list_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        240
+      ],
+      "id": "127aa864-8005-4d6a-91eb-095737e2ec60",
+      "name": "Append version_lock in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Get idea": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Project": {
+      "main": [
+        [
+          {
+            "node": "Wait 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create project folder": {
+      "main": [
+        [
+          {
+            "node": "Create Drafts Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Drafts Folder": {
+      "main": [
+        [
+          {
+            "node": "Append Project",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3": {
+      "main": [
+        [
+          {
+            "node": "append working draft in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s1": {
+      "main": [
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Idea": {
+      "main": [
+        [
+          {
+            "node": "Create project folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "append working draft in sheet": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "chat_id": "281989",
+          "idea_id": "AI Beats Documentary",
+          "project_title": "a yellow brick road in ascii art, hieroglypics aesthetic",
+          "aos_system_contexts": {
+            "name": "name",
+            "value": "value",
+            "object_name": {
+              "field_key": "field_value"
+            }
+          }
+        }
+      }
+    ],
+    "Get idea": [
+      {
+        "json": {
+          "row_number": 10,
+          "working_title": "AI Beats Documentary",
+          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
+          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
+          "additional_notes": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "status": "greenlit",
+          "created_at": "2025-08-27T15:00:00Z",
+          "last_updated": "2025-09-05T17:06:58.643Z",
+          "author": "studio_user"
+        }
+      }
+    ],
+    "Append Project": [
+      {
+        "json": {
+          "project_id": "3822",
+          "created_at": "2025-09-05T13:08:31.744-04:00",
+          "projects_drive_folder_id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "projects_draft_folders": [
+            "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
+          ],
+          "status": "active",
+          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
+          "additional_info": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
+          "project_title": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic"
+        }
+      }
+    ],
+    "Create project folder": [
+      {
+        "json": {
+          "kind": "drive#file",
+          "id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "name": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic",
+          "mimeType": "application/vnd.google-apps.folder"
+        }
+      }
+    ],
+    "Create Drafts Folder": [
+      {
+        "json": {
+          "kind": "drive#file",
+          "id": "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C",
+          "name": "proj3822_working_drafts",
+          "mimeType": "application/vnd.google-apps.folder"
+        }
+      }
+    ],
+    "Wait 3": [
+      {
+        "json": {
+          "project_id": "3822",
+          "created_at": "2025-09-05T13:08:31.744-04:00",
+          "projects_drive_folder_id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "projects_draft_folders": [
+            "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
+          ],
+          "status": "active",
+          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
+          "additional_info": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
+          "project_title": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic"
+        }
+      }
+    ],
+    "Wait 5s1": [
+      {
+        "json": {
+          "row_number": 10,
+          "working_title": "AI Beats Documentary",
+          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
+          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
+          "additional_notes": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "status": "greenlit",
+          "created_at": "2025-08-27T15:00:00Z",
+          "last_updated": "2025-09-05T17:06:58.643Z",
+          "author": "studio_user"
+        }
+      }
+    ],
+    "Update Idea": [
+      {
+        "json": {
+          "working_title": "AI Beats Documentary",
+          "status": "greenlit",
+          "last_updated": "2025-09-05T17:08:29.271Z"
+        }
+      }
+    ],
+    "Final Output": [
+      {
+        "json": {
+          "task_successful": true,
+          "workflow_execution_id": 3822,
+          "response": "task_successful: true\n\nResponse: \n\n## Idea (greenlit)\n\n{\"row_number\":10,\"working_title\":\"AI Beats Documentary\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"additional_notes\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"status\":\"greenlit\",\"created_at\":\"2025-08-27T15:00:00Z\",\"last_updated\":\"2025-09-05T17:06:58.643Z\",\"author\":\"studio_user\"}\n\n\n## Project\n\n{\"project_id\":\"3822\",\"created_at\":\"2025-09-05T13:08:31.744-04:00\",\"projects_drive_folder_id\":\"15utogoC9X_zuJMO88BU99l-gJLvEUNeX\",\"projects_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX\",\"projects_draft_folders\":[\"1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\"],\"status\":\"active\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"additional_info\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"project_title\":\"Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic\"}\n\n\n## 1st Working Draft\n\n{\"working_draft_title\":\"1st Draft: proj_3822\",\"working_draft_id\":\"wd_3822\",\"project_working_draft_no\":\"1\",\"draft_status\":\"started\",\"created_at\":\"2025-09-05T13:08:35.897-04:00\",\"project_id\":\"proj_3822\",\"draft_approve_status\":\"incomplete\",\"last_workflow_execution_id\":\"=3822\",\"drafts_drive_folder_id\":\"1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\",\"drafts_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\"}\n"
+        }
+      }
+    ],
+    "append working draft in sheet": [
+      {
+        "json": {
+          "working_draft_title": "1st Draft: proj_3822",
+          "working_draft_id": "wd_3822",
+          "project_working_draft_no": "1",
+          "draft_status": "started",
+          "created_at": "2025-09-05T13:08:35.897-04:00",
+          "project_id": "proj_3822",
+          "draft_approve_status": "incomplete",
+          "last_workflow_execution_id": "=3822",
+          "drafts_drive_folder_id": "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C",
+          "drafts_drive_folder_url": "https://drive.google.com/drive/u/1/folders/1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
+        }
+      }
+    ]
+  },
+  "versionId": "b3a3007b-4a45-45ee-9e28-3694ad3c0c00",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-05T17:30:12.413Z",
+      "updatedAt": "2025-09-05T17:30:12.413Z",
+      "role": "workflow:owner",
+      "workflowId": "HILRRX8H9Akkj76F",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-09-05T15:26:38.747Z",
+      "updatedAt": "2025-09-05T15:26:38.747Z",
+      "id": "1ehm3DHrucuaAnaF",
+      "name": "special crud operations"
+    },
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-09-05T15:27:06.340Z",
+      "updatedAt": "2025-09-05T15:27:06.340Z",
+      "id": "mz1nhyPgF93AadRT",
+      "name": "flow-as-ai-tool"
+    }
+  ]
+}
