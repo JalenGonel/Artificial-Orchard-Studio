@@ -1,0 +1,737 @@
+{
+  "createdAt": "2025-09-05T17:55:43.497Z",
+  "updatedAt": "2025-09-05T17:56:18.000Z",
+  "id": "vo879jiNXBDcDCy0",
+  "name": "🚧 Create Version Lock",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "working_drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=1706833144"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "wrk_drft_id",
+              "lookupValue": "={{ $json.wrk_drft_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        784,
+        928
+      ],
+      "id": "cb850e83-7e67-4d38-9d1a-30c6ed5af780",
+      "name": "Get Work Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 4
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        912,
+        928
+      ],
+      "id": "066fde8a-db7f-4f54-8ca4-85c4650a6f41",
+      "name": "Wait 4s",
+      "webhookId": "d5cb12ad-7446-42cf-b4ec-1901c54c7b07"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "project_id",
+              "lookupValue": "={{ $json.project_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1056,
+        928
+      ],
+      "id": "aef4a956-2cc1-4969-a520-88770e4960c4",
+      "name": "Get Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $('Get Work Draft').item.json.working_draft_shot_list }}",
+        "name": "=PV_LOCK_SHOT_LIST_pvl{{ $execution.id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "convertToGoogleDocument": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1664,
+        928
+      ],
+      "id": "89ca351d-4e17-45f8-814d-364834ff8c4a",
+      "name": "Create LOCK_SHOT_LIST file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=production_version_LOCK-no{{ $json?.total_locks ? $json?.total_locks + 1: 1 }}_pvl{{ $execution.id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $json.project_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "folderColorRgb": "#C183D9"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1232,
+        928
+      ],
+      "id": "f53a08be-42f3-4958-9677-edea46ae6b29",
+      "name": "Create pvLOCK folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "production_version_locks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=177585841"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "project_id": "={{ $('Get Work Draft').item.json.project_id }}",
+            "idea": "={{ $('Get Project').item.json.idea }}",
+            "wrk_drft_id": "={{ $('Get Work Draft').item.json.wrk_drft_id }}",
+            "created_at": "={{ $now.toLocal().toISO() }}",
+            "updated_at": "={{ $now.toLocal().toISO() }}",
+            "prod_ver_lock_google_drive_folder_id": "={{ $('Create pvLOCK folder').item.json.id }}",
+            "prod_ver_lock_id": "=project_{{ $('Get Project').item.json.project_no }}-version_lock_{{ $json?.total_locks ? $json?.total_locks + 1: 1 }}",
+            "prod_ver_lock_status": "={{ $('Start').item.json.AO_Studio_Contexts_status_enums_status_enums_prod_ver_lock_status[0] }}",
+            "prod_ver_lock_name": "=Version Lock #{{ $json?.total_locks ? $json?.total_locks + 1: 1 }}",
+            "pv_lock_shot_list_drive_file_id": "={{ $json.id }}",
+            "last_workflow_execution_id": "={{ $execution.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prod_ver_lock_no",
+              "displayName": "prod_ver_lock_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_name",
+              "displayName": "project_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_no",
+              "displayName": "project_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "project_id",
+              "displayName": "project_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_wrk_drft_order_no",
+              "displayName": "project_wrk_drft_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_no",
+              "displayName": "wrk_drft_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "wrk_drft_id",
+              "displayName": "wrk_drft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "project_prod_ver_lock_order_no",
+              "displayName": "project_prod_ver_lock_order_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_id",
+              "displayName": "prod_ver_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "prod_ver_lock_status",
+              "displayName": "prod_ver_lock_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "prod_ver_lock_approval_status",
+              "displayName": "prod_ver_lock_approval_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_human",
+              "displayName": "notes_by_human",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_ai",
+              "displayName": "notes_by_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "notes_by_code",
+              "displayName": "notes_by_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_aka_refs_tags",
+              "displayName": "internal_aka_refs_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "internal_desc",
+              "displayName": "internal_desc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prod_ver_lock_name",
+              "displayName": "prod_ver_lock_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "prod_ver_lock_google_drive_folder_id",
+              "displayName": "prod_ver_lock_google_drive_folder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pv_lock_shot_list_drive_file_id",
+              "displayName": "pv_lock_shot_list_drive_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prod_ver_lock_type",
+              "displayName": "prod_ver_lock_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "choice_of_package_deliverables",
+              "displayName": "choice_of_package_deliverables",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "all_generated_deliverables",
+              "displayName": "all_generated_deliverables",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "last_workflow_execution_id",
+              "displayName": "last_workflow_execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2096,
+        928
+      ],
+      "id": "f7ea23e2-76f0-408d-a2a7-b0afad3cf4d9",
+      "name": "Append Prod Run Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "i2bVwab0MxRJzwYf",
+          "name": "Google Sheets AO OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1872,
+        928
+      ],
+      "id": "1931cbbe-986e-4c70-ade5-fb2bec1c9ae3",
+      "name": "Wait1",
+      "webhookId": "8ce54f91-95e3-45b9-b45b-8f0961d0ad7f"
+    },
+    {
+      "parameters": {
+        "amount": 2.6
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        928
+      ],
+      "id": "be10ff92-4314-4db4-9e75-f541d30d25df",
+      "name": "Wait 2.6",
+      "webhookId": "13f7d4df-438d-4737-a743-4b3f73f5360d"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": "={{ $json?.project_id?.isNotEmpty() }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "output",
+              "value": "={{ $json ?? undefined }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2448,
+        928
+      ],
+      "id": "2361da52-42c8-40e3-8883-335b7a4d3756",
+      "name": "Workflow OUT (to Spielberg)2"
+    },
+    {
+      "parameters": {
+        "content": "### Create prod_ver_lock_google_drive_folder_id",
+        "height": 256,
+        "width": 192,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        832
+      ],
+      "id": "84cb7830-4bc5-4fc7-92d9-cd7a00e52c82",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Final Workflow Output ❎",
+        "height": 256,
+        "width": 198,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        832
+      ],
+      "id": "23e6a8aa-f08c-4f1f-988b-981b67de966d",
+      "name": "Sticky Note86"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "wrk_drft_id",
+              "type": "any"
+            },
+            {
+              "name": "AO_Studio_Contexts_status_enums_status_enums_prod_ver_lock_status",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "6ea9af18-435a-46f8-8f76-8a623b68c7e8",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        576,
+        928
+      ]
+    }
+  ],
+  "connections": {
+    "Get Work Draft": {
+      "main": [
+        [
+          {
+            "node": "Wait 4s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 4s": {
+      "main": [
+        [
+          {
+            "node": "Get Project",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Project": {
+      "main": [
+        [
+          {
+            "node": "Create pvLOCK folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create LOCK_SHOT_LIST file from text": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create pvLOCK folder": {
+      "main": [
+        [
+          {
+            "node": "Wait 2.6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Prod Run Lock": {
+      "main": [
+        [
+          {
+            "node": "Workflow OUT (to Spielberg)2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Append Prod Run Lock",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2.6": {
+      "main": [
+        [
+          {
+            "node": "Create LOCK_SHOT_LIST file from text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Get Work Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "cc6f28dc-b346-4e28-b047-73527920407e",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-05T17:55:43.499Z",
+      "updatedAt": "2025-09-05T17:55:43.499Z",
+      "role": "workflow:owner",
+      "workflowId": "vo879jiNXBDcDCy0",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-09-05T15:26:38.747Z",
+      "updatedAt": "2025-09-05T15:26:38.747Z",
+      "id": "1ehm3DHrucuaAnaF",
+      "name": "special crud operations"
+    },
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-09-05T15:27:06.340Z",
+      "updatedAt": "2025-09-05T15:27:06.340Z",
+      "id": "mz1nhyPgF93AadRT",
+      "name": "flow-as-ai-tool"
+    }
+  ]
+}
