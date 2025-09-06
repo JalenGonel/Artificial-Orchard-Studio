@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-10T04:14:05.158Z",
-  "updatedAt": "2025-09-04T07:18:00.000Z",
+  "updatedAt": "2025-09-05T21:09:44.000Z",
   "id": "VtqDp5dJIy3K37BF",
   "name": "MacGuyver - Shot List Agent As Workflow",
   "active": false,
@@ -335,8 +335,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        2128,
-        272
+        2528,
+        192
       ],
       "id": "4cd279af-7296-46b7-a0bb-2352ad26cbd7",
       "name": "Status ('Shot_List'): ✅ Done",
@@ -389,36 +389,6 @@
       ],
       "id": "63641387-cc3a-474f-9939-b5dddfe67f2b",
       "name": "Calculator"
-    },
-    {
-      "parameters": {
-        "operation": "createFromText",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "={{ $json }}",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        1888,
-        64
-      ],
-      "id": "86b4cddc-e305-44c0-b16f-ee7c71af7cf3",
-      "name": "Create file from text1",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "ScH2Khz6AL9njL5N",
-          "name": "Google Drive — AO"
-        }
-      }
     },
     {
       "parameters": {
@@ -585,7 +555,7 @@
                   {
                     "id": "41d68036-d569-4ec1-a9df-690b0783f84c",
                     "leftValue": "",
-                    "rightValue": "",
+                    "rightValue": "={{ $json.aos_prompts_and_contexts.agents.agents[2].system_prompt }}",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -618,8 +588,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2160,
-        480
+        2560,
+        400
       ],
       "id": "a23aae2a-a00b-4193-8ae5-6d0336f80273",
       "name": "Clean Up"
@@ -727,8 +697,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        2288,
-        480
+        2688,
+        400
       ],
       "id": "74a2969b-a954-43e8-85d5-bd47cef7d9f5",
       "name": "Append to Agent Logs Sheet",
@@ -867,8 +837,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1600,
-        176
+        2160,
+        352
       ],
       "id": "9a067bd6-cd36-4794-ba42-3829e9840bc7",
       "name": "Sticky Note3"
@@ -914,8 +884,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1648,
-        272
+        2208,
+        448
       ],
       "id": "b20e2900-796a-4999-8d7e-9ec84d1bc5b4",
       "name": "Final Output1"
@@ -1055,31 +1025,6 @@
     },
     {
       "parameters": {
-        "operation": "update",
-        "fileId": {
-          "__rl": true,
-          "mode": "id",
-          "value": ""
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        1888,
-        224
-      ],
-      "id": "bab3c3a7-bb83-405f-a5d5-a4b8b9e2d395",
-      "name": "Update Shot_List",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "ScH2Khz6AL9njL5N",
-          "name": "Google Drive — AO"
-        }
-      }
-    },
-    {
-      "parameters": {
         "sessionIdType": "customKey",
         "sessionKey": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.agents.agents[2].chat_memory_session_id }}",
         "tableName": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.misc.agent_memories_supabase_table }}"
@@ -1140,6 +1085,151 @@
       ],
       "id": "f7ea9da7-472c-495f-bda3-ca8ab690382e",
       "name": "MacGyver System Prompt (original 9/4/25)"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "action_type",
+                    "rightValue": "create",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b20561a7-fd66-48da-97df-e190a42b7045"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "create"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b8b7a614-bfed-4c4e-8f84-2e61bc846e82",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "update"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "da83be01-eb6c-438c-8976-e0340b73424f",
+                    "leftValue": "",
+                    "rightValue": "text_response_only",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1408,
+        240
+      ],
+      "id": "eeec2427-cfb8-4bd3-8800-1b9dd13ef91d",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1664,
+        256
+      ],
+      "id": "6f19671e-1766-44f3-b61f-275c3e328575",
+      "name": "Update file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1664,
+        96
+      ],
+      "id": "e077bec8-6144-44d6-843d-2b47cbaeb893",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
     }
   ],
   "connections": {
@@ -1309,11 +1399,6 @@
         ]
       ]
     },
-    "Create file from text1": {
-      "main": [
-        []
-      ]
-    },
     "OpenRouter gpt-5": {
       "ai_languageModel": [
         [
@@ -1349,7 +1434,31 @@
     },
     "MacGyver": {
       "main": [
-        []
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Create file from text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update file",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -1455,7 +1564,7 @@
       }
     ]
   },
-  "versionId": "f17e19b9-6528-4c7a-8979-cbf509bb3c92",
+  "versionId": "a70757e3-bb54-43c4-99b2-cbccfc50249e",
   "triggerCount": 0,
   "shared": [
     {
