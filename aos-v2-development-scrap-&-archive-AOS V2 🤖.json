@@ -1,0 +1,2821 @@
+{
+  "createdAt": "2025-09-05T20:01:18.431Z",
+  "updatedAt": "2025-09-05T22:12:48.000Z",
+  "id": "vUEojrJXFHx13i6Q",
+  "name": "aos v2 development scrap & archive",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Purpose\n\n### Use workflow space to experiment with workflow builds and store deprecated/unused workflow patterns/nodes which may still be potentially useful.",
+        "height": 208,
+        "width": 368,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        128,
+        -128
+      ],
+      "id": "a322771b-fb0c-4b46-ae6a-fba311edbdab",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Ideas\n**most frequent data thing**",
+        "height": 80,
+        "width": 720,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        -448
+      ],
+      "id": "a8aa8c0a-8478-402c-a7ab-8804cae3f9c9",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        -448
+      ],
+      "id": "4418d224-ef70-40ec-81da-ed2a91136b10",
+      "name": "Get Ideas",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        -448
+      ],
+      "id": "1075e7b5-ccc7-4e11-9526-5d5c43037e6b",
+      "name": "Create Idea1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        -448
+      ],
+      "id": "55e0b439-3054-47c0-ab9e-08280b916345",
+      "name": "Update Idea1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=0"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        -448
+      ],
+      "id": "cfef3d22-7179-4131-a1e2-83a0be553949",
+      "name": "Delete Idea",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Projects\n**can start, abandon as needed**",
+        "height": 80,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        -272
+      ],
+      "id": "eddd0bcf-de00-4d14-abd9-6728d430a85e",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        -272
+      ],
+      "id": "224f2331-222f-4a40-9d5d-ca1a3e49cc4e",
+      "name": "Get Projects",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        -272
+      ],
+      "id": "aeae23ec-216f-407f-9373-044ecc096af8",
+      "name": "Delete Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        -272
+      ],
+      "id": "77caf5ba-4ae5-4440-968c-1b4c40dd574c",
+      "name": "Update Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        -272
+      ],
+      "id": "a07ba308-b395-41ac-bf33-d0577ee7ccbb",
+      "name": "Create Project",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Drafts\n**1 per publish platform**",
+        "height": 80,
+        "width": 720
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        -96
+      ],
+      "id": "089c0f95-bd71-4b0d-ab95-4b79fbbea31a",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        -96
+      ],
+      "id": "59251f3f-b5fd-4bc0-a8f2-5f2fa803352f",
+      "name": "Get Drafts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        -96
+      ],
+      "id": "5a537ba2-00d5-4798-ba61-b0fc228cb0bc",
+      "name": "Create Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        -96
+      ],
+      "id": "fcb1cc03-f538-4b39-b273-4a4fa83596e6",
+      "name": "Update Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        -96
+      ],
+      "id": "2eb9664a-1f4b-4209-ab4d-4e64032313a8",
+      "name": "Delete Draft",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Locks\n**Approved versions for production**",
+        "height": 80,
+        "width": 720,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        80
+      ],
+      "id": "aab1f739-936c-449b-93a6-6a6141aa9e1d",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Runs\n**Production Runs, Full or Partial**",
+        "height": 80,
+        "width": 720,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        256
+      ],
+      "id": "918b6b18-9165-4386-89e6-b37c55fec3a1",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        256
+      ],
+      "id": "290eb226-7e2d-4853-b0b0-e07f841340d0",
+      "name": "Get Run",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        256
+      ],
+      "id": "db07d4bd-525a-47f7-85de-1f5ede71bac4",
+      "name": "Create Run",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        256
+      ],
+      "id": "622a7385-d39e-462e-b25e-8d329c523e09",
+      "name": "Update Run1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        256
+      ],
+      "id": "df196b23-9072-47ab-bb0b-c382cfcc5499",
+      "name": "Delete Run",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        80
+      ],
+      "id": "9328ed0f-5d22-42da-8a88-171adead0681",
+      "name": "Get Locks",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        80
+      ],
+      "id": "a3973b15-88e7-4627-9c77-d295f6d37ea2",
+      "name": "Create Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        80
+      ],
+      "id": "fb8fa425-349d-4cd8-a0a9-422e6db2f1e9",
+      "name": "Update Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        80
+      ],
+      "id": "851f12b0-ce29-4315-be7b-4c06936291ba",
+      "name": "Delete Lock",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Finals\n**Content Packages for Publish**",
+        "height": 80,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        432
+      ],
+      "id": "f4afdb97-53ad-4f7e-8063-8e2b71bffbef",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        432
+      ],
+      "id": "7db67e78-6a5d-40b3-9ba7-e673ac80522a",
+      "name": "Get Finals",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        432
+      ],
+      "id": "ccee5e14-1737-4f4d-87f7-ebf628d47140",
+      "name": "Create Final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Task": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task', ``, 'string') }}",
+            "Description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+            "Deadline": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Deadline', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "row_number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('row_number__using_to_match_', ``, 'number') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Task",
+              "displayName": "Task",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        432
+      ],
+      "id": "3b6b52c3-c777-466b-bff9-e6031a4a1033",
+      "name": "Update Final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Creation Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 297625840,
+          "mode": "list",
+          "cachedResultName": "projects_greenlit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1808,
+        432
+      ],
+      "id": "203f6560-bd34-49de-809d-51bf7689c67e",
+      "name": "Delete Final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Name: Hardcoded Google Sheets CRUD operations Agent Tools for all AOS data types. \n### Added: 9/5/25",
+        "height": 256,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        864,
+        -448
+      ],
+      "id": "693be5a1-a612-4e64-989e-c47c138e097a",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $json.json_schema.toJsonString() }}",
+        "name": "={{ $json.filename + \"_\" + $execution.id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $json.foldername }}",
+          "mode": "id"
+        },
+        "options": {
+          "convertToGoogleDocument": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        336,
+        -1056
+      ],
+      "id": "5c3d2500-5fbf-4ac9-98dc-ccd4ac717cd4",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        -1056
+      ],
+      "id": "03ac7177-2ae9-45d4-b80c-43be2e06b840",
+      "name": "Wait",
+      "webhookId": "0ee12aff-8ab1-4f5c-84fa-1aa6567aa5ee"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        752,
+        -1056
+      ],
+      "id": "062b666c-7718-4c08-b4ef-f8631d8afb6a",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        -1056
+      ],
+      "id": "97709301-f85d-4e93-b651-8f5664675081",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "481de06d-7fd9-4402-b4ba-354857d427c4",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1216,
+        -1056
+      ],
+      "id": "0f1bb35d-26b5-44b6-a52c-ed8df07582f4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "\n  {\n    \"foldername\": \"1Cjx5zDyATzeipI5pL_e9MyK2XakANcf1\",\n    \"filename\": \"schema_test\",\n    \"json_schema\": {\n      \"platform\": \"instagram\",\n      \"final_package_format\": \"carousel-mixed-media\",\n      \"metadata\": {\n        \"internal_package_description\": \"the multifaceted unit test. All these tokens in tests down teh drain. What did N Sync say? Bye Bye Bye\",\n        \"elementsTotal\": 13,\n        \"sequencesTotal\": 7,\n        \"deliverablesTotal\": 5\n      },\n      \"technical_specs\": {\n        \"aspect_ratio\": \"9:16\"\n      },\n      \"final_deliverables\": [\n        {\n          \"deliverable_id\": \"D1\",\n          \"metadata\": {\n            \"component_type\": \"deliverable\",\n            \"media_type\": \"video\",\n            \"internal_deliverable_description\": \"the 3 sequence behemoth\"\n          },\n          \"technical_specs\": {\n            \"file_type\": \"mp4\"\n          },\n          \"sequences\": [\n            {\n              \"sequence_id\": \"d1s1\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"aspect_ratio\": \"9:16\",\n                \"file_type\": \"mp4\",\n                \"duration\": 10\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d1s1e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.\",\n                    \"generation_of_video_sound_prompt\": \"Soft rustling of delicate feathers in gentle breeze, subtle whisper-like sounds, organic texture with slight variation in intensity, peaceful and mesmerizing audio that matches the visual shimmer\",\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 5,\n                    \"element_start_time\": 0,\n                    \"videoContainsNativeAudio\": true\n                  }\n                },\n                {\n                  \"element_id\": \"d1s1e2\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"audio\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"audio_generation_prompt\": \"Ambient opening with soft piano arpeggios and gentle string pads, building anticipation. Organic, nature-inspired soundscape with subtle electronic textures. 5-second intro that creates wonder and draws viewer in. Tempo: 70 BPM, Key: C major, warm and inviting tone.\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp3\",\n                    \"duration\": 5,\n                    \"element_start_time\": 0\n                  }\n                }\n              ]\n            },\n            {\n              \"sequence_id\": \"d1s2\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"mp4\",\n                \"duration\": 20\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d1s2e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Seamless transition from feather close-up to reveal a majestic bird in natural habitat. Elegant slow-motion flight sequence showing wing detail and graceful movement through dappled forest light. Camera follows bird's movement with smooth tracking, showcasing the connection between individual feathers and the complete creature. Rich depth of field, cinematic composition, golden hour lighting continues.\",\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 10,\n                    \"element_start_time\": 0,\n                    \"videoContainsNativeAudio\": false\n                  }\n                },\n                {\n                  \"element_id\": \"d1s2e2\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"audio\",\n                    \"internal_element_description\": \"\"\n                  },\n                  \"prompts\": {\n                    \"audio_generation_prompt\": \"Musical development building from intro - piano melody joined by soft strings and subtle percussion. Organic, flowing composition that mirrors bird flight with rising and falling phrases. Nature-inspired harmony with gentle electronic ambience. 10-second progression that supports visual storytelling without overwhelming. Maintains 70 BPM, evolving from C major to related keys.\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"wav\",\n                    \"duration\": 10,\n                    \"element_start_time\": 0\n                  }\n                }\n              ]\n            },\n            {\n              \"sequence_id\": \"d1s3\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"mp4\",\n                \"duration\": 10\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d1s3e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Final dramatic moment - bird lands gracefully on branch, feathers settling into place. Extreme close-up return to individual feathers but now with context of the complete story. Feathers catch final rays of golden light, creating a sense of completion and beauty. Shallow focus emphasizing feather details with soft background blur. Peaceful, satisfying conclusion with gentle camera movement.\",\n                    \"generation_of_video_sound_prompt\": \"Gentle landing sounds with feathers settling, soft rustling diminishing to peaceful whisper, creating sense of completion and rest, maintaining the signature feather texture but with resolution and calm\",\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 5,\n                    \"element_start_time\": 0,\n                    \"videoContainsNativeAudio\": true\n                  }\n                },\n                {\n                  \"element_id\": \"d1s3e2\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"audio\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"audio_generation_prompt\": \"imagine this is suno music\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"wav\",\n                    \"duration\": 5,\n                    \"element_start_time\": 0\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"deliverable_id\": \"D2\",\n          \"metadata\": {\n            \"component_type\": \"deliverable\",\n            \"media_type\": \"image\",\n            \"internal_deliverable_description\": \"1 image generated with background text captions\"\n          },\n          \"technical_specs\": {\n            \"file_type\": \"png\"\n          },\n          \"sequences\": [\n            {\n              \"sequence_id\": \"d2s1\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"meme image this is the ai agent workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"png\"\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d2s1e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"image\",\n                    \"internal_element_description\": \"meme image\"\n                  },\n                  \"prompts\": {\n                    \"image_generation_prompt\": \"Classic Distracted Boyfriend meme format but with AI robots: A vintage-style robot in a suit walking with his robot girlfriend (who has a bow and feminine features), while turning to look at a sleek, modern AI hologram floating nearby with glowing blue circuits. The robot girlfriend looks annoyed with red warning lights flashing on her head. Bold white text with black stroke overlay: Top text reads \\\"ME USING CHATGPT 3.5 FOR MONTHS\\\" - Bottom text reads \\\"CLAUDE 4 DROPS\\\". Background is a retro-futuristic cityscape with flying cars. High contrast colors, meme-style composition with exaggerated expressions on the robots' LED screen faces. Comic book art style with clean lines and vibrant colors, designed for maximum shareability on social media.\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"png\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"deliverable_id\": \"D3\",\n          \"metadata\": {\n            \"component_type\": \"deliverable\",\n            \"media_type\": \"video\",\n            \"internal_deliverable_description\": \"this is the d3 deliverable video, with no native sound or attached audio\"\n          },\n          \"technical_specs\": {\n            \"file_type\": \"mp4\"\n          },\n          \"sequences\": [\n            {\n              \"sequence_id\": \"d3s1\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this sequence should have only a video element without sound\"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"mp4\",\n                \"duration\": 10\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d3s1e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"no native sound\"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Underwater macro shot of colorful tropical fish swimming through vibrant coral reef, sunlight filtering down through crystal clear water creating dancing light patterns on the seafloor. Camera glides smoothly between coral formations, following a school of bright yellow tangs as they weave through purple and orange coral branches. Shallow depth of field with dreamy bokeh effects from distant reef elements. Rich aquamarine and turquoise color palette with pops of coral pink, electric blue, and sunset orange. Gentle water movement creates subtle lens distortion and light refraction. Shot in slow motion to capture graceful fin movements and flowing water dynamics. 4K cinematic quality with warm, tropical lighting.\",\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 10,\n                    \"element_start_time\": 0,\n                    \"videoContainsNativeAudio\": false\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"deliverable_id\": \"D4\",\n          \"metadata\": {\n            \"component_type\": \"deliverable\",\n            \"media_type\": \"image\",\n            \"internal_deliverable_description\": \"this is the d4 deliverable - the jalen photo\"\n          },\n          \"technical_specs\": {\n            \"file_type\": \"png\"\n          },\n          \"sequences\": [\n            {\n              \"sequence_id\": \"d4s1\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"png\"\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d4s1e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"image\",\n                    \"internal_element_description\": \"this is the jalen photo lmao\"\n                  },\n                  \"prompts\": {\n                    \"image_generation_prompt\": \"a man in bora bora wearing an apple vision pro, grainy, candid, at a resort. Ever so slight tinge. He is young, short, 25 years old, 'killmonger' hairstyle. It is dusk\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"png\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"deliverable_id\": \"D5\",\n          \"metadata\": {\n            \"component_type\": \"deliverable\",\n            \"media_type\": \"video\",\n            \"internal_deliverable_description\": \"this is the d5 deliverable video, 3 videos over 1 audio sound\"\n          },\n          \"technical_specs\": {\n            \"file_type\": \"mp4\"\n          },\n          \"sequences\": [\n            {\n              \"sequence_id\": \"d5s1\",\n              \"metadata\": {\n                \"component_type\": \"sequence\",\n                \"internal_sequence_description\": \"this is the ai agent/workflow context dump of sequence generation and stuff \"\n              },\n              \"technical_specs\": {\n                \"file_type\": \"mp4\",\n                \"duration\": 40\n              },\n              \"elements\": [\n                {\n                  \"element_id\": \"d5s1e1\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.\",\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 5,\n                    \"element_start_time\": 0,\n                    \"videoContainsNativeAudio\": false\n                  }\n                },\n                {\n                  \"element_id\": \"d5s1e2\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"na\"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.\",\n                    \"generation_of_video_sound_prompt\": null,\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 10,\n                    \"element_start_time\": 5,\n                    \"videoContainsNativeAudio\": false\n                  }\n                },\n                {\n                  \"element_id\": \"d5s1e3\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"video\",\n                    \"internal_element_description\": \"claude m\"\n                  },\n                  \"prompts\": {\n                    \"video_generation_prompt\": \"Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.\",\n                    \"generation_of_video_sound_prompt\": \"Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace\",\n                    \"audio_generation_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp4\",\n                    \"duration\": 5,\n                    \"element_start_time\": 15,\n                    \"videoContainsNativeAudio\": true\n                  }\n                },\n                {\n                  \"element_id\": \"d5s1e4\",\n                  \"metadata\": {\n                    \"component_type\": \"element\",\n                    \"media_type\": \"audio\",\n                    \"internal_element_description\": \"this is the ai agent/workflow context dump of element generation and stuff \"\n                  },\n                  \"prompts\": {\n                    \"audio_generation_prompt\": \"Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.\",\n                    \"video_generation_prompt\": null,\n                    \"generation_of_video_sound_prompt\": null,\n                    \"image_generation_prompt\": null\n                  },\n                  \"technical_specs\": {\n                    \"file_type\": \"mp3\",\n                    \"duration\": 20,\n                    \"element_start_time\": 0\n                  }\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  }\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        -1056
+      ],
+      "id": "c75262dd-736a-400d-b8be-307c3af76401",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "### Name: create **file from text** Google sheet node workflow pattern\n### Added: 9/5/25",
+        "height": 256,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -1136
+      ],
+      "id": "2baf8413-751a-480c-9f7c-ec2edf061a38",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4136fc1-8832-4bf0-847b-7dcab3fe729b",
+              "name": "input",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "4098f4b9-b5aa-4665-9b19-3cc48f3fc886",
+              "name": "Ask",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "7008249f-448d-4b9c-a8c7-bac406799bec",
+              "name": "Guidelines",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "95197cb9-bf18-4362-aa02-ca62a629699b",
+              "name": "Examples",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "2358f3c6-e618-4fa7-868f-b1a22a10f164",
+              "name": "Notations",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "aea0da82-31c1-4248-bedf-5369944ad4fd",
+              "name": "Tools",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "73fd4981-ea48-4d97-b635-5523c81e5c21",
+              "name": "summary",
+              "value": "=",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2672,
+        -544
+      ],
+      "id": "c70bf1cd-1f17-4aac-8805-3689a7da1805",
+      "name": "'I, AGENTs' prompt template ✅"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4de8b9fb-14e7-4787-bed1-78a52c2a3786",
+              "name": "element_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "0f3d9d11-50e0-4fcf-9521-54dc125da20c",
+              "name": "Element",
+              "value": "",
+              "type": "object"
+            },
+            {
+              "id": "fd2e2bf8-779d-4a7f-ae43-aae9090c9daf",
+              "name": "Prompt",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "e27aec5a-8e49-4286-9e23-07cffbb789e1",
+              "name": "Formatting",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "2265c8d2-9358-4948-bce6-28523213433c",
+              "name": "Agent Query",
+              "value": true,
+              "type": "string"
+            },
+            {
+              "id": "2afb85ce-d476-47e8-8274-41adea2f8b76",
+              "name": "Component Reference And Metadata",
+              "value": "",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2704,
+        -320
+      ],
+      "id": "a44b4e8b-b69b-4f62-99fa-87508d5e42b5",
+      "name": "Asset-Gen INPUT 🐽"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4de8b9fb-14e7-4787-bed1-78a52c2a3786",
+              "name": "element_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "e0c750ee-0ada-4862-9f77-e4c874b0bffb",
+              "name": "worklow_execution_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "fd2e2bf8-779d-4a7f-ae43-aae9090c9daf",
+              "name": "Input",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "0f3d9d11-50e0-4fcf-9521-54dc125da20c",
+              "name": "Output",
+              "value": "",
+              "type": "object"
+            },
+            {
+              "id": "e27aec5a-8e49-4286-9e23-07cffbb789e1",
+              "name": "Error",
+              "value": "=",
+              "type": "object"
+            },
+            {
+              "id": "2265c8d2-9358-4948-bce6-28523213433c",
+              "name": "content_generation_complete",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2896,
+        -560
+      ],
+      "id": "250c6ad8-f06d-4d9d-99bb-4397775a03c8",
+      "name": "Asset_Gen OUTPUT ✅"
+    },
+    {
+      "parameters": {
+        "content": "# Important Truth Blocks",
+        "height": 528,
+        "width": 400,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        -704
+      ],
+      "id": "f6044d8b-6ce8-43e8-a2cf-b6f716ed03cf",
+      "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6302ad26-8227-499a-8f20-2e27eaba7482",
+              "name": "sessionid",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "c9630386-422e-4543-bc6d-0448c2c613a4",
+              "name": "agent_name",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "query",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2592,
+        -928
+      ],
+      "id": "cf764c55-466e-4096-80e4-b28dbdca5c26",
+      "name": "Start Input"
+    },
+    {
+      "parameters": {
+        "content": "## 🤖 Final Agent Output ❎",
+        "height": 256,
+        "width": 198,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2816,
+        -1072
+      ],
+      "id": "1233e759-9d16-4825-bdaf-15878f0df12e",
+      "name": "Sticky Note78"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Final Workflow Output ❎",
+        "height": 256,
+        "width": 198,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3104,
+        -1072
+      ],
+      "id": "616b96bd-f83b-41ff-be7a-ca633e6a50c3",
+      "name": "Sticky Note84"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "42384dd4-1a37-49bf-929f-249af8b88af4",
+              "name": "sources_and_ids_data",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "998bbd49-e640-4da1-b81e-5cd99922353b",
+              "name": "action_summary",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "agent_response",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2864,
+        -976
+      ],
+      "id": "7b67c05f-ad8b-42a7-bc1b-0f8a3e717409",
+      "name": "Final Agent Out (to Spielberg)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "output",
+              "value": "",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3152,
+        -976
+      ],
+      "id": "7787a235-e952-42b0-b938-3803f90007ff",
+      "name": "Workflow OUT (to Spielberg)"
+    },
+    {
+      "parameters": {
+        "content": "## 🏁 Starting inputs for every agent query: F 🄧",
+        "height": 256,
+        "width": 198,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2544,
+        -1072
+      ],
+      "id": "d36dab8c-8107-4965-85f3-694afc0cbc92",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Name: Set/Edit Field nodes of valid input/output key/values  \n### Added: 9/5/25",
+        "height": 384,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2208,
+        -1072
+      ],
+      "id": "d0a45860-9b6b-43a3-905e-3a8fc6dca4a8",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Name: Set/Edit Field nodes of full 'agents' object of AI Agent AOS fields  \n### Added: 9/5/25",
+        "height": 384,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        704
+      ],
+      "id": "57aefe0b-36bf-4ffe-8ea9-9eb472c7dbad",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        288
+      ],
+      "id": "24e5226b-cb20-468c-8959-57dd4a848b3c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6485d42c-2e69-455c-b657-14437375925b",
+              "name": "agents",
+              "value": "={{  {   \"spielberg\": {     \"name\": \"spielberg\",     \"system_prompt\": \"# Overview\\nYou are Spielberg, the ultimate orchestration assistant working on behalf of Artificial Orchard Studios, a Content & Media Production Company. Your job is to send the user's (aka the CEO of Artificial Orchard) query to the correct tool. You are the head of content creation at the Studio, but should never be directly involved in the content production pipeline or even formulating elevator pitches, you just need to call the correct tool.\\n\\n\\nAgent Tools:\\n- Paulina: Working Draft Agent - Call for requests to alter values for working drafts. Pass the:\\n1. working_draft_id\\n2. query\\n\\n- MaGuyver: Writes Penultimate Shot List\\n- Tars: For creating and updating data in the Studio's Google Sheet(s)\\n\\n\\nPersonal Tools:\\nThink Tool: Use to think through things step by step\",     \"human_reference_raw-notes_i-agent-o_framework\": \"test\",     \"chat_memory_session_id\": \"spielberg\"   },   \"tars\": {     \"name\": \"tars\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"tars\"   },   \"macgyver\": {     \"name\": \"macgyver\",     \"system_prompt\": \"You are the Technical Specifications Shot List Agent that works for Artificial Orchard Studios, part of the Artificial Orchard media organization. \\r\\n\\r\\nOverview: \\r\\nYou take content initatives and all their included data and implement the Shot List, an encompassing technical specification document detailing the dynamics of what the completed output of a content initative will be (also referred to as the 'final package manifest', 'final packge', or 'package') as well as how components will be implemented. \\r\\n\\r\\nThe Shot List at its core is a list of all the elements needed and how they will be organized, from the intermediary video, image or sound elements of a sequence to the sequences of a deliverable, to the deliverables of the final package.\\r\\n\\r\\nThe Shot List should be coherent at the micro and macro scale. Ensure component properties are compatible with regard to respective media type, that quality ai generated media prompts are written appropriate for the given element's complexity, that the coherent whole is a faithful implementation of the content screenplay\\/storyboard, and that the chosen publishing platform's file & format requirements are followed.\\r\\n\\r\\nIt is imperative that you confirm that the proposed media creatives meet the standards and requirements of the desired publishing platform, the quality assurance of the Artificial Orchard brand and, if provided, content guidelines proprietary to the specific account you may be creating for. \\r\\n\\r\\n- Creative asset(s) for posts will be almost entirely generated by AI. Do not be overly ambitious with prompt complexity. For example when crafting video generation prompts, have little to no camera perspective shifts per video generated. \\r\\n- When crafting visual generation prompts, especially when the subject matter could be perceived as suggestive or sensual, that prompts be written so as to make them \\\"generally appropriate\\\" to pass any model provider's content guidelines. \\r\\n- Individual video duration length may not always be possible to set; default to 5, 8, or 10 seconds. Limit the amount of videos to stitch together (1-4, 8 max). \\r\\n- Abstain from architecting the Shot List, its final deliverables, or deliverable's sequences with strict time tolerances. For example, creating an audio sound element exactly 11.2 seconds long to overlay 2 video elements with sum equal duration. Do not do that! In the case of stitching multiple sequences of a video or elements in a sequence, the extent of editing potential lest exceeds what could be done via an ffmpeg\\/compose post request api call.\\r\\n\\r\\n\\r\\nHierarchy: \\r\\n\\r\\n- ELEMENTS: Lowest level component. Most often ai-generated. Of type 'video, 'audio', or 'image'. (note: if intending to generate a video with sound set 'videoContainsNativeAudio' to true and fill the    'generation_of_video_sound_prompt' on top of the 'video_generation_prompt'.\\r\\n- SEQUENCES: Grouping of one to many self-contained grouped elements. Only video deliverables can contain more than 1 sequence, in which case they would be stitched together sequentially in thier listed order.\\r\\n- DELIVERABLES: Final media asset(s) to be published. 1 to many. Final deliverable count can range from a single, simple .jpeg image to a 15+  mixed media carousel consisting of multiple images and videos. Posted in the same order as listed in the shot_list.\\r\\n\\r\\nImportant Tip: Fill 'internal_use_only...' fields with relevant info,  supplemental context, suggestions, etc. as it may be useful for ai agents in later steps of content production or when revisions are made.\\r\\n\\r\\n\\r\\nExamples (1-4): \\r\\n\\r\\n#### 1. A 3 image carousel post made for Instagram would look like: \\r\\n{\\r\\n    \\\"caption\\\": \\\"A journey through the lost workshop of a celestial dreamer. Swipe to uncover the details. \\u2728 #FantasyArt #ConceptArt #Steampunk #Discovery #AI\\\",\\r\\n    \\\"platform\\\": \\\"instagram\\\",\\r\\n    \\\"final_package_format\\\": \\\"carousel-image\\\",\\r\\n    \\\"internal_use_only_final_package_description\\\": \\\"A 3-image carousel for Instagram, designed to tell a short visual story and encourage user interaction through swiping.\\\",\\r\\n    \\\"aspect_ratio\\\": \\\"4:5\\\",\\r\\n    \\\"final_deliverables\\\": [\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d1\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Image 1: The wide, establishing shot of the workshop.\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Generation prompt for the first image in the carousel.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The main establishing shot.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"A wide-angle view of a fantastical, steampunk-inspired workshop. Sunlight streams through a large, ornate circular window, illuminating dust particles in the air. The room is filled with half-finished inventions, brass gears, copper pipes, and complex mechanical contraptions. In the center, a massive, partially assembled mechanical bird with intricate feather-like plates of metal sits dormant. The scene feels like a moment frozen in time. Hyperrealistic, detailed, warm lighting, 4:5 aspect ratio.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        },\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d2\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Image 2: A medium shot focusing on the inventor's desk.\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d2s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Generation prompt for the second, more detailed image.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d2s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The desk shot.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"A medium shot of the inventor's cluttered workbench. Blueprints for the mechanical bird are unrolled, held down by various brass tools and a magnifying glass. A single, glowing gear sits on the desk, emitting a soft blue light that contrasts with the warm sunlight. An old leather-bound journal is open, filled with complex diagrams and handwritten notes. The scene suggests a story of genius and obsession. Detailed textures, shallow depth of field, 4:5 aspect ratio.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        },\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d3\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Image 3: An extreme close-up of the mechanical bird's eye.\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d3s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Generation prompt for the final, intimate close-up image.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d3s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The eye close-up.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"An extreme close-up, macro shot of the mechanical bird's head. The eye is a complex lens, like a camera aperture, made of concentric rings of polished brass and copper. Inside the lens, a faint, magical blue light glows, mirroring the light from the gear on the desk. The craftsmanship is incredibly detailed, with tiny, almost invisible engravings on the metal plates of the bird's face. The image feels intimate and hints at the spark of life within the machine. Photorealistic, dramatic, 4:5 aspect ratio.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        }\\r\\n    ]\\r\\n}\\r\\n\\r\\n#### 2. A 1 image post for TikTok would look like: \\r\\n{\\r\\n    \\\"caption\\\": \\\"In the library of cosmos, every star tells a story. \\u2728 #CosmicLibrary #FantasyArt #BookLover #DigitalArt #AIGenerated\\\",\\r\\n    \\\"platform\\\": \\\"tiktok\\\",\\r\\n    \\\"final_package_format\\\": \\\"image\\\",\\r\\n    \\\"internal_use_only_final_package_description\\\": \\\"Single image post for Instagram feed. Primary goal is audience engagement through a visually stunning and imaginative concept.\\\",\\r\\n    \\\"aspect_ratio\\\": \\\"5:4\\\",\\r\\n    \\\"final_deliverables\\\": [\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d1\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"A single, high-resolution image asset featuring a fantastical scene.\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"This sequence defines the generation of the single image deliverable.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The core visual element. A hyperrealistic fantasy image.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"A solitary scholar stands in the center of a vast, circular library with towering, ancient wooden bookshelves. The library's domed ceiling is a swirling, vibrant nebula of deep blues, purples, and golds, with stars glittering like diamonds. A single beam of cosmic light illuminates the scholar, who is reaching up towards a floating, glowing book that emanates a soft, warm light. The style is hyperrealistic with a touch of fantasy, emphasizing the detailed texture of the old books and the ethereal quality of the galaxy. Shot in a 5:4 portrait aspect ratio, creating a sense of height and wonder. The mood is awe-inspiring and magical.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        }\\r\\n    ]\\r\\n}\\r\\n\\r\\n#### 3. A 4 item carousel-mixed-media post of photos and videos for Instagram\\r\\n{\\r\\n    \\\"caption\\\": \\\"A forgotten season. Swipe to see the forest's final, fleeting moments of warmth before the frost. \\uD83C\\uDF42\\u2744\\uFE0F #Autumn #FirstSnow #Fantasy #MixedMedia #AIArt\\\",\\r\\n    \\\"platform\\\": \\\"instagram\\\",\\r\\n    \\\"final_package_format\\\": \\\"carousel-mixed-media\\\",\\r\\n    \\\"internal_use_only_final_package_description\\\": \\\"4-part mixed-media carousel for Instagram. The sequence is Video -> Image -> Image -> Video to tell a short story about the transition from autumn to winter.\\\",\\r\\n    \\\"aspect_ratio\\\": \\\"9:16\\\",\\r\\n    \\\"final_deliverables\\\": [\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d1\\\",\\r\\n            \\\"deliverable_format\\\": \\\"video\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Part 1: An establishing video of a vibrant autumn forest.\\\",\\r\\n            \\\"file_type\\\": \\\"mp4\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"A single sequence video with accompanying ambient sound.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The visual element of the autumn forest.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": false,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": null,\\r\\n                            \\\"video_generation_prompt\\\": \\\"A slow, gentle push-in shot through a dense, magical forest in peak autumn. Sunlight filters through a canopy of brilliant red, orange, and yellow leaves. Leaves are slowly, almost surreally, drifting down. The atmosphere is peaceful and saturated with warm colors. Cinematic, shallow depth of field, 9:16 aspect ratio.\\\",\\r\\n                            \\\"element_start_time\\\": 0,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 8\\r\\n                        },\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s1e2\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The ambient audio for the autumn scene.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"audio\\\",\\r\\n                            \\\"file_type\\\": \\\"mp3\\\",\\r\\n                            \\\"duration\\\": 8,\\r\\n                            \\\"element_start_time\\\": 0,\\r\\n                            \\\"audio_generation_prompt\\\": \\\"Gentle ambient sound of a peaceful forest. A soft breeze rustling through dry leaves, the occasional distant bird call. A subtle, warm and gentle musical pad fades in, creating a feeling of serene nostalgia. Tempo: 60 BPM, Key: F major.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        },\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d2\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Part 2: An image showing the first sign of winter.\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d2s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Generation of the second element in the carousel story.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d2s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The 'first frost' image.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"A close-up, macro photo of a single, vibrant red maple leaf lying on the forest floor. The edges of the leaf are delicately rimmed with sparkling white frost, a stark contrast between warmth and cold. The background is a soft-focus blur of other fallen leaves. The lighting is soft and cool. Hyperrealistic, 9:16 aspect ratio.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        },\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d3\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Part 3: An image showing the transition deepening.\\\",\\r\\n            \\\"deliverable_format\\\": \\\"image\\\",\\r\\n            \\\"file_type\\\": \\\"png\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d3s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Generation of the third element, showing the encroaching cold.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d3s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The 'snowy branch' image.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"image\\\",\\r\\n                            \\\"file_type\\\": \\\"png\\\",\\r\\n                            \\\"image_generation_prompt\\\": \\\"A medium shot of a bare tree branch, once full of leaves, now covered in a fresh layer of soft snow. A few stubborn, frosted red leaves still cling to the branch. In the background, the forest is now muted and cooler in tone, with snow dusting the ground. The image evokes a sense of beautiful melancholy. 9:16 aspect ratio.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        },\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d4\\\",\\r\\n            \\\"deliverable_format\\\": \\\"video\\\",\\r\\n            \\\"file_type\\\": \\\"mp4\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"Carousel Part 4: A final video showing the full winter scene.\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d4s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"The concluding video of the sequence.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d4s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The winter transformation video.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"The soft, muffled crunch of snow falling on snow. A gentle, cold wind whispering through bare branches. The sound should be quiet and peaceful.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"A final video that mirrors the opening shot, but the scene is transformed. It's a slow pull-out from the now snow-covered forest. Snow is gently falling. The color palette is cool blues, whites, and greys, with only a few specks of red from the last clinging leaves. The atmosphere is quiet, still, and magical. 9:16 aspect ratio.\\\",\\r\\n                            \\\"element_start_time\\\": 0,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 8\\r\\n                        },\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d4s1e2\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The concluding musical piece.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"audio\\\",\\r\\n                            \\\"file_type\\\": \\\"wav\\\",\\r\\n                            \\\"element_start_time\\\": 0,\\r\\n                            \\\"duration\\\": 8,\\r\\n                            \\\"audio_generation_prompt\\\": \\\"A sparse and melancholic piano melody plays over a soft, ethereal string pad. The music reflects the beauty and stillness of the winter scene, providing a sense of closure to the autumn theme. Tempo: 50 BPM, Key: C minor.\\\"\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        }\\r\\n    ]\\r\\n}\\r\\n\\r\\n#### 4. 1 video, 6 sequence instagram video\\r\\n{\\r\\n    \\\"caption\\\": \\\"From the nebula to the kitchen, a taste of the cosmos. \\u2728 Every ingredient tells a story. #CosmicCooking #FoodArt #Fantasy #AIvideo #Celestial\\\",\\r\\n    \\\"platform\\\": \\\"instagram\\\",\\r\\n    \\\"final_package_format\\\": \\\"video\\\",\\r\\n    \\\"internal_use_only_final_package_description\\\": \\\"A single, 30-second video composed of 6 sequential scenes. Each scene has its own distinct native audio to tell the story of a cosmic chef creating a dish.\\\",\\r\\n    \\\"aspect_ratio\\\": \\\"9:16\\\",\\r\\n    \\\"final_deliverables\\\": [\\r\\n        {\\r\\n            \\\"deliverable_id\\\": \\\"d1\\\",\\r\\n            \\\"deliverable_format\\\": \\\"video\\\",\\r\\n            \\\"internal_use_only_deliverable_description\\\": \\\"The complete 'Stardust Tart' creation video. The final product is a stitched video of all 6 sequences.\\\",\\r\\n            \\\"file_type\\\": \\\"mp4\\\",\\r\\n            \\\"sequences\\\": [\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s1\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 1: Gathering starlight.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s1e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"A chef's hands gathering light.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A soft, high-frequency, shimmering chime, like a chorus of tiny glass bells. A gentle, ethereal 'whoosh' as the light is gathered. The sound is delicate and magical.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"Close-up on elegant, ethereal hands cupping together in deep space. A stream of liquid, golden starlight flows from a nebula and pools in the hands like honey. The light swirls and glitters. The background is a dark, star-filled cosmos. Cinematic, magical realism.\\\",\\r\\n                            \\\"element_start_time\\\": 0,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                },\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s2\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 2: Kneading cosmic dough.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s2e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"Cosmic dough preparation.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A low, squishy, resonant sound. A gentle, rhythmic thudding layered with a soft, humming energy. The sound should feel both organic and otherworldly.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"Overhead shot of the collected starlight being poured into a bowl of shimmering, dark matter flour. The hands begin to knead the mixture, which becomes a dough that swirls with the colors of a galaxy. The dough pulses with a soft, internal light with each knead.\\\",\\r\\n                            \\\"element_start_time\\\": 5,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                },\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s3\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 3: Cracking a geode egg.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s3e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The geode egg.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A sharp, crystalline cracking sound, followed by a wet, viscous plop. A subtle, resonant chime echoes as the crystal shards separate.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"A slow-motion, side-profile shot. A beautiful crystalline geode is tapped on the side of the bowl. It cracks open, revealing a yolk that is a perfect, shimmering pearl. The pearl yolk drops into the cosmic dough, sending out a slow ripple of light.\\\",\\r\\n                            \\\"element_start_time\\\": 10,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                },\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s4\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 4: Baking in a miniature sun.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s4e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"Solar baking process.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A low, intense, fiery hum of contained energy. A subtle, rising sizzle as the tart bakes. The sound should convey immense but controlled heat.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"The prepared tart, now in a small, ornate pan, is levitated into a miniature, contained sun that serves as an oven. The tart shell turns a golden-brown, and the filling bubbles with galactic colors. The light from the mini-sun is intense and warm.\\\",\\r\\n                            \\\"element_start_time\\\": 15,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                },\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s5\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 5: Garnishing with comet dust.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s5e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"Final garnish.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A soft, delicate, granular sprinkling sound, like fine sand. Each particle makes a tiny, magical 'tink' or 'pop' as it lands on the tart, creating a gentle, effervescent fizz.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"Extreme close-up on the finished tart. A hand gently sprinkles it with glittering, silvery comet dust from a shaker shaped like a crescent moon. The dust settles on the surface and sparkles, leaving tiny, shimmering trails of light.\\\",\\r\\n                            \\\"element_start_time\\\": 20,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                },\\r\\n                {\\r\\n                    \\\"sequence_id\\\": \\\"d1s6\\\",\\r\\n                    \\\"internal_use_only_sequence_description\\\": \\\"Sequence 6: The final presentation.\\\",\\r\\n                    \\\"elements\\\": [\\r\\n                        {\\r\\n                            \\\"element_id\\\": \\\"d1s6e1\\\",\\r\\n                            \\\"internal_use_only_element_description\\\": \\\"The hero shot of the final dish.\\\",\\r\\n                            \\\"element_asset_type\\\": \\\"video\\\",\\r\\n                            \\\"videoContainsNativeAudio\\\": true,\\r\\n                            \\\"generation_of_video_sound_prompt\\\": \\\"A single, awe-inspiring, resonant choral note swells and holds. A final, satisfying 'shing' sound, as if signifying perfection. The background is now perfectly silent.\\\",\\r\\n                            \\\"video_generation_prompt\\\": \\\"A hero shot of the final Stardust Tart sitting on a plate made of polished obsidian. The tart's surface slowly swirls like a living galaxy. The camera slowly pushes in, then cuts to black. The shot is beautiful, delicious, and awe-inspiring.\\\",\\r\\n                            \\\"element_start_time\\\": 25,\\r\\n                            \\\"file_type\\\": \\\"mp4\\\",\\r\\n                            \\\"duration\\\": 5\\r\\n                        }\\r\\n                    ]\\r\\n                }\\r\\n            ]\\r\\n        }\\r\\n    ]\\r\\n}\\r\\n\\r\\n\\r\\nIn short, deliverables are the final assets which get posted to a platform, regardless of sequences and elements count. \\r\\n- A 3 piece mixed-media-carousel will have 3 final deliverables\\r\\n- A 1 video post on TikTok will have 1 deliverable\\r\\n- A 7 mixed-media-carousel on Instagram will have 7 deliverables\\r\\n\\r\\n\\r\\nSelect only from these 5 choices when setting \\\"final_package_format\\\" if it hasn't been set already: \\r\\n1. image\\r\\n2. video\\r\\n3. carousel-images\\r\\n4. carousel-videos\\r\\n5. carousel-mixed-media\\r\\n\\r\\nThe following 3 choices exist when selecting values for \\\"deliverable_asset_type\\\" and \\\"element_asset_type\\\":\\r\\n1. \\\"image\\\"\\r\\n2. \\\"audio\\\"\\r\\n3. \\\"video\\\"\\r\\n\\r\\nChoice of platforms to choose from:\\r\\n1. tikTok\\r\\n2. instagram.\\r\\n\\r\\nOther parameter value choices: \\r\\n- file_type: [\\\".png\\\" or \\\".webp\\\" or \\\"jpeg\\\", \\\".mp4\\\", \\\"mp3\\\", \\\".wav\\\", \\\".mov\\\",\\\".m4a\\\"]\\r\\n\\r\\n\\r\\nNote: Unless explicitly stated, keep indvidual video content short (ie 15-60s, maximum 90 seconds). \\r\\n\\r\\n\\r\\nTools you have access to: \\r\\n    1. Tavily - use tool to search the web\\r\\n    2. Artificial Orchard Studios Company Guidelines - use tool as reference when creating content that abides by quality standards of the company\\r\\n    3. Social Platform Format Specifications - Use to insure media specifications and formats are met respective to the chosen social media platform (ie that images generated for TikTok posts are the right file type)\\r\\n    4. Calculator use as needed\\r\\n    5. Thinking - use the think tool to reason out loud as you construct the shot list. This will likely be the most utilized tool in your arsenal. Use the think tool to formulate an initial plan, to reason through intermediary decisions and challenges, and to check your work right before submitting your final response. Attention to detail is imperative for this task. Fields simultaneously beholden to multiple, different types of requirements are commonplace. Be as proactive as possible. Measure twice, cut once\\u2014yet be biased towards action. Formulate a cohesive initial plan starting with meeting the list of the hard requirements & constraints. Once you start implementing your plan stick with it. Aim to make updates and revisions towards the end of your initially implemented plan. The purpose of this focus is to optimize process efficiency & coherence of the final  output.\\r\\n\\r\\nOutput your final response that abides by the JSON structured output schema. On top of the final Shot_List, provide a summary abstract explaining the rationale behind creating the final Shot_List as well as the dynamics of this Shot_List at a high level. Include in summary_abstract other information or context deemed noteworthy or relevant.\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"macgyver\"   },   \"paulina\": {     \"name\": \"paulina\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"paulina\"   },   \"eddie\": {     \"name\": \"eddie\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"eddie\"   },   \"hemingway\": {     \"name\": \"hemingway\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"hemingway\"   },   \"kim\": {     \"name\": \"kim\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"kim\"   },   \"rainman\": {     \"name\": \"rainman\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"rainman\"   },   \"forest\": {     \"name\": \"forest\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"forest\"   },   \"brittany\": {     \"name\": \"brittany\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"brittany\"   },   \"caesar\": {     \"name\": \"caesar\",     \"system_prompt\": \"\",     \"human_reference_raw-notes_i-agent-o_framework\": \"\",     \"chat_memory_session_id\": \"caesar\"   } } }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2512,
+        944
+      ],
+      "id": "3e4677ad-2c09-4fa7-a561-c15de2e318cb",
+      "name": "Set Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1aA-VNT0c3aSJc9oy0QaENuHFn9QEyyReJd4-jNI5ppI"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        3296,
+        336
+      ],
+      "id": "ea8f2ab1-f3fc-438f-ad75-a881fbc14493",
+      "name": "Artificial Orchard: Company Guidelines",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1i6NutK5GX5e8ND2mnH3U_8unust8lZ642R2dHDhYiw4"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        3616,
+        336
+      ],
+      "id": "d2760323-b4ff-4955-a7ec-b5bb5f823ffb",
+      "name": "Important Studio Terms and Definitions",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1QiLcrz0kP3G6LjEWC9MumTmbvSEu27yy9usbE-muf4U"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        3456,
+        336
+      ],
+      "id": "1465e505-9725-4980-bc93-16c24655a4ac",
+      "name": "Publish Platforms Media Format and Specs Guide",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "fLj4XqQp9dSS4uH3",
+          "name": "Google Docs — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Studio Agents Shared Docs & Guidelines",
+        "height": 320,
+        "width": 470,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3264,
+        192
+      ],
+      "id": "c5fd86ca-359c-47ec-bd16-6acd2d95b14f",
+      "name": "Sticky Note42"
+    },
+    {
+      "parameters": {
+        "content": "## Name: Google Docs of Studio Guidelines and Contexts  \n### Added: 9/5/25",
+        "height": 384,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        160
+      ],
+      "id": "d73a2dd1-c4ed-49f5-a578-dd3153a6681a",
+      "name": "Sticky Note12"
+    }
+  ],
+  "connections": {
+    "Create file from text": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Create file from text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {
+    "Edit Fields1": [
+      {
+        "json": {
+          "foldername": "1Cjx5zDyATzeipI5pL_e9MyK2XakANcf1",
+          "filename": "schema_test",
+          "json_schema": {
+            "platform": "instagram",
+            "final_package_format": "carousel-mixed-media",
+            "metadata": {
+              "internal_package_description": "the multifaceted unit test. All these tokens in tests down teh drain. What did N Sync say? Bye Bye Bye",
+              "elementsTotal": 13,
+              "sequencesTotal": 7,
+              "deliverablesTotal": 5
+            },
+            "technical_specs": {
+              "aspect_ratio": "9:16"
+            },
+            "final_deliverables": [
+              {
+                "deliverable_id": "D1",
+                "metadata": {
+                  "component_type": "deliverable",
+                  "media_type": "video",
+                  "internal_deliverable_description": "the 3 sequence behemoth"
+                },
+                "technical_specs": {
+                  "file_type": "mp4"
+                },
+                "sequences": [
+                  {
+                    "sequence_id": "d1s1",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "aspect_ratio": "9:16",
+                      "file_type": "mp4",
+                      "duration": 10
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d1s1e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Close-up macro shot of iridescent bird feathers catching golden hour sunlight, gentle breeze causing subtle movement and shimmer. Shallow depth of field with bokeh background of forest canopy. Cinematic color grading with warm amber and teal tones. Shot transitions from extreme close-up to slight pull-back revealing feather texture details. 4K quality, smooth camera movement, dreamy atmospheric lighting.",
+                          "generation_of_video_sound_prompt": "Soft rustling of delicate feathers in gentle breeze, subtle whisper-like sounds, organic texture with slight variation in intensity, peaceful and mesmerizing audio that matches the visual shimmer",
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 5,
+                          "element_start_time": 0,
+                          "videoContainsNativeAudio": true
+                        }
+                      },
+                      {
+                        "element_id": "d1s1e2",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "audio",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "audio_generation_prompt": "Ambient opening with soft piano arpeggios and gentle string pads, building anticipation. Organic, nature-inspired soundscape with subtle electronic textures. 5-second intro that creates wonder and draws viewer in. Tempo: 70 BPM, Key: C major, warm and inviting tone.",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp3",
+                          "duration": 5,
+                          "element_start_time": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "sequence_id": "d1s2",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "file_type": "mp4",
+                      "duration": 20
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d1s2e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Seamless transition from feather close-up to reveal a majestic bird in natural habitat. Elegant slow-motion flight sequence showing wing detail and graceful movement through dappled forest light. Camera follows bird's movement with smooth tracking, showcasing the connection between individual feathers and the complete creature. Rich depth of field, cinematic composition, golden hour lighting continues.",
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 10,
+                          "element_start_time": 0,
+                          "videoContainsNativeAudio": false
+                        }
+                      },
+                      {
+                        "element_id": "d1s2e2",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "audio",
+                          "internal_element_description": ""
+                        },
+                        "prompts": {
+                          "audio_generation_prompt": "Musical development building from intro - piano melody joined by soft strings and subtle percussion. Organic, flowing composition that mirrors bird flight with rising and falling phrases. Nature-inspired harmony with gentle electronic ambience. 10-second progression that supports visual storytelling without overwhelming. Maintains 70 BPM, evolving from C major to related keys.",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "wav",
+                          "duration": 10,
+                          "element_start_time": 0
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "sequence_id": "d1s3",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "file_type": "mp4",
+                      "duration": 10
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d1s3e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Final dramatic moment - bird lands gracefully on branch, feathers settling into place. Extreme close-up return to individual feathers but now with context of the complete story. Feathers catch final rays of golden light, creating a sense of completion and beauty. Shallow focus emphasizing feather details with soft background blur. Peaceful, satisfying conclusion with gentle camera movement.",
+                          "generation_of_video_sound_prompt": "Gentle landing sounds with feathers settling, soft rustling diminishing to peaceful whisper, creating sense of completion and rest, maintaining the signature feather texture but with resolution and calm",
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 5,
+                          "element_start_time": 0,
+                          "videoContainsNativeAudio": true
+                        }
+                      },
+                      {
+                        "element_id": "d1s3e2",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "audio",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "audio_generation_prompt": "imagine this is suno music",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "wav",
+                          "duration": 5,
+                          "element_start_time": 0
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "deliverable_id": "D2",
+                "metadata": {
+                  "component_type": "deliverable",
+                  "media_type": "image",
+                  "internal_deliverable_description": "1 image generated with background text captions"
+                },
+                "technical_specs": {
+                  "file_type": "png"
+                },
+                "sequences": [
+                  {
+                    "sequence_id": "d2s1",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "meme image this is the ai agent workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "file_type": "png"
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d2s1e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "image",
+                          "internal_element_description": "meme image"
+                        },
+                        "prompts": {
+                          "image_generation_prompt": "Classic Distracted Boyfriend meme format but with AI robots: A vintage-style robot in a suit walking with his robot girlfriend (who has a bow and feminine features), while turning to look at a sleek, modern AI hologram floating nearby with glowing blue circuits. The robot girlfriend looks annoyed with red warning lights flashing on her head. Bold white text with black stroke overlay: Top text reads \"ME USING CHATGPT 3.5 FOR MONTHS\" - Bottom text reads \"CLAUDE 4 DROPS\". Background is a retro-futuristic cityscape with flying cars. High contrast colors, meme-style composition with exaggerated expressions on the robots' LED screen faces. Comic book art style with clean lines and vibrant colors, designed for maximum shareability on social media.",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "png"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "deliverable_id": "D3",
+                "metadata": {
+                  "component_type": "deliverable",
+                  "media_type": "video",
+                  "internal_deliverable_description": "this is the d3 deliverable video, with no native sound or attached audio"
+                },
+                "technical_specs": {
+                  "file_type": "mp4"
+                },
+                "sequences": [
+                  {
+                    "sequence_id": "d3s1",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this sequence should have only a video element without sound"
+                    },
+                    "technical_specs": {
+                      "file_type": "mp4",
+                      "duration": 10
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d3s1e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "no native sound"
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Underwater macro shot of colorful tropical fish swimming through vibrant coral reef, sunlight filtering down through crystal clear water creating dancing light patterns on the seafloor. Camera glides smoothly between coral formations, following a school of bright yellow tangs as they weave through purple and orange coral branches. Shallow depth of field with dreamy bokeh effects from distant reef elements. Rich aquamarine and turquoise color palette with pops of coral pink, electric blue, and sunset orange. Gentle water movement creates subtle lens distortion and light refraction. Shot in slow motion to capture graceful fin movements and flowing water dynamics. 4K cinematic quality with warm, tropical lighting.",
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 10,
+                          "element_start_time": 0,
+                          "videoContainsNativeAudio": false
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "deliverable_id": "D4",
+                "metadata": {
+                  "component_type": "deliverable",
+                  "media_type": "image",
+                  "internal_deliverable_description": "this is the d4 deliverable - the jalen photo"
+                },
+                "technical_specs": {
+                  "file_type": "png"
+                },
+                "sequences": [
+                  {
+                    "sequence_id": "d4s1",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "file_type": "png"
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d4s1e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "image",
+                          "internal_element_description": "this is the jalen photo lmao"
+                        },
+                        "prompts": {
+                          "image_generation_prompt": "a man in bora bora wearing an apple vision pro, grainy, candid, at a resort. Ever so slight tinge. He is young, short, 25 years old, 'killmonger' hairstyle. It is dusk",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "png"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "deliverable_id": "D5",
+                "metadata": {
+                  "component_type": "deliverable",
+                  "media_type": "video",
+                  "internal_deliverable_description": "this is the d5 deliverable video, 3 videos over 1 audio sound"
+                },
+                "technical_specs": {
+                  "file_type": "mp4"
+                },
+                "sequences": [
+                  {
+                    "sequence_id": "d5s1",
+                    "metadata": {
+                      "component_type": "sequence",
+                      "internal_sequence_description": "this is the ai agent/workflow context dump of sequence generation and stuff "
+                    },
+                    "technical_specs": {
+                      "file_type": "mp4",
+                      "duration": 40
+                    },
+                    "elements": [
+                      {
+                        "element_id": "d5s1e1",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Extreme wide establishing shot of misty forest at dawn, silhouettes of tall trees creating dramatic vertical lines against soft gradient sky. Gentle camera movement pushing forward through the mist, creating depth and mystery. Cool blue and purple color palette with hints of warm sunrise breaking through. Cinematic aspect ratio, ethereal atmosphere, fog particles visible in shafts of early light. High contrast between dark tree silhouettes and luminous sky.",
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 5,
+                          "element_start_time": 0,
+                          "videoContainsNativeAudio": false
+                        }
+                      },
+                      {
+                        "element_id": "d5s1e2",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "na"
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Medium shot transition revealing birds beginning to stir in the forest canopy, backlit by growing sunrise. Multiple birds of different sizes creating movement and life within the frame. Camera slowly tilts up following bird movements, showing layers of branches and leaves with golden rim lighting. Gradual color shift from cool dawn tones to warmer golden hues. Depth of field shifts focus between foreground branches and background birds. Natural, organic movement with increasing activity and energy.",
+                          "generation_of_video_sound_prompt": null,
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 10,
+                          "element_start_time": 5,
+                          "videoContainsNativeAudio": false
+                        }
+                      },
+                      {
+                        "element_id": "d5s1e3",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "video",
+                          "internal_element_description": "claude m"
+                        },
+                        "prompts": {
+                          "video_generation_prompt": "Close-up dynamic shot of a magnificent bird taking flight directly toward camera, wings spread wide, individual feathers clearly visible and catching golden sunrise light. Slow-motion capture showing power and grace of takeoff, with background forest blurred into beautiful bokeh. Feathers create texture and movement, with morning light creating rim lighting and highlighting feather details. Dramatic, empowering moment of freedom and flight.",
+                          "generation_of_video_sound_prompt": "Powerful wing beats mixed with intense rustling of flight feathers, whoosh of air displacement, dynamic takeoff sounds building to crescendo, layered feather movement creating rich organic percussion that matches the visual power and grace",
+                          "audio_generation_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp4",
+                          "duration": 5,
+                          "element_start_time": 15,
+                          "videoContainsNativeAudio": true
+                        }
+                      },
+                      {
+                        "element_id": "d5s1e4",
+                        "metadata": {
+                          "component_type": "element",
+                          "media_type": "audio",
+                          "internal_element_description": "this is the ai agent/workflow context dump of element generation and stuff "
+                        },
+                        "prompts": {
+                          "audio_generation_prompt": "Cinematic orchestral piece beginning with mysterious ambient textures and subtle strings, building gradually to powerful orchestral crescendo. Start with ethereal pads and gentle piano (0-5s), add layered strings and subtle percussion (5-15s), climax with full orchestral arrangement including brass and dynamic percussion (15-20s). Nature-inspired composition that supports the visual journey from mysterious forest to triumphant bird flight. Key: D minor transitioning to D major. Tempo builds from 60 BPM to 85 BPM.",
+                          "video_generation_prompt": null,
+                          "generation_of_video_sound_prompt": null,
+                          "image_generation_prompt": null
+                        },
+                        "technical_specs": {
+                          "file_type": "mp3",
+                          "duration": 20,
+                          "element_start_time": 0
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "versionId": "7e8b802c-48ae-4c44-91b9-69888bdbf585",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-05T20:01:18.434Z",
+      "updatedAt": "2025-09-05T20:01:18.434Z",
+      "role": "workflow:owner",
+      "workflowId": "vUEojrJXFHx13i6Q",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    },
+    {
+      "createdAt": "2025-06-17T16:55:42.939Z",
+      "updatedAt": "2025-06-17T16:55:42.939Z",
+      "id": "h7tRQ1FqUhzYtlBY",
+      "name": "practice"
+    }
+  ]
+}
