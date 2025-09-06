@@ -1,0 +1,338 @@
+{
+  "createdAt": "2025-09-05T17:39:23.218Z",
+  "updatedAt": "2025-09-05T23:18:01.000Z",
+  "id": "4KHs0PDLrkaiaiXW",
+  "name": "Edit Image Tool",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "image"
+            },
+            {
+              "name": "request"
+            },
+            {
+              "name": "chatID"
+            },
+            {
+              "name": "pictureID"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -944,
+        192
+      ],
+      "id": "64bd5fb0-3bac-44e1-a8b2-7990dbee7c10",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/edits",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('When Executed by Another Workflow').item.json.request.replace(/\"/g, '') }}"
+            },
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "name": "size",
+              "value": "1024x1024"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        192
+      ],
+      "id": "58960845-2749-4ac2-97f5-c3cf2becfb4b",
+      "name": "Edit Image",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "dhhAVB2hDA8Kl8GJ",
+          "name": "OpenAI Manual API Credential (Bredcrums Org.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -192,
+        192
+      ],
+      "id": "5a54953b-06d2-4581-8efa-3a55f6a45882",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('When Executed by Another Workflow').item.json.image }} (Edited).png",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1kOt7L4dHZtgJapJzrDOlTbQIKKnCrniC",
+          "mode": "list",
+          "cachedResultName": "🚧🐞 testing folder (delete after done)",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1kOt7L4dHZtgJapJzrDOlTbQIKKnCrniC"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        112,
+        336
+      ],
+      "id": "472dcf90-a386-4828-8753-2e8e8857e565",
+      "name": "Upload Image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Edit Image\n",
+        "height": 260,
+        "width": 460,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        112
+      ],
+      "id": "cf12526d-aae3-4c19-8b1d-ecf99926f37f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Send Content",
+        "height": 240,
+        "width": 300,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "95605681-b591-42bd-9bb7-7eb06c3b2ff8",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "# Write to Drive",
+        "height": 240,
+        "width": 300,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        256
+      ],
+      "id": "144262a9-95f9-419e-974d-aafc27efcae3",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "# Trigger\n",
+        "height": 260,
+        "width": 260,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        112
+      ],
+      "id": "6f1db560-ab03-44c4-8c63-2e6f4d3a6721",
+      "name": "Sticky Note5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# Download\n",
+        "height": 260,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        112
+      ],
+      "id": "0da72b05-2bb2-4021-ae1c-f6b6543cae78",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('When Executed by Another Workflow').item.json.chatID }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        112,
+        80
+      ],
+      "id": "2dc76db7-29a9-4ae8-87a2-f0f70988240c",
+      "name": "Send Photo",
+      "webhookId": "2413e265-72f2-42ca-b3e8-b90358076177",
+      "credentials": {
+        "telegramApi": {
+          "id": "q0oWlq3ffaOp8PwB",
+          "name": "Orchard Studios | OrchardStudios_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.pictureID }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -688,
+        192
+      ],
+      "id": "d656ab3c-bd6a-4cf3-a109-6c0d04875d79",
+      "name": "Download",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Download",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Image": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Send Photo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download": {
+      "main": [
+        [
+          {
+            "node": "Edit Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "09157794-f618-458f-a2e7-ecfe67f971a0",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-05T17:48:26.935Z",
+      "updatedAt": "2025-09-05T17:48:26.935Z",
+      "role": "workflow:owner",
+      "workflowId": "4KHs0PDLrkaiaiXW",
+      "projectId": "HfigHpl3ehAllbzR"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-07-29T02:35:46.621Z",
+      "updatedAt": "2025-07-29T02:35:46.621Z",
+      "id": "4EqVCX3X64jhyArU",
+      "name": "AOS V2 🤖"
+    }
+  ]
+}
