@@ -1,9 +1,9 @@
 {
   "createdAt": "2025-07-29T02:33:30.339Z",
-  "updatedAt": "2025-09-06T03:36:39.000Z",
+  "updatedAt": "2025-09-06T23:17:59.000Z",
   "id": "qbJAqng79qmg7On6",
   "name": "🤖 Spielberg — AOS V2 🤖🎬",
-  "active": false,
+  "active": true,
   "isArchived": false,
   "nodes": [
     {
@@ -7150,7 +7150,7 @@
     ]
   },
   "versionId": "cff29d30-7813-45ad-a9a1-db5e456e64f0",
-  "triggerCount": 2,
+  "triggerCount": 1,
   "shared": [
     {
       "createdAt": "2025-08-29T12:28:26.614Z",
