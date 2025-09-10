@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-07-29T06:24:56.557Z",
-  "updatedAt": "2025-08-14T06:11:02.000Z",
+  "updatedAt": "2025-09-10T01:38:08.000Z",
   "id": "c5DN9DFIsfPq7OWH",
   "name": "AI Image Gen — AOS V2",
   "active": false,
@@ -668,141 +668,6 @@
       ],
       "id": "289f0476-0737-455c-a1fe-f69c014a7427",
       "name": "Image Gen input body"
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "operation": "transcribe",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        2096,
-        2336
-      ],
-      "id": "b5c5207a-61e6-4860-834f-aa13fa429084",
-      "name": "Transcribe a recording",
-      "credentials": {
-        "openAiApi": {
-          "id": "O38qltZmjubnlhtn",
-          "name": "OpenAI (Bredcrums Org.)"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {
-          "download": true
-        }
-      },
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        1744,
-        2352
-      ],
-      "id": "d1d86fe3-1ce9-4f6d-acc9-75226e62f4af",
-      "name": "Telegram Trigger",
-      "webhookId": "72b6c306-8eca-4696-98ee-6213977ae0a5",
-      "credentials": {
-        "telegramApi": {
-          "id": "q0oWlq3ffaOp8PwB",
-          "name": "Orchard Studios | OrchardStudios_bot"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "sendAudio",
-        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-        "binaryData": true,
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        2576,
-        2272
-      ],
-      "id": "380449fc-41d7-488f-8063-2530feeec063",
-      "name": "Send an audio file",
-      "webhookId": "d1280194-1816-4cf9-92d2-c40b97deedd8",
-      "credentials": {
-        "telegramApi": {
-          "id": "q0oWlq3ffaOp8PwB",
-          "name": "Orchard Studios | OrchardStudios_bot"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-        "text": "=",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        2576,
-        2576
-      ],
-      "id": "dbd2827f-5f7d-49e6-8475-b837b5469052",
-      "name": "Send a text message",
-      "webhookId": "acf5d3f5-c7ad-4b6d-aa9a-076cbf80a6c3",
-      "credentials": {
-        "telegramApi": {
-          "id": "q0oWlq3ffaOp8PwB",
-          "name": "Orchard Studios | OrchardStudios_bot"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "model": "tts-1-hd",
-        "input": "={{ $json.text }}",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        2400,
-        2368
-      ],
-      "id": "1f0bfbac-e2a1-410b-b376-243144f8d069",
-      "name": "Generate audio",
-      "credentials": {
-        "openAiApi": {
-          "id": "O38qltZmjubnlhtn",
-          "name": "OpenAI (Bredcrums Org.)"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "file",
-        "fileId": "={{ $json.message.voice.file_id }}",
-        "additionalFields": {}
-      },
-      "id": "99583f85-dff4-4bd8-b222-618eb575d728",
-      "name": "Download Voice File",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1872,
-        2480
-      ],
-      "webhookId": "fbabedc9-09fa-4cd9-9816-1167ad664313",
-      "credentials": {
-        "telegramApi": {
-          "id": "q0oWlq3ffaOp8PwB",
-          "name": "Orchard Studios | OrchardStudios_bot"
-        }
-      }
     }
   ],
   "connections": {
@@ -1018,55 +883,6 @@
           }
         ]
       ]
-    },
-    "Telegram Trigger": {
-      "main": [
-        [
-          {
-            "node": "Download Voice File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Transcribe a recording": {
-      "main": [
-        [
-          {
-            "node": "Generate audio",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Send a text message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Generate audio": {
-      "main": [
-        [
-          {
-            "node": "Send an audio file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Download Voice File": {
-      "main": [
-        [
-          {
-            "node": "Transcribe a recording",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "settings": {
@@ -1104,7 +920,7 @@
       }
     ]
   },
-  "versionId": "481deaab-00a2-42ef-a7c0-d6a706a5e8fc",
+  "versionId": "6acd3c7e-f0fa-426f-8864-e209ad0b98b4",
   "triggerCount": 0,
   "shared": [
     {
