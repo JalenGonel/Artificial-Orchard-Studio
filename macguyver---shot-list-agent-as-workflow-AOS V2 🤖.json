@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-10T04:14:05.158Z",
-  "updatedAt": "2025-09-05T21:09:44.000Z",
+  "updatedAt": "2025-09-10T02:49:02.000Z",
   "id": "VtqDp5dJIy3K37BF",
   "name": "MacGuyver - Shot List Agent As Workflow",
   "active": false,
@@ -10,38 +10,17 @@
       "parameters": {
         "content": "## Brain/Tools",
         "height": 240,
-        "width": 1260,
+        "width": 1052,
         "color": 7
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        672,
-        624
+        1264,
+        608
       ],
       "id": "a76ac217-b9df-4afa-9ed7-735803d6e131",
       "name": "Sticky Note7"
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "documentURL": "1jkWIN7OXmBXF4N671JtVtKLzK0BgyFlnO8RncDAnebc"
-      },
-      "type": "n8n-nodes-base.googleDocsTool",
-      "typeVersion": 2,
-      "position": [
-        1408,
-        704
-      ],
-      "id": "71894570-4b8f-414b-a6f4-a5c91b8e2841",
-      "name": "Official Social Platform Format Standards & Requirements",
-      "credentials": {
-        "googleDocsOAuth2Api": {
-          "id": "fLj4XqQp9dSS4uH3",
-          "name": "Google Docs — AO"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -51,7 +30,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        1648,
+        2080,
         704
       ],
       "id": "8b47dd3f-2493-4ed1-8b7e-3e0047fba125",
@@ -59,322 +38,12 @@
       "notesInFlow": true
     },
     {
-      "parameters": {
-        "operation": "update",
-        "documentId": {
-          "__rl": true,
-          "value": "1XJI1xVCddboTi4_zFuih7rrexLbmh_pZ069aT3yOcJk",
-          "mode": "list",
-          "cachedResultName": "Created Content Documentation Log",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XJI1xVCddboTi4_zFuih7rrexLbmh_pZ069aT3yOcJk/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Content Creation",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XJI1xVCddboTi4_zFuih7rrexLbmh_pZ069aT3yOcJk/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Status: Shot_List": "✅ Done",
-            "contentId": "={{ $('Get Work Draft row data').item.json.contentId }}",
-            "shot_list": "={{ $json.Shot_List }}"
-          },
-          "matchingColumns": [
-            "contentId"
-          ],
-          "schema": [
-            {
-              "id": "contentId",
-              "displayName": "contentId",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "status: execution",
-              "displayName": "status: execution",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status: Raw Intake",
-              "displayName": "Status: Raw Intake",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status: Elevator Pitch",
-              "displayName": "Status: Elevator Pitch",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status: Storyboard-Screenplay",
-              "displayName": "Status: Storyboard-Screenplay",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status: Shot_List",
-              "displayName": "Status: Shot_List",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Status: Production",
-              "displayName": "Status: Production",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status: Publish",
-              "displayName": "Status: Publish",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "deliverable_format",
-              "displayName": "deliverable_format",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "platform",
-              "displayName": "platform",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Created Date",
-              "displayName": "Created Date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Publish Date",
-              "displayName": "Publish Date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Raw Intake",
-              "displayName": "Raw Intake",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Elevator Pitch",
-              "displayName": "Elevator Pitch",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Storyboard-Screenplay",
-              "displayName": "Storyboard-Screenplay",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "shot_list",
-              "displayName": "shot_list",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "current_production_shot_list",
-              "displayName": "current_production_shot_list",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "FINAL_ASSET_MANIFEST",
-              "displayName": "FINAL_ASSET_MANIFEST",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Caption",
-              "displayName": "Caption",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Version #",
-              "displayName": "Version #",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Production Notes (AI Agent)",
-              "displayName": "Production Notes (AI Agent)",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Original Version ID",
-              "displayName": "Original Version ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "author",
-              "displayName": "author",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "row_number",
-              "displayName": "row_number",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true,
-              "readOnly": true,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.6,
-      "position": [
-        2528,
-        192
-      ],
-      "id": "4cd279af-7296-46b7-a0bb-2352ad26cbd7",
-      "name": "Status ('Shot_List'): ✅ Done",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "SmV2UM0V7zCsRueD",
-          "name": "AO Google Sheets"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "documentURL": "1n5_A5FicvFVeS6mvUIskskII4tZRBzvBFMD-QmVnDCE"
-      },
-      "type": "n8n-nodes-base.googleDocsTool",
-      "typeVersion": 2,
-      "position": [
-        1280,
-        704
-      ],
-      "id": "4dac6fa2-d51b-4282-9205-c15fa374a5ff",
-      "name": "Artificial Orchard Studios: Company Guidelines",
-      "credentials": {
-        "googleDocsOAuth2Api": {
-          "id": "fLj4XqQp9dSS4uH3",
-          "name": "Google Docs — AO"
-        }
-      },
-      "disabled": true
-    },
-    {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1,
       "position": [
-        1184,
-        704
+        1424,
+        688
       ],
       "id": "59d93506-9559-42f1-adb6-61fc3b569140",
       "name": "Think"
@@ -384,70 +53,11 @@
       "type": "@n8n/n8n-nodes-langchain.toolCalculator",
       "typeVersion": 1,
       "position": [
-        1072,
+        1792,
         704
       ],
       "id": "63641387-cc3a-474f-9939-b5dddfe67f2b",
       "name": "Calculator"
-    },
-    {
-      "parameters": {
-        "operation": "createFromText",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "root",
-          "cachedResultName": "/ (Root folder)"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDriveTool",
-      "typeVersion": 3,
-      "position": [
-        1264,
-        0
-      ],
-      "id": "a90c10a9-88b3-4ba4-be66-905b59313396",
-      "name": "Create file from text in Google Drive",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "ScH2Khz6AL9njL5N",
-          "name": "Google Drive — AO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "",
-        "height": 208,
-        "width": 656
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        928,
-        -32
-      ],
-      "id": "82546de0-edad-4613-a9c6-2ca4018842da",
-      "name": "Sticky Note"
-    },
-    {
-      "parameters": {
-        "content": "## 8/13/25 should add this instead of placing shot_list in google sheet"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        928,
-        -32
-      ],
-      "id": "f4703174-2d5a-453a-8dca-c83356eae29e",
-      "name": "Sticky Note1"
     },
     {
       "parameters": {
@@ -459,8 +69,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        112,
-        -128
+        -160,
+        -208
       ],
       "id": "fa3e3e8c-3f29-486c-a59f-194156dfe69c",
       "name": "Sticky Note2"
@@ -469,17 +79,17 @@
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-5",
+          "value": "gpt-5-mini",
           "mode": "list",
-          "cachedResultName": "gpt-5"
+          "cachedResultName": "gpt-5-mini"
         },
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        688,
-        704
+        1568,
+        688
       ],
       "id": "b899ced6-2c89-4a01-8951-39fb9474fde9",
       "name": "GPT 5",
@@ -504,19 +114,20 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "",
-                    "rightValue": "",
+                    "id": "f80f5806-dc0e-4e70-9ea3-017e4449ea1e",
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "create",
                     "operator": {
                       "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "eff14ae8-cde0-4c01-b68b-92f1caf14cae"
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
                   }
                 ],
                 "combinator": "and"
               },
               "renameOutput": true,
-              "outputKey": "working_draft_id"
+              "outputKey": "create"
             },
             {
               "conditions": {
@@ -528,9 +139,9 @@
                 },
                 "conditions": [
                   {
-                    "id": "e78f0e44-887d-44c9-b22c-7ebce51fc87d",
-                    "leftValue": "",
-                    "rightValue": "",
+                    "id": "7daf6a03-690b-4582-b0ed-0cef3303354c",
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "read",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -541,7 +152,7 @@
                 "combinator": "and"
               },
               "renameOutput": true,
-              "outputKey": "run_id"
+              "outputKey": "read"
             },
             {
               "conditions": {
@@ -553,9 +164,9 @@
                 },
                 "conditions": [
                   {
-                    "id": "41d68036-d569-4ec1-a9df-690b0783f84c",
-                    "leftValue": "",
-                    "rightValue": "={{ $json.aos_prompts_and_contexts.agents.agents[2].system_prompt }}",
+                    "id": "bc536d2b-93fb-4f3c-a451-f23975b4a991",
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "update",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -566,7 +177,7 @@
                 "combinator": "and"
               },
               "renameOutput": true,
-              "outputKey": "shot_list"
+              "outputKey": "update"
             }
           ]
         },
@@ -575,11 +186,572 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        208,
+        384,
         240
       ],
       "id": "47dc715d-3f64-4000-adcc-ad328bc5361b",
       "name": "Switch"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "chatId"
+            },
+            {
+              "name": "version_lock_id",
+              "type": "any"
+            },
+            {
+              "name": "shotlist_crud_action_type"
+            },
+            {
+              "name": "query"
+            },
+            {
+              "name": "additional_info"
+            },
+            {
+              "name": "aos_prompts_and_contexts",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "2bdde22a-be51-408b-9c87-db8521e890b6",
+      "typeVersion": 1.1,
+      "name": "M is Triggered",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -336,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Final Output Always Here ❎",
+        "height": 240,
+        "width": 198,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3008,
+        176
+      ],
+      "id": "9a067bd6-cd36-4794-ba42-3829e9840bc7",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
+              "name": "task_successful",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
+              "name": "workflow_execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "number"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "agent_response",
+              "value": "={{ $('MacGyver').item.json.output.response_rationale }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3680,
+        272
+      ],
+      "id": "b20e2900-796a-4999-8d7e-9ec84d1bc5b4",
+      "name": "Final Output1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6302ad26-8227-499a-8f20-2e27eaba7482",
+              "name": "sessionid",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "c9630386-422e-4543-bc6d-0448c2c613a4",
+              "name": "agent_name",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
+              "name": "query",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -112,
+        -112
+      ],
+      "id": "cad45bfb-f8d4-40c8-90b9-c124ffc9e401",
+      "name": "Start Input"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0ce28ffb-1ee7-40f9-9c41-c5948f977fa0",
+              "name": "shotlist_crud_action_type",
+              "value": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+              "type": "string"
+            },
+            {
+              "id": "eb633f9e-0171-4112-8ea3-9d0c0988ca6c",
+              "name": "input_content",
+              "value": "={{ \n\n$if($prevNode.name === 'Extract from File', $json.data, \n  $if($prevNode.name === 'Get Work Draft Row', \n    $json, \n    $if($prevNode.name === 'Switch', \n        $json.removeField('aos_prompts_and_contexts').removeField('chatId')\n      )\n  )\n)  \n\n}}",
+              "type": "object"
+            },
+            {
+              "id": "02b387e2-b84c-40d0-821c-c929e5927399",
+              "name": "working_draft_locked_initial_cell_values",
+              "value": "={{ $('Edit Fields').item.json.working_draft_locked_initial_cell_values }}",
+              "type": "string"
+            },
+            {
+              "id": "3b1b019d-27c1-4db2-92c3-36ce721469b9",
+              "name": "={{ ( $json?.data ? 'current_shot_list_value' : undefined) }}",
+              "value": "={{ ( $json?.data ?? undefined) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        256
+      ],
+      "id": "5e1f369d-fca6-420e-bb01-3abf94eb8885",
+      "name": "Standardize inputs"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        848,
+        416
+      ],
+      "id": "9876783d-a00b-4f88-8a5a-ad18429f26a7",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-5-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1936,
+        704
+      ],
+      "id": "21b9c100-8133-4d3e-9e29-6925a1ab7c9a",
+      "name": "OpenRouter gpt-5",
+      "credentials": {
+        "openRouterApi": {
+          "id": "pwj1L3d2Ror7G0eW",
+          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        688
+      ],
+      "id": "45715fbb-e939-49c0-b662-2a9fc04d811b",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "CXoUm5lsjEhwMzzP",
+          "name": "Tavily AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.agents.agents[2].chat_memory_session_id }}",
+        "tableName": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.misc.agent_memories_supabase_table }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        688
+      ],
+      "id": "b6b10bc1-5ca3-42a6-8716-70606d150f96",
+      "name": "Postgres Memory - MacGyver",
+      "credentials": {
+        "postgres": {
+          "id": "85Tuim46hYnLqadX",
+          "name": "Postgres via Supabase — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Current Date/Time: {{ $now.toString() }}\n\nShot List CRUD Action Type: {{ $json.shotlist_crud_action_type }}\n\n<input_content>\n{{ $json.input_content.toJsonString() }}\n<input_content/>\n\n<additional_query_info>\n{{ $('M is Triggered').item?.json?.additional_info }}\n<additional_query_info/>\n\nQuery: {{ $('M is Triggered').item.json.query }} ",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.agents.agents[2].system_prompt }}",
+          "returnIntermediateSteps": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        256
+      ],
+      "id": "e552316a-c843-4107-9260-e3178b10c447",
+      "name": "MacGyver",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4b5cca27-0d0d-40b1-af5b-c97775b59f45",
+              "name": "system_prompt",
+              "value": "=You are the Technical Specifications Shot List Agent that works for Artificial Orchard Studios, part of the Artificial Orchard media organization.   Overview:  You take content initatives and all their included data and implement the Shot List, an encompassing technical specification document detailing the dynamics of what the completed output of a content initative will be (also referred to as the 'final package manifest', 'final packge', or 'package') as well as how components will be implemented.   The Shot List at its core is a list of all the elements needed and how they will be organized, from the intermediary video, image or sound elements of a sequence to the sequences of a deliverable, to the deliverables of the final package.  The Shot List should be coherent at the micro and macro scale. Ensure component properties are compatible with regard to respective media type, that quality ai generated media prompts are written appropriate for the given element's complexity, that the coherent whole is a faithful implementation of the content screenplay/storyboard, and that the chosen publishing platform's file & format requirements are followed.  It is imperative that you confirm that the proposed media creatives meet the standards and requirements of the desired publishing platform, the quality assurance of the Artificial Orchard brand and, if provided, content guidelines proprietary to the specific account you may be creating for.   - Creative asset(s) for posts will be almost entirely generated by AI. Do not be overly ambitious with prompt complexity. For example when crafting video generation prompts, have little to no camera perspective shifts per video generated.  - When crafting visual generation prompts, especially when the subject matter could be perceived as suggestive or sensual, that prompts be written so as to make them \"generally appropriate\" to pass any model provider's content guidelines.  - Individual video duration length may not always be possible to set; default to 5, 8, or 10 seconds. Limit the amount of videos to stitch together (1-4, 8 max).  - Abstain from architecting the Shot List, its final deliverables, or deliverable's sequences with strict time tolerances. For example, creating an audio sound element exactly 11.2 seconds long to overlay 2 video elements with sum equal duration. Do not do that! In the case of stitching multiple sequences of a video or elements in a sequence, the extent of editing potential lest exceeds what could be done via an ffmpeg/compose post request api call.   Hierarchy:   - ELEMENTS: Lowest level component. Most often ai-generated. Of type 'video, 'audio', or 'image'. (note: if intending to generate a video with sound set 'videoContainsNativeAudio' to true and fill the    'generation_of_video_sound_prompt' on top of the 'video_generation_prompt'. - SEQUENCES: Grouping of one to many self-contained grouped elements. Only video deliverables can contain more than 1 sequence, in which case they would be stitched together sequentially in thier listed order. - DELIVERABLES: Final media asset(s) to be published. 1 to many. Final deliverable count can range from a single, simple .jpeg image to a 15+  mixed media carousel consisting of multiple images and videos. Posted in the same order as listed in the shot_list.  Important Tip: Fill 'internal_use_only...' fields with relevant info,  supplemental context, suggestions, etc. as it may be useful for ai agents in later steps of content production or when revisions are made.   Examples (1-4):   #### 1. A 3 image carousel post made for Instagram would look like:  {     \"caption\": \"A journey through the lost workshop of a celestial dreamer. Swipe to uncover the details. ✨ #FantasyArt #ConceptArt #Steampunk #Discovery #AI\",     \"platform\": \"instagram\",     \"final_package_format\": \"carousel-image\",     \"internal_use_only_final_package_description\": \"A 3-image carousel for Instagram, designed to tell a short visual story and encourage user interaction through swiping.\",     \"aspect_ratio\": \"4:5\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 1: The wide, establishing shot of the workshop.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the first image in the carousel.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The main establishing shot.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A wide-angle view of a fantastical, steampunk-inspired workshop. Sunlight streams through a large, ornate circular window, illuminating dust particles in the air. The room is filled with half-finished inventions, brass gears, copper pipes, and complex mechanical contraptions. In the center, a massive, partially assembled mechanical bird with intricate feather-like plates of metal sits dormant. The scene feels like a moment frozen in time. Hyperrealistic, detailed, warm lighting, 4:5 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d2\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 2: A medium shot focusing on the inventor's desk.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d2s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the second, more detailed image.\",                     \"elements\": [                         {                             \"element_id\": \"d2s1e1\",                             \"internal_use_only_element_description\": \"The desk shot.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A medium shot of the inventor's cluttered workbench. Blueprints for the mechanical bird are unrolled, held down by various brass tools and a magnifying glass. A single, glowing gear sits on the desk, emitting a soft blue light that contrasts with the warm sunlight. An old leather-bound journal is open, filled with complex diagrams and handwritten notes. The scene suggests a story of genius and obsession. Detailed textures, shallow depth of field, 4:5 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d3\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 3: An extreme close-up of the mechanical bird's eye.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d3s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the final, intimate close-up image.\",                     \"elements\": [                         {                             \"element_id\": \"d3s1e1\",                             \"internal_use_only_element_description\": \"The eye close-up.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"An extreme close-up, macro shot of the mechanical bird's head. The eye is a complex lens, like a camera aperture, made of concentric rings of polished brass and copper. Inside the lens, a faint, magical blue light glows, mirroring the light from the gear on the desk. The craftsmanship is incredibly detailed, with tiny, almost invisible engravings on the metal plates of the bird's face. The image feels intimate and hints at the spark of life within the machine. Photorealistic, dramatic, 4:5 aspect ratio.\"                         }                     ]                 }             ]         }     ] }  #### 2. A 1 image post for TikTok would look like:  {     \"caption\": \"In the library of cosmos, every star tells a story. ✨ #CosmicLibrary #FantasyArt #BookLover #DigitalArt #AIGenerated\",     \"platform\": \"tiktok\",     \"final_package_format\": \"image\",     \"internal_use_only_final_package_description\": \"Single image post for Instagram feed. Primary goal is audience engagement through a visually stunning and imaginative concept.\",     \"aspect_ratio\": \"5:4\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"A single, high-resolution image asset featuring a fantastical scene.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"This sequence defines the generation of the single image deliverable.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The core visual element. A hyperrealistic fantasy image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A solitary scholar stands in the center of a vast, circular library with towering, ancient wooden bookshelves. The library's domed ceiling is a swirling, vibrant nebula of deep blues, purples, and golds, with stars glittering like diamonds. A single beam of cosmic light illuminates the scholar, who is reaching up towards a floating, glowing book that emanates a soft, warm light. The style is hyperrealistic with a touch of fantasy, emphasizing the detailed texture of the old books and the ethereal quality of the galaxy. Shot in a 5:4 portrait aspect ratio, creating a sense of height and wonder. The mood is awe-inspiring and magical.\"                         }                     ]                 }             ]         }     ] }  #### 3. A 4 item carousel-mixed-media post of photos and videos for Instagram {     \"caption\": \"A forgotten season. Swipe to see the forest's final, fleeting moments of warmth before the frost. 🍂❄️ #Autumn #FirstSnow #Fantasy #MixedMedia #AIArt\",     \"platform\": \"instagram\",     \"final_package_format\": \"carousel-mixed-media\",     \"internal_use_only_final_package_description\": \"4-part mixed-media carousel for Instagram. The sequence is Video -> Image -> Image -> Video to tell a short story about the transition from autumn to winter.\",     \"aspect_ratio\": \"9:16\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"video\",             \"internal_use_only_deliverable_description\": \"Carousel Part 1: An establishing video of a vibrant autumn forest.\",             \"file_type\": \"mp4\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"A single sequence video with accompanying ambient sound.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The visual element of the autumn forest.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": false,                             \"generation_of_video_sound_prompt\": null,                             \"video_generation_prompt\": \"A slow, gentle push-in shot through a dense, magical forest in peak autumn. Sunlight filters through a canopy of brilliant red, orange, and yellow leaves. Leaves are slowly, almost surreally, drifting down. The atmosphere is peaceful and saturated with warm colors. Cinematic, shallow depth of field, 9:16 aspect ratio.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 8                         },                         {                             \"element_id\": \"d1s1e2\",                             \"internal_use_only_element_description\": \"The ambient audio for the autumn scene.\",                             \"element_asset_type\": \"audio\",                             \"file_type\": \"mp3\",                             \"duration\": 8,                             \"element_start_time\": 0,                             \"audio_generation_prompt\": \"Gentle ambient sound of a peaceful forest. A soft breeze rustling through dry leaves, the occasional distant bird call. A subtle, warm and gentle musical pad fades in, creating a feeling of serene nostalgia. Tempo: 60 BPM, Key: F major.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d2\",             \"internal_use_only_deliverable_description\": \"Carousel Part 2: An image showing the first sign of winter.\",             \"deliverable_format\": \"image\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d2s1\",                     \"internal_use_only_sequence_description\": \"Generation of the second element in the carousel story.\",                     \"elements\": [                         {                             \"element_id\": \"d2s1e1\",                             \"internal_use_only_element_description\": \"The 'first frost' image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A close-up, macro photo of a single, vibrant red maple leaf lying on the forest floor. The edges of the leaf are delicately rimmed with sparkling white frost, a stark contrast between warmth and cold. The background is a soft-focus blur of other fallen leaves. The lighting is soft and cool. Hyperrealistic, 9:16 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d3\",             \"internal_use_only_deliverable_description\": \"Carousel Part 3: An image showing the transition deepening.\",             \"deliverable_format\": \"image\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d3s1\",                     \"internal_use_only_sequence_description\": \"Generation of the third element, showing the encroaching cold.\",                     \"elements\": [                         {                             \"element_id\": \"d3s1e1\",                             \"internal_use_only_element_description\": \"The 'snowy branch' image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A medium shot of a bare tree branch, once full of leaves, now covered in a fresh layer of soft snow. A few stubborn, frosted red leaves still cling to the branch. In the background, the forest is now muted and cooler in tone, with snow dusting the ground. The image evokes a sense of beautiful melancholy. 9:16 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d4\",             \"deliverable_format\": \"video\",             \"file_type\": \"mp4\",             \"internal_use_only_deliverable_description\": \"Carousel Part 4: A final video showing the full winter scene.\",             \"sequences\": [                 {                     \"sequence_id\": \"d4s1\",                     \"internal_use_only_sequence_description\": \"The concluding video of the sequence.\",                     \"elements\": [                         {                             \"element_id\": \"d4s1e1\",                             \"internal_use_only_element_description\": \"The winter transformation video.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"The soft, muffled crunch of snow falling on snow. A gentle, cold wind whispering through bare branches. The sound should be quiet and peaceful.\",                             \"video_generation_prompt\": \"A final video that mirrors the opening shot, but the scene is transformed. It's a slow pull-out from the now snow-covered forest. Snow is gently falling. The color palette is cool blues, whites, and greys, with only a few specks of red from the last clinging leaves. The atmosphere is quiet, still, and magical. 9:16 aspect ratio.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 8                         },                         {                             \"element_id\": \"d4s1e2\",                             \"internal_use_only_element_description\": \"The concluding musical piece.\",                             \"element_asset_type\": \"audio\",                             \"file_type\": \"wav\",                             \"element_start_time\": 0,                             \"duration\": 8,                             \"audio_generation_prompt\": \"A sparse and melancholic piano melody plays over a soft, ethereal string pad. The music reflects the beauty and stillness of the winter scene, providing a sense of closure to the autumn theme. Tempo: 50 BPM, Key: C minor.\"                         }                     ]                 }             ]         }     ] }  #### 4. 1 video, 6 sequence instagram video {     \"caption\": \"From the nebula to the kitchen, a taste of the cosmos. ✨ Every ingredient tells a story. #CosmicCooking #FoodArt #Fantasy #AIvideo #Celestial\",     \"platform\": \"instagram\",     \"final_package_format\": \"video\",     \"internal_use_only_final_package_description\": \"A single, 30-second video composed of 6 sequential scenes. Each scene has its own distinct native audio to tell the story of a cosmic chef creating a dish.\",     \"aspect_ratio\": \"9:16\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"video\",             \"internal_use_only_deliverable_description\": \"The complete 'Stardust Tart' creation video. The final product is a stitched video of all 6 sequences.\",             \"file_type\": \"mp4\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"Sequence 1: Gathering starlight.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"A chef's hands gathering light.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A soft, high-frequency, shimmering chime, like a chorus of tiny glass bells. A gentle, ethereal 'whoosh' as the light is gathered. The sound is delicate and magical.\",                             \"video_generation_prompt\": \"Close-up on elegant, ethereal hands cupping together in deep space. A stream of liquid, golden starlight flows from a nebula and pools in the hands like honey. The light swirls and glitters. The background is a dark, star-filled cosmos. Cinematic, magical realism.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s2\",                     \"internal_use_only_sequence_description\": \"Sequence 2: Kneading cosmic dough.\",                     \"elements\": [                         {                             \"element_id\": \"d1s2e1\",                             \"internal_use_only_element_description\": \"Cosmic dough preparation.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A low, squishy, resonant sound. A gentle, rhythmic thudding layered with a soft, humming energy. The sound should feel both organic and otherworldly.\",                             \"video_generation_prompt\": \"Overhead shot of the collected starlight being poured into a bowl of shimmering, dark matter flour. The hands begin to knead the mixture, which becomes a dough that swirls with the colors of a galaxy. The dough pulses with a soft, internal light with each knead.\",                             \"element_start_time\": 5,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s3\",                     \"internal_use_only_sequence_description\": \"Sequence 3: Cracking a geode egg.\",                     \"elements\": [                         {                             \"element_id\": \"d1s3e1\",                             \"internal_use_only_element_description\": \"The geode egg.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A sharp, crystalline cracking sound, followed by a wet, viscous plop. A subtle, resonant chime echoes as the crystal shards separate.\",                             \"video_generation_prompt\": \"A slow-motion, side-profile shot. A beautiful crystalline geode is tapped on the side of the bowl. It cracks open, revealing a yolk that is a perfect, shimmering pearl. The pearl yolk drops into the cosmic dough, sending out a slow ripple of light.\",                             \"element_start_time\": 10,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s4\",                     \"internal_use_only_sequence_description\": \"Sequence 4: Baking in a miniature sun.\",                     \"elements\": [                         {                             \"element_id\": \"d1s4e1\",                             \"internal_use_only_element_description\": \"Solar baking process.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A low, intense, fiery hum of contained energy. A subtle, rising sizzle as the tart bakes. The sound should convey immense but controlled heat.\",                             \"video_generation_prompt\": \"The prepared tart, now in a small, ornate pan, is levitated into a miniature, contained sun that serves as an oven. The tart shell turns a golden-brown, and the filling bubbles with galactic colors. The light from the mini-sun is intense and warm.\",                             \"element_start_time\": 15,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s5\",                     \"internal_use_only_sequence_description\": \"Sequence 5: Garnishing with comet dust.\",                     \"elements\": [                         {                             \"element_id\": \"d1s5e1\",                             \"internal_use_only_element_description\": \"Final garnish.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A soft, delicate, granular sprinkling sound, like fine sand. Each particle makes a tiny, magical 'tink' or 'pop' as it lands on the tart, creating a gentle, effervescent fizz.\",                             \"video_generation_prompt\": \"Extreme close-up on the finished tart. A hand gently sprinkles it with glittering, silvery comet dust from a shaker shaped like a crescent moon. The dust settles on the surface and sparkles, leaving tiny, shimmering trails of light.\",                             \"element_start_time\": 20,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s6\",                     \"internal_use_only_sequence_description\": \"Sequence 6: The final presentation.\",                     \"elements\": [                         {                             \"element_id\": \"d1s6e1\",                             \"internal_use_only_element_description\": \"The hero shot of the final dish.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A single, awe-inspiring, resonant choral note swells and holds. A final, satisfying 'shing' sound, as if signifying perfection. The background is now perfectly silent.\",                             \"video_generation_prompt\": \"A hero shot of the final Stardust Tart sitting on a plate made of polished obsidian. The tart's surface slowly swirls like a living galaxy. The camera slowly pushes in, then cuts to black. The shot is beautiful, delicious, and awe-inspiring.\",                             \"element_start_time\": 25,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 }             ]         }     ] }   In short, deliverables are the final assets which get posted to a platform, regardless of sequences and elements count.  - A 3 piece mixed-media-carousel will have 3 final deliverables - A 1 video post on TikTok will have 1 deliverable - A 7 mixed-media-carousel on Instagram will have 7 deliverables   Select only from these 5 choices when setting \"final_package_format\" if it hasn't been set already:  1. image 2. video 3. carousel-images 4. carousel-videos 5. carousel-mixed-media  The following 3 choices exist when selecting values for \"deliverable_asset_type\" and \"element_asset_type\": 1. \"image\" 2. \"audio\" 3. \"video\"  Choice of platforms to choose from: 1. tikTok 2. instagram.  Other parameter value choices:  - file_type: [\".png\" or \".webp\" or \"jpeg\", \".mp4\", \"mp3\", \".wav\", \".mov\",\".m4a\"]   Note: Unless explicitly stated, keep indvidual video content short (ie 15-60s, maximum 90 seconds).    Tools you have access to:      1. Tavily - use tool to search the web     2. Artificial Orchard Studios Company Guidelines - use tool as reference when creating content that abides by quality standards of the company     3. Social Platform Format Specifications - Use to insure media specifications and formats are met respective to the chosen social media platform (ie that images generated for TikTok posts are the right file type)     4. Calculator use as needed     5. Thinking - use the think tool to reason out loud as you construct the shot list. This will likely be the most utilized tool in your arsenal. Use the think tool to formulate an initial plan, to reason through intermediary decisions and challenges, and to check your work right before submitting your final response. Attention to detail is imperative for this task. Fields simultaneously beholden to multiple, different types of requirements are commonplace. Be as proactive as possible. Measure twice, cut once—yet be biased towards action. Formulate a cohesive initial plan starting with meeting the list of the hard requirements & constraints. Once you start implementing your plan stick with it. Aim to make updates and revisions towards the end of your initially implemented plan. The purpose of this focus is to optimize process efficiency & coherence of the final  output.  Output your final response that abides by the JSON structured output schema. On top of the final Shot_List, provide a summary abstract explaining the rationale behind creating the final Shot_List as well as the dynamics of this Shot_List at a high level. Include in summary_abstract other information or context deemed noteworthy or relevant.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        688
+      ],
+      "id": "f7ea9da7-472c-495f-bda3-ca8ab690382e",
+      "name": "MacGyver System Prompt (original 9/4/25)"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "create",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b20561a7-fd66-48da-97df-e190a42b7045"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "create"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b8b7a614-bfed-4c4e-8f84-2e61bc846e82",
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "update",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "update"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "da83be01-eb6c-438c-8976-e0340b73424f",
+                    "leftValue": "={{ $('M is Triggered').item.json.shotlist_crud_action_type }}",
+                    "rightValue": "read",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "read"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2912,
+        224
+      ],
+      "id": "eeec2427-cfb8-4bd3-8800-1b9dd13ef91d",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('M is Triggered').item.json.shot_list_to_updates_file_id }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3328,
+        144
+      ],
+      "id": "6f19671e-1766-44f3-b61f-275c3e328575",
+      "name": "Update file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ JSON.stringify($('MacGyver').item.json.output.Shot_List) }}",
+        "name": "=SHOT-LIST_version-lock_{{ $('Get Version_Lock Row Data').item.json.last_workflow_execution_id }} ",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Get Version_Lock Row Data').item.json.version_lock_drive_folder_id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3168,
+        -16
+      ],
+      "id": "e077bec8-6144-44d6-843d-2b47cbaeb893",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1706833144,
+          "mode": "list",
+          "cachedResultName": "working_drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=1706833144"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "working_draft_id",
+              "lookupValue": "={{ $('Get Version_Lock Row Data').item.json.working_draft_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        720,
+        80
+      ],
+      "id": "cf12dadc-191d-45c7-ac38-e8a3fcd792dd",
+      "name": "Get Work Draft Row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.version_lock_shot_list_file_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        656,
+        416
+      ],
+      "id": "c9cd101f-26a1-48c0-b01c-33db8cb5abef",
+      "name": "Download Shot List File",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ScH2Khz6AL9njL5N",
+          "name": "Google Drive — AO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output.Shot_List",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        3168,
+        144
+      ],
+      "id": "b55ccbfc-4ff2-4e81-b51b-9e34f81882ca",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "mode": "list",
+          "cachedResultName": "AO Studios V2 — Content Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 177585841,
+          "mode": "list",
+          "cachedResultName": "version_locks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=177585841"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "version_lock_id",
+              "lookupValue": "={{ $json?.version_lock_id }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -128,
+        256
+      ],
+      "id": "5683b30a-64a5-4bae-9107-003581bc4b2e",
+      "name": "Get Version_Lock Row Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SmV2UM0V7zCsRueD",
+          "name": "AO Google Sheets"
+        }
+      }
     },
     {
       "parameters": {
@@ -588,11 +760,12 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2560,
-        400
+        2272,
+        -176
       ],
-      "id": "a23aae2a-a00b-4193-8ae5-6d0336f80273",
-      "name": "Clean Up"
+      "id": "31ddd8ac-ec29-428a-ae31-8fa426112d37",
+      "name": "Clean Up",
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -617,7 +790,7 @@
             "Timestamp": "={{ $now.format('yyyy-MM-dd hh:m a') }}",
             "Workflow": "={{ $workflow.name }}",
             "Input": "={{ $('Input').item.json.text }}",
-            "Output": "={{ $('Spielberg - Orchard Studios Director Orchestration Agent').item.json.output }}",
+            "Output": "={{ $('MacGyver').item.json.output }}",
             "Actions": "={{ JSON.stringify($json.steps, null, 2) }}",
             "Tokens": "={{ JSON.stringify($json.tokens, null, 2) }}",
             "Total Tokens": "={{ $json.total_tokens }}"
@@ -697,253 +870,169 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        2688,
-        400
+        2432,
+        -176
       ],
-      "id": "74a2969b-a954-43e8-85d5-bd47cef7d9f5",
+      "id": "112f797d-9825-41b8-8fad-82dd5e5686b1",
       "name": "Append to Agent Logs Sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "SmV2UM0V7zCsRueD",
           "name": "AO Google Sheets"
         }
-      }
-    },
-    {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "chatId"
-            },
-            {
-              "name": "id"
-            },
-            {
-              "name": "query"
-            },
-            {
-              "name": "additional_info"
-            },
-            {
-              "name": "aos_prompts_and_contexts",
-              "type": "object"
-            }
-          ]
-        }
       },
-      "id": "2bdde22a-be51-408b-9c87-db8521e890b6",
-      "typeVersion": 1.1,
-      "name": "M is Triggered",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "position": [
-        -80,
-        256
-      ]
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
+        "jsCode": "// Initialize the output arrays\nconst steps = [];\nconst tokens = [];\nlet totalTokens = 0;\n\n// Process each item in the input\nfor (const item of $input.all()) {\n  let data = item.json;\n  \n  // Check if the data is an array itself (like your example JSON)\n  if (Array.isArray(data)) {\n    // Process each object in the array\n    for (const obj of data) {\n      // Extract steps information\n      if (obj.intermediateSteps && Array.isArray(obj.intermediateSteps)) {\n        for (const step of obj.intermediateSteps) {\n          if (step.action) {\n            steps.push({\n              tool: step.action.tool,\n              toolInput: step.action.toolInput,\n              observation: step.observation\n            });\n          }\n        }\n      }\n      \n      // Extract token information - FIXED PATH\n      if (obj.intermediateSteps && Array.isArray(obj.intermediateSteps)) {\n        for (const step of obj.intermediateSteps) {\n          if (step.action && step.action.messageLog && Array.isArray(step.action.messageLog)) {\n            for (const message of step.action.messageLog) {\n              // Fixed: tokenUsage instead of usage, and camelCase field names\n              if (message.kwargs && message.kwargs.response_metadata && message.kwargs.response_metadata.tokenUsage) {\n                const tokenUsage = message.kwargs.response_metadata.tokenUsage;\n                tokens.push({\n                  prompt_tokens: tokenUsage.promptTokens,\n                  completion_tokens: tokenUsage.completionTokens,\n                  total_tokens: tokenUsage.totalTokens,\n                  model_name: message.kwargs.response_metadata.model_name\n                });\n                \n                // Add the tokens to our running total\n                if (typeof tokenUsage.totalTokens === 'number') {\n                  totalTokens += tokenUsage.totalTokens;\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  } else {\n    // If data is not an array, process it as a single object\n    // Extract steps information\n    if (data.intermediateSteps && Array.isArray(data.intermediateSteps)) {\n      for (const step of data.intermediateSteps) {\n        if (step.action) {\n          steps.push({\n            tool: step.action.tool,\n            toolInput: step.action.toolInput,\n            observation: step.observation\n          });\n        }\n      }\n    }\n    \n    // Extract token information - FIXED PATH\n    if (data.intermediateSteps && Array.isArray(data.intermediateSteps)) {\n      for (const step of data.intermediateSteps) {\n        if (step.action && step.action.messageLog && Array.isArray(step.action.messageLog)) {\n          for (const message of step.action.messageLog) {\n            // Fixed: tokenUsage instead of usage, and camelCase field names\n            if (message.kwargs && message.kwargs.response_metadata && message.kwargs.response_metadata.tokenUsage) {\n              const tokenUsage = message.kwargs.response_metadata.tokenUsage;\n              tokens.push({\n                prompt_tokens: tokenUsage.promptTokens,\n                completion_tokens: tokenUsage.completionTokens,\n                total_tokens: tokenUsage.totalTokens,\n                model_name: message.kwargs.response_metadata.model_name\n              });\n              \n              // Add the tokens to our running total\n              if (typeof tokenUsage.totalTokens === 'number') {\n                totalTokens += tokenUsage.totalTokens;\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n\n// Return the processed data with total_tokens included\nreturn [{\n  json: {\n    steps: steps,\n    tokens: tokens,\n    total_tokens: totalTokens\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2272,
+        48
+      ],
+      "id": "79679db0-4c81-48b0-aaf9-7507b6c5bfd4",
+      "name": "Clean Up1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
+          "value": "1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY",
           "mode": "list",
-          "cachedResultName": "AO Studios V2 — Content Tracker",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
+          "cachedResultName": "AO Studios V2 — System Stats & Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": 1706833144,
+          "value": 1581498117,
           "mode": "list",
-          "cachedResultName": "working_drafts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=1706833144"
+          "cachedResultName": "Agent Studio Swarm Actions",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit#gid=1581498117"
         },
-        "filtersUI": {
-          "values": [
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now.format('yyyy-MM-dd hh:m a') }}",
+            "Workflow": "={{ $workflow.name }}",
+            "Input": "={{ $json.message.text }}",
+            "Output": "=Error Execution:{{ $execution.id }}",
+            "Actions": "={{ JSON.stringify($json.steps, null, 2) }}",
+            "Tokens": "={{ JSON.stringify($json.tokens, null, 2) }}",
+            "Total Tokens": "={{ $json.total_tokens }}"
+          },
+          "matchingColumns": [],
+          "schema": [
             {
-              "lookupColumn": "working_draft_id",
-              "lookupValue": "={{ $json?.working_draft_id }}"
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Workflow",
+              "displayName": "Workflow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Input",
+              "displayName": "Input",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Output",
+              "displayName": "Output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Actions",
+              "displayName": "Actions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tokens",
+              "displayName": "Tokens",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total Tokens",
+              "displayName": "Total Tokens",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
-        "options": {
-          "returnFirstMatch": true
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        512,
-        80
+        2432,
+        48
       ],
-      "id": "cf12dadc-191d-45c7-ac38-e8a3fcd792dd",
-      "name": "Get Work Draft row data",
+      "id": "e1390b14-009c-4b06-b1b5-11c3ce33fd64",
+      "name": "Update Log1",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "SmV2UM0V7zCsRueD",
           "name": "AO Google Sheets"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0",
-          "mode": "list",
-          "cachedResultName": "AO Studios V2 — Content Tracker",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 177585841,
-          "mode": "list",
-          "cachedResultName": "version_locks",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=177585841"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "version_lock_id",
-              "lookupValue": "={{ $json?.version_lock_id }}"
-            }
-          ]
-        },
-        "options": {
-          "returnFirstMatch": true
-        }
+        "operation": "text",
+        "options": {}
       },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.6,
-      "position": [
-        512,
-        256
-      ],
-      "id": "37f7b9d9-6a66-4901-9ba4-0199527cf6a3",
-      "name": "Get Version Run Lock row data",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "SmV2UM0V7zCsRueD",
-          "name": "AO Google Sheets"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## ✅ Final Output Always Here ❎",
-        "height": 240,
-        "width": 198,
-        "color": 3
-      },
-      "type": "n8n-nodes-base.stickyNote",
+      "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2160,
-        352
-      ],
-      "id": "9a067bd6-cd36-4794-ba42-3829e9840bc7",
-      "name": "Sticky Note3"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "b4dd611f-8aec-4c40-9557-a830d1452927",
-              "name": "task_successful",
-              "value": false,
-              "type": "boolean"
-            },
-            {
-              "id": "7e3ae18b-8260-47f9-9aad-1f7b8c90bcd6",
-              "name": "workflow_execution_id",
-              "value": "={{ $execution.id }}",
-              "type": "number"
-            },
-            {
-              "id": "42384dd4-1a37-49bf-929f-249af8b88af4",
-              "name": "sources_and_ids_data",
-              "value": "",
-              "type": "string"
-            },
-            {
-              "id": "998bbd49-e640-4da1-b81e-5cd99922353b",
-              "name": "action_summary",
-              "value": "",
-              "type": "string"
-            },
-            {
-              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
-              "name": "agent_response",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        2208,
-        448
-      ],
-      "id": "b20e2900-796a-4999-8d7e-9ec84d1bc5b4",
-      "name": "Final Output1"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "6302ad26-8227-499a-8f20-2e27eaba7482",
-              "name": "sessionid",
-              "value": "",
-              "type": "string"
-            },
-            {
-              "id": "c9630386-422e-4543-bc6d-0448c2c613a4",
-              "name": "agent_name",
-              "value": "",
-              "type": "string"
-            },
-            {
-              "id": "1fa7b4da-2080-4b7e-b6e2-320cf1b22d34",
-              "name": "query",
-              "value": "",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        160,
-        -32
-      ],
-      "id": "cad45bfb-f8d4-40c8-90b9-c124ffc9e401",
-      "name": "Start Input"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        864,
+        848,
         256
       ],
-      "id": "5e1f369d-fca6-420e-bb01-3abf94eb8885",
-      "name": "Standardize inputs"
+      "id": "9ecc4e9c-4ad7-4275-abc4-5c038da5dd6a",
+      "name": "Extract from File1"
     },
     {
       "parameters": {
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "={{ $json.id }}",
+          "value": "={{ $json.version_lock_shot_list_file_id }}",
           "mode": "id"
         },
         "options": {
@@ -957,11 +1046,11 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        512,
-        448
+        656,
+        256
       ],
-      "id": "c9cd101f-26a1-48c0-b01c-33db8cb5abef",
-      "name": "Download file",
+      "id": "d00177b1-f97c-472b-8e45-ae62d1dcc308",
+      "name": "Download Shot List File1",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "ScH2Khz6AL9njL5N",
@@ -971,106 +1060,12 @@
     },
     {
       "parameters": {
-        "operation": "text",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
-      "position": [
-        688,
-        448
-      ],
-      "id": "9876783d-a00b-4f88-8a5a-ad18429f26a7",
-      "name": "Extract from File"
-    },
-    {
-      "parameters": {
-        "model": "openai/gpt-5",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        816,
-        704
-      ],
-      "id": "21b9c100-8133-4d3e-9e29-6925a1ab7c9a",
-      "name": "OpenRouter gpt-5",
-      "credentials": {
-        "openRouterApi": {
-          "id": "pwj1L3d2Ror7G0eW",
-          "name": "AO Workspace ALL | (@adamandjalen@gmail acc.)"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
-        "options": {}
-      },
-      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
-      "typeVersion": 1,
-      "position": [
-        1536,
-        704
-      ],
-      "id": "45715fbb-e939-49c0-b662-2a9fc04d811b",
-      "name": "Search in Tavily",
-      "credentials": {
-        "tavilyApi": {
-          "id": "CXoUm5lsjEhwMzzP",
-          "name": "Tavily AO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.agents.agents[2].chat_memory_session_id }}",
-        "tableName": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.misc.agent_memories_supabase_table }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        944,
-        672
-      ],
-      "id": "b6b10bc1-5ca3-42a6-8716-70606d150f96",
-      "name": "Postgres Memory - MacGyver",
-      "credentials": {
-        "postgres": {
-          "id": "85Tuim46hYnLqadX",
-          "name": "Postgres via Supabase — AO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Current Date/Time: {{ $now.toString() }}\n\nCurrent Content Row Data (source: Created Content Google Sheet): {{ $('Get Work Draft row data').item.json.toJsonString() }}\n\n{{ $if($('M is Triggered').item.json.query.isNotEmpty(), \"Query / instructions (coming from Content Director Agent): \" + $('M is Triggered').item.json.query, '') }}",
-        "hasOutputParser": true,
-        "needsFallback": true,
-        "options": {
-          "systemMessage": "={{ $('M is Triggered').item.json.aos_prompts_and_contexts.agents.agents[2].system_prompt }}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        1056,
-        256
-      ],
-      "id": "e552316a-c843-4107-9260-e3178b10c447",
-      "name": "MacGyver"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "4b5cca27-0d0d-40b1-af5b-c97775b59f45",
-              "name": "system_prompt",
-              "value": "=You are the Technical Specifications Shot List Agent that works for Artificial Orchard Studios, part of the Artificial Orchard media organization.   Overview:  You take content initatives and all their included data and implement the Shot List, an encompassing technical specification document detailing the dynamics of what the completed output of a content initative will be (also referred to as the 'final package manifest', 'final packge', or 'package') as well as how components will be implemented.   The Shot List at its core is a list of all the elements needed and how they will be organized, from the intermediary video, image or sound elements of a sequence to the sequences of a deliverable, to the deliverables of the final package.  The Shot List should be coherent at the micro and macro scale. Ensure component properties are compatible with regard to respective media type, that quality ai generated media prompts are written appropriate for the given element's complexity, that the coherent whole is a faithful implementation of the content screenplay/storyboard, and that the chosen publishing platform's file & format requirements are followed.  It is imperative that you confirm that the proposed media creatives meet the standards and requirements of the desired publishing platform, the quality assurance of the Artificial Orchard brand and, if provided, content guidelines proprietary to the specific account you may be creating for.   - Creative asset(s) for posts will be almost entirely generated by AI. Do not be overly ambitious with prompt complexity. For example when crafting video generation prompts, have little to no camera perspective shifts per video generated.  - When crafting visual generation prompts, especially when the subject matter could be perceived as suggestive or sensual, that prompts be written so as to make them \"generally appropriate\" to pass any model provider's content guidelines.  - Individual video duration length may not always be possible to set; default to 5, 8, or 10 seconds. Limit the amount of videos to stitch together (1-4, 8 max).  - Abstain from architecting the Shot List, its final deliverables, or deliverable's sequences with strict time tolerances. For example, creating an audio sound element exactly 11.2 seconds long to overlay 2 video elements with sum equal duration. Do not do that! In the case of stitching multiple sequences of a video or elements in a sequence, the extent of editing potential lest exceeds what could be done via an ffmpeg/compose post request api call.   Hierarchy:   - ELEMENTS: Lowest level component. Most often ai-generated. Of type 'video, 'audio', or 'image'. (note: if intending to generate a video with sound set 'videoContainsNativeAudio' to true and fill the    'generation_of_video_sound_prompt' on top of the 'video_generation_prompt'. - SEQUENCES: Grouping of one to many self-contained grouped elements. Only video deliverables can contain more than 1 sequence, in which case they would be stitched together sequentially in thier listed order. - DELIVERABLES: Final media asset(s) to be published. 1 to many. Final deliverable count can range from a single, simple .jpeg image to a 15+  mixed media carousel consisting of multiple images and videos. Posted in the same order as listed in the shot_list.  Important Tip: Fill 'internal_use_only...' fields with relevant info,  supplemental context, suggestions, etc. as it may be useful for ai agents in later steps of content production or when revisions are made.   Examples (1-4):   #### 1. A 3 image carousel post made for Instagram would look like:  {     \"caption\": \"A journey through the lost workshop of a celestial dreamer. Swipe to uncover the details. ✨ #FantasyArt #ConceptArt #Steampunk #Discovery #AI\",     \"platform\": \"instagram\",     \"final_package_format\": \"carousel-image\",     \"internal_use_only_final_package_description\": \"A 3-image carousel for Instagram, designed to tell a short visual story and encourage user interaction through swiping.\",     \"aspect_ratio\": \"4:5\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 1: The wide, establishing shot of the workshop.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the first image in the carousel.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The main establishing shot.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A wide-angle view of a fantastical, steampunk-inspired workshop. Sunlight streams through a large, ornate circular window, illuminating dust particles in the air. The room is filled with half-finished inventions, brass gears, copper pipes, and complex mechanical contraptions. In the center, a massive, partially assembled mechanical bird with intricate feather-like plates of metal sits dormant. The scene feels like a moment frozen in time. Hyperrealistic, detailed, warm lighting, 4:5 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d2\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 2: A medium shot focusing on the inventor's desk.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d2s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the second, more detailed image.\",                     \"elements\": [                         {                             \"element_id\": \"d2s1e1\",                             \"internal_use_only_element_description\": \"The desk shot.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A medium shot of the inventor's cluttered workbench. Blueprints for the mechanical bird are unrolled, held down by various brass tools and a magnifying glass. A single, glowing gear sits on the desk, emitting a soft blue light that contrasts with the warm sunlight. An old leather-bound journal is open, filled with complex diagrams and handwritten notes. The scene suggests a story of genius and obsession. Detailed textures, shallow depth of field, 4:5 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d3\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"Carousel Image 3: An extreme close-up of the mechanical bird's eye.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d3s1\",                     \"internal_use_only_sequence_description\": \"Generation prompt for the final, intimate close-up image.\",                     \"elements\": [                         {                             \"element_id\": \"d3s1e1\",                             \"internal_use_only_element_description\": \"The eye close-up.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"An extreme close-up, macro shot of the mechanical bird's head. The eye is a complex lens, like a camera aperture, made of concentric rings of polished brass and copper. Inside the lens, a faint, magical blue light glows, mirroring the light from the gear on the desk. The craftsmanship is incredibly detailed, with tiny, almost invisible engravings on the metal plates of the bird's face. The image feels intimate and hints at the spark of life within the machine. Photorealistic, dramatic, 4:5 aspect ratio.\"                         }                     ]                 }             ]         }     ] }  #### 2. A 1 image post for TikTok would look like:  {     \"caption\": \"In the library of cosmos, every star tells a story. ✨ #CosmicLibrary #FantasyArt #BookLover #DigitalArt #AIGenerated\",     \"platform\": \"tiktok\",     \"final_package_format\": \"image\",     \"internal_use_only_final_package_description\": \"Single image post for Instagram feed. Primary goal is audience engagement through a visually stunning and imaginative concept.\",     \"aspect_ratio\": \"5:4\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"image\",             \"internal_use_only_deliverable_description\": \"A single, high-resolution image asset featuring a fantastical scene.\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"This sequence defines the generation of the single image deliverable.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The core visual element. A hyperrealistic fantasy image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A solitary scholar stands in the center of a vast, circular library with towering, ancient wooden bookshelves. The library's domed ceiling is a swirling, vibrant nebula of deep blues, purples, and golds, with stars glittering like diamonds. A single beam of cosmic light illuminates the scholar, who is reaching up towards a floating, glowing book that emanates a soft, warm light. The style is hyperrealistic with a touch of fantasy, emphasizing the detailed texture of the old books and the ethereal quality of the galaxy. Shot in a 5:4 portrait aspect ratio, creating a sense of height and wonder. The mood is awe-inspiring and magical.\"                         }                     ]                 }             ]         }     ] }  #### 3. A 4 item carousel-mixed-media post of photos and videos for Instagram {     \"caption\": \"A forgotten season. Swipe to see the forest's final, fleeting moments of warmth before the frost. 🍂❄️ #Autumn #FirstSnow #Fantasy #MixedMedia #AIArt\",     \"platform\": \"instagram\",     \"final_package_format\": \"carousel-mixed-media\",     \"internal_use_only_final_package_description\": \"4-part mixed-media carousel for Instagram. The sequence is Video -> Image -> Image -> Video to tell a short story about the transition from autumn to winter.\",     \"aspect_ratio\": \"9:16\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"video\",             \"internal_use_only_deliverable_description\": \"Carousel Part 1: An establishing video of a vibrant autumn forest.\",             \"file_type\": \"mp4\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"A single sequence video with accompanying ambient sound.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"The visual element of the autumn forest.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": false,                             \"generation_of_video_sound_prompt\": null,                             \"video_generation_prompt\": \"A slow, gentle push-in shot through a dense, magical forest in peak autumn. Sunlight filters through a canopy of brilliant red, orange, and yellow leaves. Leaves are slowly, almost surreally, drifting down. The atmosphere is peaceful and saturated with warm colors. Cinematic, shallow depth of field, 9:16 aspect ratio.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 8                         },                         {                             \"element_id\": \"d1s1e2\",                             \"internal_use_only_element_description\": \"The ambient audio for the autumn scene.\",                             \"element_asset_type\": \"audio\",                             \"file_type\": \"mp3\",                             \"duration\": 8,                             \"element_start_time\": 0,                             \"audio_generation_prompt\": \"Gentle ambient sound of a peaceful forest. A soft breeze rustling through dry leaves, the occasional distant bird call. A subtle, warm and gentle musical pad fades in, creating a feeling of serene nostalgia. Tempo: 60 BPM, Key: F major.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d2\",             \"internal_use_only_deliverable_description\": \"Carousel Part 2: An image showing the first sign of winter.\",             \"deliverable_format\": \"image\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d2s1\",                     \"internal_use_only_sequence_description\": \"Generation of the second element in the carousel story.\",                     \"elements\": [                         {                             \"element_id\": \"d2s1e1\",                             \"internal_use_only_element_description\": \"The 'first frost' image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A close-up, macro photo of a single, vibrant red maple leaf lying on the forest floor. The edges of the leaf are delicately rimmed with sparkling white frost, a stark contrast between warmth and cold. The background is a soft-focus blur of other fallen leaves. The lighting is soft and cool. Hyperrealistic, 9:16 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d3\",             \"internal_use_only_deliverable_description\": \"Carousel Part 3: An image showing the transition deepening.\",             \"deliverable_format\": \"image\",             \"file_type\": \"png\",             \"sequences\": [                 {                     \"sequence_id\": \"d3s1\",                     \"internal_use_only_sequence_description\": \"Generation of the third element, showing the encroaching cold.\",                     \"elements\": [                         {                             \"element_id\": \"d3s1e1\",                             \"internal_use_only_element_description\": \"The 'snowy branch' image.\",                             \"element_asset_type\": \"image\",                             \"file_type\": \"png\",                             \"image_generation_prompt\": \"A medium shot of a bare tree branch, once full of leaves, now covered in a fresh layer of soft snow. A few stubborn, frosted red leaves still cling to the branch. In the background, the forest is now muted and cooler in tone, with snow dusting the ground. The image evokes a sense of beautiful melancholy. 9:16 aspect ratio.\"                         }                     ]                 }             ]         },         {             \"deliverable_id\": \"d4\",             \"deliverable_format\": \"video\",             \"file_type\": \"mp4\",             \"internal_use_only_deliverable_description\": \"Carousel Part 4: A final video showing the full winter scene.\",             \"sequences\": [                 {                     \"sequence_id\": \"d4s1\",                     \"internal_use_only_sequence_description\": \"The concluding video of the sequence.\",                     \"elements\": [                         {                             \"element_id\": \"d4s1e1\",                             \"internal_use_only_element_description\": \"The winter transformation video.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"The soft, muffled crunch of snow falling on snow. A gentle, cold wind whispering through bare branches. The sound should be quiet and peaceful.\",                             \"video_generation_prompt\": \"A final video that mirrors the opening shot, but the scene is transformed. It's a slow pull-out from the now snow-covered forest. Snow is gently falling. The color palette is cool blues, whites, and greys, with only a few specks of red from the last clinging leaves. The atmosphere is quiet, still, and magical. 9:16 aspect ratio.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 8                         },                         {                             \"element_id\": \"d4s1e2\",                             \"internal_use_only_element_description\": \"The concluding musical piece.\",                             \"element_asset_type\": \"audio\",                             \"file_type\": \"wav\",                             \"element_start_time\": 0,                             \"duration\": 8,                             \"audio_generation_prompt\": \"A sparse and melancholic piano melody plays over a soft, ethereal string pad. The music reflects the beauty and stillness of the winter scene, providing a sense of closure to the autumn theme. Tempo: 50 BPM, Key: C minor.\"                         }                     ]                 }             ]         }     ] }  #### 4. 1 video, 6 sequence instagram video {     \"caption\": \"From the nebula to the kitchen, a taste of the cosmos. ✨ Every ingredient tells a story. #CosmicCooking #FoodArt #Fantasy #AIvideo #Celestial\",     \"platform\": \"instagram\",     \"final_package_format\": \"video\",     \"internal_use_only_final_package_description\": \"A single, 30-second video composed of 6 sequential scenes. Each scene has its own distinct native audio to tell the story of a cosmic chef creating a dish.\",     \"aspect_ratio\": \"9:16\",     \"final_deliverables\": [         {             \"deliverable_id\": \"d1\",             \"deliverable_format\": \"video\",             \"internal_use_only_deliverable_description\": \"The complete 'Stardust Tart' creation video. The final product is a stitched video of all 6 sequences.\",             \"file_type\": \"mp4\",             \"sequences\": [                 {                     \"sequence_id\": \"d1s1\",                     \"internal_use_only_sequence_description\": \"Sequence 1: Gathering starlight.\",                     \"elements\": [                         {                             \"element_id\": \"d1s1e1\",                             \"internal_use_only_element_description\": \"A chef's hands gathering light.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A soft, high-frequency, shimmering chime, like a chorus of tiny glass bells. A gentle, ethereal 'whoosh' as the light is gathered. The sound is delicate and magical.\",                             \"video_generation_prompt\": \"Close-up on elegant, ethereal hands cupping together in deep space. A stream of liquid, golden starlight flows from a nebula and pools in the hands like honey. The light swirls and glitters. The background is a dark, star-filled cosmos. Cinematic, magical realism.\",                             \"element_start_time\": 0,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s2\",                     \"internal_use_only_sequence_description\": \"Sequence 2: Kneading cosmic dough.\",                     \"elements\": [                         {                             \"element_id\": \"d1s2e1\",                             \"internal_use_only_element_description\": \"Cosmic dough preparation.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A low, squishy, resonant sound. A gentle, rhythmic thudding layered with a soft, humming energy. The sound should feel both organic and otherworldly.\",                             \"video_generation_prompt\": \"Overhead shot of the collected starlight being poured into a bowl of shimmering, dark matter flour. The hands begin to knead the mixture, which becomes a dough that swirls with the colors of a galaxy. The dough pulses with a soft, internal light with each knead.\",                             \"element_start_time\": 5,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s3\",                     \"internal_use_only_sequence_description\": \"Sequence 3: Cracking a geode egg.\",                     \"elements\": [                         {                             \"element_id\": \"d1s3e1\",                             \"internal_use_only_element_description\": \"The geode egg.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A sharp, crystalline cracking sound, followed by a wet, viscous plop. A subtle, resonant chime echoes as the crystal shards separate.\",                             \"video_generation_prompt\": \"A slow-motion, side-profile shot. A beautiful crystalline geode is tapped on the side of the bowl. It cracks open, revealing a yolk that is a perfect, shimmering pearl. The pearl yolk drops into the cosmic dough, sending out a slow ripple of light.\",                             \"element_start_time\": 10,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s4\",                     \"internal_use_only_sequence_description\": \"Sequence 4: Baking in a miniature sun.\",                     \"elements\": [                         {                             \"element_id\": \"d1s4e1\",                             \"internal_use_only_element_description\": \"Solar baking process.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A low, intense, fiery hum of contained energy. A subtle, rising sizzle as the tart bakes. The sound should convey immense but controlled heat.\",                             \"video_generation_prompt\": \"The prepared tart, now in a small, ornate pan, is levitated into a miniature, contained sun that serves as an oven. The tart shell turns a golden-brown, and the filling bubbles with galactic colors. The light from the mini-sun is intense and warm.\",                             \"element_start_time\": 15,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s5\",                     \"internal_use_only_sequence_description\": \"Sequence 5: Garnishing with comet dust.\",                     \"elements\": [                         {                             \"element_id\": \"d1s5e1\",                             \"internal_use_only_element_description\": \"Final garnish.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A soft, delicate, granular sprinkling sound, like fine sand. Each particle makes a tiny, magical 'tink' or 'pop' as it lands on the tart, creating a gentle, effervescent fizz.\",                             \"video_generation_prompt\": \"Extreme close-up on the finished tart. A hand gently sprinkles it with glittering, silvery comet dust from a shaker shaped like a crescent moon. The dust settles on the surface and sparkles, leaving tiny, shimmering trails of light.\",                             \"element_start_time\": 20,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 },                 {                     \"sequence_id\": \"d1s6\",                     \"internal_use_only_sequence_description\": \"Sequence 6: The final presentation.\",                     \"elements\": [                         {                             \"element_id\": \"d1s6e1\",                             \"internal_use_only_element_description\": \"The hero shot of the final dish.\",                             \"element_asset_type\": \"video\",                             \"videoContainsNativeAudio\": true,                             \"generation_of_video_sound_prompt\": \"A single, awe-inspiring, resonant choral note swells and holds. A final, satisfying 'shing' sound, as if signifying perfection. The background is now perfectly silent.\",                             \"video_generation_prompt\": \"A hero shot of the final Stardust Tart sitting on a plate made of polished obsidian. The tart's surface slowly swirls like a living galaxy. The camera slowly pushes in, then cuts to black. The shot is beautiful, delicious, and awe-inspiring.\",                             \"element_start_time\": 25,                             \"file_type\": \"mp4\",                             \"duration\": 5                         }                     ]                 }             ]         }     ] }   In short, deliverables are the final assets which get posted to a platform, regardless of sequences and elements count.  - A 3 piece mixed-media-carousel will have 3 final deliverables - A 1 video post on TikTok will have 1 deliverable - A 7 mixed-media-carousel on Instagram will have 7 deliverables   Select only from these 5 choices when setting \"final_package_format\" if it hasn't been set already:  1. image 2. video 3. carousel-images 4. carousel-videos 5. carousel-mixed-media  The following 3 choices exist when selecting values for \"deliverable_asset_type\" and \"element_asset_type\": 1. \"image\" 2. \"audio\" 3. \"video\"  Choice of platforms to choose from: 1. tikTok 2. instagram.  Other parameter value choices:  - file_type: [\".png\" or \".webp\" or \"jpeg\", \".mp4\", \"mp3\", \".wav\", \".mov\",\".m4a\"]   Note: Unless explicitly stated, keep indvidual video content short (ie 15-60s, maximum 90 seconds).    Tools you have access to:      1. Tavily - use tool to search the web     2. Artificial Orchard Studios Company Guidelines - use tool as reference when creating content that abides by quality standards of the company     3. Social Platform Format Specifications - Use to insure media specifications and formats are met respective to the chosen social media platform (ie that images generated for TikTok posts are the right file type)     4. Calculator use as needed     5. Thinking - use the think tool to reason out loud as you construct the shot list. This will likely be the most utilized tool in your arsenal. Use the think tool to formulate an initial plan, to reason through intermediary decisions and challenges, and to check your work right before submitting your final response. Attention to detail is imperative for this task. Fields simultaneously beholden to multiple, different types of requirements are commonplace. Be as proactive as possible. Measure twice, cut once—yet be biased towards action. Formulate a cohesive initial plan starting with meeting the list of the hard requirements & constraints. Once you start implementing your plan stick with it. Aim to make updates and revisions towards the end of your initially implemented plan. The purpose of this focus is to optimize process efficiency & coherence of the final  output.  Output your final response that abides by the JSON structured output schema. On top of the final Shot_List, provide a summary abstract explaining the rationale behind creating the final Shot_List as well as the dynamics of this Shot_List at a high level. Include in summary_abstract other information or context deemed noteworthy or relevant.",
+              "id": "2b8fc587-3876-4c4a-b784-29399fa2f8f5",
+              "name": "working_draft_locked_initial_cell_values",
+              "value": "={{ $json.INPUT_WORKING_DRAFT_LOCKED_CELL_VALUES }}",
               "type": "string"
             }
           ]
@@ -1081,163 +1076,13 @@
       "typeVersion": 3.4,
       "position": [
         128,
-        688
-      ],
-      "id": "f7ea9da7-472c-495f-bda3-ca8ab690382e",
-      "name": "MacGyver System Prompt (original 9/4/25)"
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "leftValue": "action_type",
-                    "rightValue": "create",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "b20561a7-fd66-48da-97df-e190a42b7045"
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "create"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "b8b7a614-bfed-4c4e-8f84-2e61bc846e82",
-                    "leftValue": "",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "update"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "da83be01-eb6c-438c-8976-e0340b73424f",
-                    "leftValue": "",
-                    "rightValue": "text_response_only",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
-      "position": [
-        1408,
-        240
-      ],
-      "id": "eeec2427-cfb8-4bd3-8800-1b9dd13ef91d",
-      "name": "Switch1"
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "fileId": {
-          "__rl": true,
-          "mode": "list",
-          "value": ""
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        1664,
         256
       ],
-      "id": "6f19671e-1766-44f3-b61f-275c3e328575",
-      "name": "Update file",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "ScH2Khz6AL9njL5N",
-          "name": "Google Drive — AO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "createFromText",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "root",
-          "cachedResultName": "/ (Root folder)"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        1664,
-        96
-      ],
-      "id": "e077bec8-6144-44d6-843d-2b47cbaeb893",
-      "name": "Create file from text",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "ScH2Khz6AL9njL5N",
-          "name": "Google Drive — AO"
-        }
-      }
+      "id": "cbaa1c8e-3d72-4940-b09a-a97b9fc714a1",
+      "name": "Edit Fields"
     }
   ],
   "connections": {
-    "Official Social Platform Format Standards & Requirements": {
-      "ai_tool": [
-        []
-      ]
-    },
     "Structured Output Parser": {
       "ai_outputParser": [
         [
@@ -1249,25 +1094,9 @@
         ]
       ]
     },
-    "Artificial Orchard Studios: Company Guidelines": {
-      "ai_tool": [
-        []
-      ]
-    },
-    "Status ('Shot_List'): ✅ Done": {
-      "main": [
-        []
-      ]
-    },
     "Think": {
       "ai_tool": [
-        [
-          {
-            "node": "MacGyver",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Calculator": {
@@ -1297,22 +1126,11 @@
         ]
       ]
     },
-    "Clean Up": {
-      "main": [
-        [
-          {
-            "node": "Append to Agent Logs Sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "M is Triggered": {
       "main": [
         [
           {
-            "node": "Switch",
+            "node": "Get Version_Lock Row Data",
             "type": "main",
             "index": 0
           }
@@ -1323,54 +1141,21 @@
       "main": [
         [
           {
-            "node": "Get Work Draft row data",
+            "node": "Get Work Draft Row",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Get Version Run Lock row data",
+            "node": "Download Shot List File1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Download file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Work Draft row data": {
-      "main": [
-        [
-          {
-            "node": "Standardize inputs",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Version Run Lock row data": {
-      "main": [
-        [
-          {
-            "node": "Standardize inputs",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Download file": {
-      "main": [
-        [
-          {
-            "node": "Extract from File",
+            "node": "Download Shot List File",
             "type": "main",
             "index": 0
           }
@@ -1412,24 +1197,12 @@
     },
     "Search in Tavily": {
       "ai_tool": [
-        [
-          {
-            "node": "MacGyver",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Postgres Memory - MacGyver": {
       "ai_memory": [
-        [
-          {
-            "node": "MacGyver",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "MacGyver": {
@@ -1440,7 +1213,8 @@
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Switch1": {
@@ -1454,7 +1228,145 @@
         ],
         [
           {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Final Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Work Draft Row": {
+      "main": [
+        [
+          {
+            "node": "Standardize inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Shot List File": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
             "node": "Update file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Version_Lock Row Data": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create file from text": {
+      "main": [
+        [
+          {
+            "node": "Final Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update file": {
+      "main": [
+        [
+          {
+            "node": "Final Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Up": {
+      "main": [
+        [
+          {
+            "node": "Append to Agent Logs Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Up1": {
+      "main": [
+        [
+          {
+            "node": "Update Log1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append to Agent Logs Sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Update Log1": {
+      "main": [
+        []
+      ]
+    },
+    "Download Shot List File1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Standardize inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -1464,8 +1376,9 @@
   },
   "settings": {
     "executionOrder": "v1",
-    "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "0Jqu5fbEuJGX99So"
+    "callerPolicy": "any",
+    "errorWorkflow": "0Jqu5fbEuJGX99So",
+    "saveExecutionProgress": true
   },
   "staticData": null,
   "meta": {
@@ -1476,7 +1389,9 @@
       {
         "json": {
           "chatId": 8129407016,
-          "id": "1w_H3mFCM4Rqosk-rxbyo-dMOEGAFwr97",
+          "version_lock_id": "project_13-version_lock_1",
+          "shot_list_to_updates_file_id": null,
+          "shotlist_crud_action_type": "create",
           "query": "Create a detailed shot list for a mixed media Instagram carousel with 4 deliverables: 1) Video with 4 sequences - AI narrated six-word story followed by 3 scenes depicting 2 words each. 2) Photo meme commentary on a super-tech AI future vs. simple human past. 3) Video with 3 sequences of overhead shots of industrial revolution factory assembly line from different angles. 4) Image of a handmade drawing by a young kindergartner, innocent and unique, with vibrant primary colors.",
           "additional_info": "xe",
           "aos_prompts_and_contexts": {
@@ -1562,9 +1477,1065 @@
           }
         }
       }
+    ],
+    "Clean Up": [
+      {
+        "json": {
+          "steps": [],
+          "tokens": [],
+          "total_tokens": 0
+        }
+      }
+    ],
+    "Clean Up1": [
+      {
+        "json": {
+          "steps": [],
+          "tokens": [],
+          "total_tokens": 0
+        }
+      }
+    ],
+    "Switch1": [
+      {
+        "json": {
+          "output": {
+            "Shot_List": {
+              "platform": "instagram",
+              "final_package_format": "carousel-mixed-media",
+              "metadata": {
+                "internal_package_description": "Mixed-media Instagram carousel (4 panels) exploring coffee rituals and related thematic visuals: an intro AI-narrated six-word story with three visual scenes, a humor meme image contrasting hyper-tech future vs human past, an overhead-style industrial-revolution factory video sequence, and an innocent kindergarten drawing. Designed to match the project's 9:16 vertical style for mobile-first viewing, accessible text placement, and short video durations for smooth AI generation and upload constraints.",
+                "elementsTotal": 9,
+                "sequencesTotal": 9,
+                "deliverablesTotal": 4
+              },
+              "technical_specs": {
+                "aspect_ratio": "9:16"
+              },
+              "final_deliverables": [
+                {
+                  "deliverable_id": "d1",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "video",
+                    "internal_deliverable_description": "Intro video (stitched): AI-narrated six-word story (sequence 1) followed by three short scene sequences that each illustrate two words of the story. Total ~20 seconds."
+                  },
+                  "technical_specs": {
+                    "file_type": ".mp4"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d1s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 1 — AI-narrated six-word story as spoken text over a calm, minimal animated backdrop."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Short video element containing a calm, clear AI narration of the six-word story with subtle animated text reveal."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Minimal, elegant vertical frame. A soft, warm-gradient background with a slow, subtle vignette. Large centered animated text reveals a six-word story one word at a time with light kinetic easing. Maintain a single smooth camera hold (no perspective shifts). 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Calm, neutral AI voice (female or neutral) reads the six-word story slowly and clearly with gentle reverb. Spoken copy: \"Coffee connects home history hands heart\" — delivered as six discrete words with a short pause between each. Gentle ambient pad under voice, low volume, to support clarity.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 2 — Visual depiction of words 1-2: \"Coffee connects\" (pour + community)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s2e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Close, steady push-in shot of a barista pouring coffee into multiple small cups on a wooden table; hands of different people reach in to take cups, implying connection."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical close-to-medium shot, minimal camera movement: a barista pours a dark, glossy brew into several small cups on a rustic wooden table. Multiple diverse hands (visible forearms only) reach in to accept cups, implying community and connection. Warm, natural light, cinematic shallow depth. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Soft, present sound of liquid pouring, subtle murmur of nearby voices and gentle clinks of ceramic. Keep natural, low-volume ambience to not compete with the narration. No sharp transitions.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 5,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s3",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 3 — Visual depiction of words 3-4: \"home history\" (domestic ritual + archival textures)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s3e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Medium shot of a small home kitchen tabletop with an old coffee tin, a family photo, and someone pouring coffee into a delicate cup — warm, nostalgic framing."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Medium still-ish shot with minimal parallax: a cozy home tabletop—an aged coffee tin, a faded family photo, and a hand pouring coffee into a delicate cup. Gentle steam rises; warm golden window light. Add subtle film grain for archival feel. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Soft kettle hiss, faint kitchen ambience (distant clock, paper rustle). Warm, intimate acoustic pad underneath. Keep unobtrusive.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 10,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s4",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 4 — Visual depiction of words 5-6: \"hands heart\" (hands sharing cup; warm reaction)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s4e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Close-up on two pairs of hands passing a single cup; gentle smiles implied off-frame; warm bokeh background."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Extreme-close, stable vertical framing: two pairs of hands exchange a single steaming cup. Focus on tactile details — skin textures, steam motion, small gestures. Soft warm backlight; slow micro movement only. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Light ambient cloth sounds, soft inhalation/exhale, faint intimate hum. A subtle, uplifting acoustic chord lands as the exchange completes.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 15,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s_meta",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Internal: stitching guidance for final render."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s_meta_e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "audio",
+                            "internal_element_description": "No-op element for internal guidance; indicates crossfade times and subtitle placement."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "[Placeholder sequence slot filler]"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d2e_placeholder",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Placeholder - not used."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d2",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "image",
+                    "internal_deliverable_description": "Photo-meme commentary image contrasting a super-tech AI future with a simple human past (single-panel meme for humor and commentary). Designed for clear center-safe text and shareability."
+                  },
+                  "technical_specs": {
+                    "file_type": ".jpeg"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d2s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Single image generation for meme: split composition with futuristic right panel vs warm human past left panel and bold caption text."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".jpeg",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d2s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Single vertical meme image with two juxtaposed panels and bold top/bottom caption text, optimized for Instagram mobile feed safe zone."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": "Vertical split-panel meme in 9:16. Left panel: warm, analog café scene — a small neighborhood espresso stand, hand-painted sign, a smiling barista handing a slightly imperfect cup to a customer; textures, soft warm tones. Right panel: sleek hyper-tech future — chrome robots making flawless latte art in a neon city, cool blues and magentas, clean lines. Top caption (centered, large readable sans-serif): “Future AI: Perfect Lattes” Bottom caption: “Human Past: Perfectly Messy Moments” Keep text centered and within safe zone; font bold, high contrast. Make overall tone playful and non-derogatory. File should be a high-quality .jpeg suitable for Instagram upload."
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d3",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "video",
+                    "internal_deliverable_description": "Overhead-style industrial revolution factory video: three stitched overhead shots showing different angles of an assembly line (respectful, historical depiction). Total ~24 seconds."
+                  },
+                  "technical_specs": {
+                    "file_type": ".mp4"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d3s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 1 — Overhead wide shot of the factory floor, establishing scale."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Overhead, steady wide shot capturing rows of workers and machines; muted, historical color grading."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical-framed overhead wide shot that feels documentary: an 1800s-style factory floor with long assembly lines, workers in period clothing operating manual machines. Minimal camera motion — slow stabilized downward hold to convey scale. Subtle dust motes and warm-but-muted sepia grade. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Layered industrial ambience: steady rhythmic clanking, conveyor thumps, distant whistles, occasional metallic ping. Keep natural, mid-volume, not overwhelming. No dialogue.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 2 — Overhead medium-angle focused on a single assembly line station."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s2e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Overhead medium shot of a station where repetitive manual tasks occur; focus on hands and machinery interaction."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical overhead medium-angle showing one assembly line station: workers’ hands operating belts, gears turning, parts moving along. Keep motion minimal and loopable; avoid close facial details. Period-accurate clothing and tools, muted color palette. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Close industrial sounds: mechanical belt hum, tool taps, soft breath/work grunts at low volume. Maintain historic authenticity without harshness.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 8,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s3",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 3 — Overhead tight-angle tracking along the line to show movement and repetition."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s3e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Tighter overhead tracking shot that glides slowly along the conveyor, emphasizing repetition and rhythm."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical tight overhead tracking shot: slow, stabilized glide along the moving conveyor belt showing repeated tasks and parts. Maintain consistent lighting and historical tone. Small, gentle depth-of-field to separate foreground from background. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "A rhythmic, repeating mechanical cadence timed with the conveyor movement; soft metallic clicks and the hum of the factory. Keep audio loopable and unobtrusive.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 16,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s_meta",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Internal: color grade and archival texture pass guidance."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s_meta_e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "audio",
+                            "internal_element_description": "Internal guidance element: recommended gentle sepia grade, subtle film grain, and consistent ambient audio crossfades between sequences."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d4",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "[Placeholder sequence slot filler]"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d4e_placeholder",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Placeholder - not used."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d4",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "image",
+                    "internal_deliverable_description": "Handmade kindergarten drawing: innocent, unique crayon drawing using vibrant primary colors. Intended to feel authentic and childlike for emotional contrast."
+                  },
+                  "technical_specs": {
+                    "file_type": ".png"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d4s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Single image generation of a child's handmade drawing using crayon textures and primary colors. Ensure innocence and authenticity; avoid generating realistic child photos—only the art itself."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".png",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d4s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "A vertical, naive crayon drawing on textured paper: bright sun, a simple house, a smiling stick-figure family and a big coffee cup; bold primary colors, exaggerated outlines, visible crayon strokes and paper grain."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": "Create a vertical crayon drawing on textured, slightly off-white paper. Style: kindergarten hand—bold, uneven lines and bright primary colors (red, blue, yellow, green). Content: large smiling sun in top corner, simple box house with door and windows, stick-figure family holding hands, and an oversized steaming coffee cup to tie to project theme. Emphasize visible crayon strokes, waxy texture, and childlike proportions. Innocent, joyful, and unique. 9:16 aspect ratio. Output as .png."
+                          },
+                          "technical_specs": {
+                            "file_type": ".png",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "response_rationale": "Summary abstract:\nThis shot list implements a concise, 4-panel mixed-media Instagram carousel (9:16 vertical) that fulfills the user's brief while respecting AI-generation limitations and platform constraints. The carousel packages are: (1) a short stitched video (4 sequences) that opens with a six-word AI narration and follows with three visual sequences illustrating two words each; (2) a single vertical meme image contrasting a high-tech future and human past; (3) a three-sequence overhead-style historical factory video with documentary tone; and (4) an authentic-looking kindergarten crayon drawing image. All video segments are intentionally short (5–8s) to simplify generation, keep file sizes manageable, and align with AI video providers' typical output limits. Prompts are deliberately simple (limited camera motion, single-perspective shots) to increase generation reliability.\n\nRationale and dynamics:\n- Accessibility & safe composition: Each deliverable includes guidance to keep important content within center-safe zones and bold readable text for the meme. Subtitles should be generated from narration for accessibility. \n- Native audio choices: Where narration or ambience is central to storytelling, sequences include native audio generation (videoContainsNativeAudio = true) to simplify stitching and preserve sync. Music/pads are low-volume to keep narration clear. \n- Cultural and brand considerations: Prompts instruct for respectful, non-derogatory depictions of workers and cultures, and the kindergarten drawing is framed as innocent art (not depicting real children). \n- Technical sanity checks: File types adhere to allowed list (.mp4, .jpeg, .png). Individual video durations are kept to 5–8s and the total elements, sequences and deliverables counts are summarized in metadata for pipeline planning. \n\nImplementation notes (internal_use_only):\n- Stabilization note: the working draft referenced jitter for frames 142–158. For sequences intended as stable overheads, request stabilization and limit motion in generation prompts. \n- Stitching guidance: apply 0.2–0.5s crossfade audio and 0.1–0.3s dissolve video transitions between stitched sequences to maintain smooth pacing. Keep caption overlays consistent across frames (same font, weight, and safe zone). \n- Accessibility: add burned-in subtitles for the narrated six-word story and provide a separate caption file (SRT) if the platform accepts it. \n\nIf you want, I can now: (A) convert these prompts into provider-specific payloads for generation APIs, (B) produce subtitle SRT text for the narration and suggested on-screen text for meme and slides, or (C) adjust aspect ratio to 4:5 for Instagram feed optimization."
+          },
+          "intermediateSteps": []
+        }
+      }
+    ],
+    "MacGyver": [
+      {
+        "json": {
+          "output": {
+            "Shot_List": {
+              "platform": "instagram",
+              "final_package_format": "carousel-mixed-media",
+              "metadata": {
+                "internal_package_description": "Mixed-media Instagram carousel (4 panels) exploring coffee rituals and related thematic visuals: an intro AI-narrated six-word story with three visual scenes, a humor meme image contrasting hyper-tech future vs human past, an overhead-style industrial-revolution factory video sequence, and an innocent kindergarten drawing. Designed to match the project's 9:16 vertical style for mobile-first viewing, accessible text placement, and short video durations for smooth AI generation and upload constraints.",
+                "elementsTotal": 9,
+                "sequencesTotal": 9,
+                "deliverablesTotal": 4
+              },
+              "technical_specs": {
+                "aspect_ratio": "9:16"
+              },
+              "final_deliverables": [
+                {
+                  "deliverable_id": "d1",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "video",
+                    "internal_deliverable_description": "Intro video (stitched): AI-narrated six-word story (sequence 1) followed by three short scene sequences that each illustrate two words of the story. Total ~20 seconds."
+                  },
+                  "technical_specs": {
+                    "file_type": ".mp4"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d1s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 1 — AI-narrated six-word story as spoken text over a calm, minimal animated backdrop."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Short video element containing a calm, clear AI narration of the six-word story with subtle animated text reveal."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Minimal, elegant vertical frame. A soft, warm-gradient background with a slow, subtle vignette. Large centered animated text reveals a six-word story one word at a time with light kinetic easing. Maintain a single smooth camera hold (no perspective shifts). 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Calm, neutral AI voice (female or neutral) reads the six-word story slowly and clearly with gentle reverb. Spoken copy: \"Coffee connects home history hands heart\" — delivered as six discrete words with a short pause between each. Gentle ambient pad under voice, low volume, to support clarity.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 2 — Visual depiction of words 1-2: \"Coffee connects\" (pour + community)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s2e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Close, steady push-in shot of a barista pouring coffee into multiple small cups on a wooden table; hands of different people reach in to take cups, implying connection."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical close-to-medium shot, minimal camera movement: a barista pours a dark, glossy brew into several small cups on a rustic wooden table. Multiple diverse hands (visible forearms only) reach in to accept cups, implying community and connection. Warm, natural light, cinematic shallow depth. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Soft, present sound of liquid pouring, subtle murmur of nearby voices and gentle clinks of ceramic. Keep natural, low-volume ambience to not compete with the narration. No sharp transitions.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 5,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s3",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 3 — Visual depiction of words 3-4: \"home history\" (domestic ritual + archival textures)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s3e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Medium shot of a small home kitchen tabletop with an old coffee tin, a family photo, and someone pouring coffee into a delicate cup — warm, nostalgic framing."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Medium still-ish shot with minimal parallax: a cozy home tabletop—an aged coffee tin, a faded family photo, and a hand pouring coffee into a delicate cup. Gentle steam rises; warm golden window light. Add subtle film grain for archival feel. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Soft kettle hiss, faint kitchen ambience (distant clock, paper rustle). Warm, intimate acoustic pad underneath. Keep unobtrusive.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 10,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s4",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 4 — Visual depiction of words 5-6: \"hands heart\" (hands sharing cup; warm reaction)"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 5
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s4e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Close-up on two pairs of hands passing a single cup; gentle smiles implied off-frame; warm bokeh background."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Extreme-close, stable vertical framing: two pairs of hands exchange a single steaming cup. Focus on tactile details — skin textures, steam motion, small gestures. Soft warm backlight; slow micro movement only. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Light ambient cloth sounds, soft inhalation/exhale, faint intimate hum. A subtle, uplifting acoustic chord lands as the exchange completes.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 5,
+                            "element_start_time": 15,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d1s_meta",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Internal: stitching guidance for final render."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d1s_meta_e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "audio",
+                            "internal_element_description": "No-op element for internal guidance; indicates crossfade times and subtitle placement."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "[Placeholder sequence slot filler]"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d2e_placeholder",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Placeholder - not used."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d2",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "image",
+                    "internal_deliverable_description": "Photo-meme commentary image contrasting a super-tech AI future with a simple human past (single-panel meme for humor and commentary). Designed for clear center-safe text and shareability."
+                  },
+                  "technical_specs": {
+                    "file_type": ".jpeg"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d2s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Single image generation for meme: split composition with futuristic right panel vs warm human past left panel and bold caption text."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".jpeg",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d2s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Single vertical meme image with two juxtaposed panels and bold top/bottom caption text, optimized for Instagram mobile feed safe zone."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": "Vertical split-panel meme in 9:16. Left panel: warm, analog café scene — a small neighborhood espresso stand, hand-painted sign, a smiling barista handing a slightly imperfect cup to a customer; textures, soft warm tones. Right panel: sleek hyper-tech future — chrome robots making flawless latte art in a neon city, cool blues and magentas, clean lines. Top caption (centered, large readable sans-serif): “Future AI: Perfect Lattes” Bottom caption: “Human Past: Perfectly Messy Moments” Keep text centered and within safe zone; font bold, high contrast. Make overall tone playful and non-derogatory. File should be a high-quality .jpeg suitable for Instagram upload."
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d3",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "video",
+                    "internal_deliverable_description": "Overhead-style industrial revolution factory video: three stitched overhead shots showing different angles of an assembly line (respectful, historical depiction). Total ~24 seconds."
+                  },
+                  "technical_specs": {
+                    "file_type": ".mp4"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d3s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 1 — Overhead wide shot of the factory floor, establishing scale."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Overhead, steady wide shot capturing rows of workers and machines; muted, historical color grading."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical-framed overhead wide shot that feels documentary: an 1800s-style factory floor with long assembly lines, workers in period clothing operating manual machines. Minimal camera motion — slow stabilized downward hold to convey scale. Subtle dust motes and warm-but-muted sepia grade. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Layered industrial ambience: steady rhythmic clanking, conveyor thumps, distant whistles, occasional metallic ping. Keep natural, mid-volume, not overwhelming. No dialogue.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s2",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 2 — Overhead medium-angle focused on a single assembly line station."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s2e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Overhead medium shot of a station where repetitive manual tasks occur; focus on hands and machinery interaction."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical overhead medium-angle showing one assembly line station: workers’ hands operating belts, gears turning, parts moving along. Keep motion minimal and loopable; avoid close facial details. Period-accurate clothing and tools, muted color palette. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "Close industrial sounds: mechanical belt hum, tool taps, soft breath/work grunts at low volume. Maintain historic authenticity without harshness.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 8,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s3",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Sequence 3 — Overhead tight-angle tracking along the line to show movement and repetition."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 8
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s3e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "video",
+                            "internal_element_description": "Tighter overhead tracking shot that glides slowly along the conveyor, emphasizing repetition and rhythm."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": "Vertical tight overhead tracking shot: slow, stabilized glide along the moving conveyor belt showing repeated tasks and parts. Maintain consistent lighting and historical tone. Small, gentle depth-of-field to separate foreground from background. 9:16 aspect ratio.",
+                            "generation_of_video_sound_prompt": "A rhythmic, repeating mechanical cadence timed with the conveyor movement; soft metallic clicks and the hum of the factory. Keep audio loopable and unobtrusive.",
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 8,
+                            "element_start_time": 16,
+                            "videoContainsNativeAudio": true
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d3s_meta",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Internal: color grade and archival texture pass guidance."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d3s_meta_e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "audio",
+                            "internal_element_description": "Internal guidance element: recommended gentle sepia grade, subtle film grain, and consistent ambient audio crossfades between sequences."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".mp4",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "sequence_id": "d4",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "[Placeholder sequence slot filler]"
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".mp4",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d4e_placeholder",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "Placeholder - not used."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": null
+                          },
+                          "technical_specs": {
+                            "file_type": ".jpeg",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "deliverable_id": "d4",
+                  "metadata": {
+                    "component_type": "deliverable",
+                    "media_type": "image",
+                    "internal_deliverable_description": "Handmade kindergarten drawing: innocent, unique crayon drawing using vibrant primary colors. Intended to feel authentic and childlike for emotional contrast."
+                  },
+                  "technical_specs": {
+                    "file_type": ".png"
+                  },
+                  "sequences": [
+                    {
+                      "sequence_id": "d4s1",
+                      "metadata": {
+                        "component_type": "sequence",
+                        "internal_sequence_description": "Single image generation of a child's handmade drawing using crayon textures and primary colors. Ensure innocence and authenticity; avoid generating realistic child photos—only the art itself."
+                      },
+                      "technical_specs": {
+                        "aspect_ratio": "9:16",
+                        "file_type": ".png",
+                        "duration": 0
+                      },
+                      "elements": [
+                        {
+                          "element_id": "d4s1e1",
+                          "metadata": {
+                            "component_type": "element",
+                            "media_type": "image",
+                            "internal_element_description": "A vertical, naive crayon drawing on textured paper: bright sun, a simple house, a smiling stick-figure family and a big coffee cup; bold primary colors, exaggerated outlines, visible crayon strokes and paper grain."
+                          },
+                          "prompts": {
+                            "video_generation_prompt": null,
+                            "generation_of_video_sound_prompt": null,
+                            "audio_generation_prompt": null,
+                            "image_generation_prompt": "Create a vertical crayon drawing on textured, slightly off-white paper. Style: kindergarten hand—bold, uneven lines and bright primary colors (red, blue, yellow, green). Content: large smiling sun in top corner, simple box house with door and windows, stick-figure family holding hands, and an oversized steaming coffee cup to tie to project theme. Emphasize visible crayon strokes, waxy texture, and childlike proportions. Innocent, joyful, and unique. 9:16 aspect ratio. Output as .png."
+                          },
+                          "technical_specs": {
+                            "file_type": ".png",
+                            "duration": 0,
+                            "element_start_time": 0,
+                            "videoContainsNativeAudio": false
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "response_rationale": "Summary abstract:\nThis shot list implements a concise, 4-panel mixed-media Instagram carousel (9:16 vertical) that fulfills the user's brief while respecting AI-generation limitations and platform constraints. The carousel packages are: (1) a short stitched video (4 sequences) that opens with a six-word AI narration and follows with three visual sequences illustrating two words each; (2) a single vertical meme image contrasting a high-tech future and human past; (3) a three-sequence overhead-style historical factory video with documentary tone; and (4) an authentic-looking kindergarten crayon drawing image. All video segments are intentionally short (5–8s) to simplify generation, keep file sizes manageable, and align with AI video providers' typical output limits. Prompts are deliberately simple (limited camera motion, single-perspective shots) to increase generation reliability.\n\nRationale and dynamics:\n- Accessibility & safe composition: Each deliverable includes guidance to keep important content within center-safe zones and bold readable text for the meme. Subtitles should be generated from narration for accessibility. \n- Native audio choices: Where narration or ambience is central to storytelling, sequences include native audio generation (videoContainsNativeAudio = true) to simplify stitching and preserve sync. Music/pads are low-volume to keep narration clear. \n- Cultural and brand considerations: Prompts instruct for respectful, non-derogatory depictions of workers and cultures, and the kindergarten drawing is framed as innocent art (not depicting real children). \n- Technical sanity checks: File types adhere to allowed list (.mp4, .jpeg, .png). Individual video durations are kept to 5–8s and the total elements, sequences and deliverables counts are summarized in metadata for pipeline planning. \n\nImplementation notes (internal_use_only):\n- Stabilization note: the working draft referenced jitter for frames 142–158. For sequences intended as stable overheads, request stabilization and limit motion in generation prompts. \n- Stitching guidance: apply 0.2–0.5s crossfade audio and 0.1–0.3s dissolve video transitions between stitched sequences to maintain smooth pacing. Keep caption overlays consistent across frames (same font, weight, and safe zone). \n- Accessibility: add burned-in subtitles for the narrated six-word story and provide a separate caption file (SRT) if the platform accepts it. \n\nIf you want, I can now: (A) convert these prompts into provider-specific payloads for generation APIs, (B) produce subtitle SRT text for the narration and suggested on-screen text for meme and slides, or (C) adjust aspect ratio to 4:5 for Instagram feed optimization."
+          },
+          "intermediateSteps": []
+        }
+      }
     ]
   },
-  "versionId": "a70757e3-bb54-43c4-99b2-cbccfc50249e",
+  "versionId": "ce19ce8a-8de4-43ff-8ca4-1c1e3aa0ad37",
   "triggerCount": 0,
   "shared": [
     {
