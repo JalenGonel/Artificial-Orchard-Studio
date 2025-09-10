@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-09-05T15:26:14.052Z",
-  "updatedAt": "2025-09-05T17:08:56.000Z",
+  "updatedAt": "2025-09-09T22:46:21.000Z",
   "id": "dGwc8J6RIWuRsAte",
   "name": "Create Project",
   "active": false,
@@ -17,11 +17,11 @@
               "name": "project_title"
             },
             {
-              "name": "aos_system_contexts",
+              "name": "aos_prompts_and_contexts",
               "type": "object"
             },
             {
-              "name": "chat_id"
+              "name": "chatId"
             }
           ]
         }
@@ -54,7 +54,7 @@
         "filtersUI": {
           "values": [
             {
-              "lookupColumn": "working_title",
+              "lookupColumn": "idea_title",
               "lookupValue": "={{ $json.idea_id }}"
             }
           ]
@@ -93,13 +93,13 @@
           "__rl": true,
           "value": 297625840,
           "mode": "list",
-          "cachedResultName": "projects_greenlit",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bAQwpVD4lERURH2bfN0xri-IUPwmkZDsSpUtXBhDsj8/edit#gid=297625840"
+          "cachedResultName": "projects",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w82Pi6QCWA14pqw7imAfh-UFhQ3WzcWwq6VSKVApLm0/edit#gid=297625840"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "project_id": "={{ $execution.id }}",
+            "project_id": "=proj_{{ $execution.id }}",
             "created_at": "={{ $now.toLocal().toISO() }}",
             "projects_drive_folder_id": "={{ $('Create project folder').item.json.id }}",
             "projects_drive_folder_url": "=https://drive.google.com/drive/u/1/folders/{{ $('Create project folder').item.json.id }}",
@@ -139,7 +139,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "logline",
@@ -198,7 +198,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "projects_drive_folder_url",
@@ -319,7 +319,7 @@
     {
       "parameters": {
         "resource": "folder",
-        "name": "=proj{{$execution.id}}_working_drafts",
+        "name": "=proj_{{$execution.id}}_working_drafts",
         "driveId": {
           "__rl": true,
           "mode": "list",
@@ -423,17 +423,17 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "working_title": "={{ $json.working_title }}",
             "status": "=greenlit",
-            "last_updated": "={{ $now.toUTC().toISO() }}"
+            "last_updated": "={{ $now.toUTC().toISO() }}",
+            "idea_title": "={{ $json.idea_title }}"
           },
           "matchingColumns": [
-            "working_title"
+            "idea_title"
           ],
           "schema": [
             {
-              "id": "working_title",
-              "displayName": "working_title",
+              "id": "idea_title",
+              "displayName": "idea_title",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -562,7 +562,7 @@
             {
               "id": "4fe540a9-ef46-4bc9-b922-46492db2cbce",
               "name": "response",
-              "value": "=task_successful: true\n\nResponse: \n\n## Idea (greenlit)\n\n{{ $('Get idea').item.json.toJsonString() }}\n\n\n## Project\n\n{{ $('Append Project').item.json.toJsonString() }}\n\n\n## 1st Working Draft\n\n{{ $('append working draft in sheet').item.json.toJsonString() }}\n",
+              "value": "=task_successful: true\n\nResponse: \n\n<important_ids>\nworking_draft_id: {{ $json.working_draft_id }}\nworking_draft_title: {{ $json.working_draft_title }}\nprojct_id: {{ $json.project_id }}\n\n<important_ids/>\n\n<idea_greenlit>\n{{ $('Get idea').item.json.toJsonString() }}\n<idea_greenlit/>\n\n<project>\n{{ $('Append Project').item.json.toJsonString() }}\n<project/>\n\n<1st_working_draft>\n{{ $('append working draft in sheet').item.json.toJsonString() }}\n<1st_working_draft/>",
               "type": "string"
             }
           ]
@@ -603,9 +603,9 @@
             "project_working_draft_no": "1",
             "draft_status": "=started",
             "created_at": "={{ $now.toLocal().toISO() }}",
-            "project_id": "=proj_{{ $('Append Project').item.json.project_id }}",
+            "project_id": "={{ $('Append Project').item.json.project_id }}",
             "draft_approve_status": "incomplete",
-            "last_workflow_execution_id": "=={{ $execution.id }}",
+            "last_workflow_execution_id": "={{ $execution.id }}",
             "drafts_drive_folder_id": "={{ $('Create Drafts Folder').item.json.id }}",
             "drafts_drive_folder_url": "=https://drive.google.com/drive/u/1/folders/{{ $('Create Drafts Folder').item.json.id }}"
           },
@@ -664,7 +664,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "draft_status",
@@ -700,7 +701,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "publish_date",
@@ -709,7 +711,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "publish_platform",
@@ -718,7 +721,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "content_package_format",
@@ -727,7 +731,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "deliverables_logline",
@@ -736,7 +741,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "tech_specs_and_reqs",
@@ -745,7 +751,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "treatment",
@@ -754,7 +761,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "media_generation_prompts",
@@ -763,7 +771,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "additional_working_draft_notes",
@@ -772,7 +781,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "caption_optional",
@@ -781,7 +791,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "drafts_drive_folder_url",
@@ -808,7 +819,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "notes_by_ai",
@@ -817,7 +829,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "last_workflow_execution_id",
@@ -962,7 +975,7 @@
     "When Executed by Another Workflow": [
       {
         "json": {
-          "chat_id": "281989",
+          "chatId": "281989",
           "idea_id": "AI Beats Documentary",
           "project_title": "a yellow brick road in ascii art, hieroglypics aesthetic",
           "aos_system_contexts": {
@@ -975,36 +988,42 @@
         }
       }
     ],
-    "Get idea": [
+    "Update Idea": [
+      {
+        "json": {
+          "status": "greenlit",
+          "last_updated": "2025-09-09T22:29:46.135Z",
+          "idea_title": "AI Beats Documentary"
+        }
+      }
+    ],
+    "Wait 5s1": [
       {
         "json": {
           "row_number": 10,
-          "working_title": "AI Beats Documentary",
+          "idea_title": "AI Beats Documentary",
           "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
           "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
           "additional_notes": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
           "status": "greenlit",
           "created_at": "2025-08-27T15:00:00Z",
-          "last_updated": "2025-09-05T17:06:58.643Z",
+          "last_updated": "2025-09-05T17:08:29.271Z",
           "author": "studio_user"
         }
       }
     ],
-    "Append Project": [
+    "Get idea": [
       {
         "json": {
-          "project_id": "3822",
-          "created_at": "2025-09-05T13:08:31.744-04:00",
-          "projects_drive_folder_id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
-          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
-          "projects_draft_folders": [
-            "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
-          ],
-          "status": "active",
+          "row_number": 10,
+          "idea_title": "AI Beats Documentary",
           "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
-          "additional_info": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
           "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
-          "project_title": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic"
+          "additional_notes": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "status": "greenlit",
+          "created_at": "2025-08-27T15:00:00Z",
+          "last_updated": "2025-09-05T17:08:29.271Z",
+          "author": "studio_user"
         }
       }
     ],
@@ -1012,8 +1031,8 @@
       {
         "json": {
           "kind": "drive#file",
-          "id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
-          "name": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic",
+          "id": "1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK",
+          "name": "Project 4056: a yellow brick road in ascii art, hieroglypics aesthetic",
           "mimeType": "application/vnd.google-apps.folder"
         }
       }
@@ -1022,51 +1041,61 @@
       {
         "json": {
           "kind": "drive#file",
-          "id": "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C",
-          "name": "proj3822_working_drafts",
+          "id": "1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl",
+          "name": "proj_4058_working_drafts",
           "mimeType": "application/vnd.google-apps.folder"
+        }
+      }
+    ],
+    "Append Project": [
+      {
+        "json": {
+          "project_id": "proj_4062",
+          "created_at": "2025-09-09T18:36:26.610-04:00",
+          "projects_drive_folder_id": "1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK",
+          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK",
+          "projects_draft_folders": [
+            "1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl"
+          ],
+          "status": "active",
+          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
+          "additional_info": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
+          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
+          "project_title": "Project 4056: a yellow brick road in ascii art, hieroglypics aesthetic"
         }
       }
     ],
     "Wait 3": [
       {
         "json": {
-          "project_id": "3822",
-          "created_at": "2025-09-05T13:08:31.744-04:00",
-          "projects_drive_folder_id": "15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
-          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX",
+          "project_id": "proj_4062",
+          "created_at": "2025-09-09T18:36:26.610-04:00",
+          "projects_drive_folder_id": "1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK",
+          "projects_drive_folder_url": "https://drive.google.com/drive/u/1/folders/1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK",
           "projects_draft_folders": [
-            "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
+            "1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl"
           ],
           "status": "active",
           "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
           "additional_info": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
           "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
-          "project_title": "Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic"
+          "project_title": "Project 4056: a yellow brick road in ascii art, hieroglypics aesthetic"
         }
       }
     ],
-    "Wait 5s1": [
+    "append working draft in sheet": [
       {
         "json": {
-          "row_number": 10,
-          "working_title": "AI Beats Documentary",
-          "logline": "A behind-the-scenes look at AI-created music and the humans guiding it.",
-          "description": "Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.",
-          "additional_notes": "internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f",
-          "status": "greenlit",
-          "created_at": "2025-08-27T15:00:00Z",
-          "last_updated": "2025-09-05T17:06:58.643Z",
-          "author": "studio_user"
-        }
-      }
-    ],
-    "Update Idea": [
-      {
-        "json": {
-          "working_title": "AI Beats Documentary",
-          "status": "greenlit",
-          "last_updated": "2025-09-05T17:08:29.271Z"
+          "working_draft_title": "1st Draft: proj_proj_4062",
+          "working_draft_id": "wd_4065",
+          "project_working_draft_no": "1",
+          "draft_status": "started",
+          "created_at": "2025-09-09T18:39:08.595-04:00",
+          "project_id": "proj_proj_4062",
+          "draft_approve_status": "incomplete",
+          "last_workflow_execution_id": "4065",
+          "drafts_drive_folder_id": "1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl",
+          "drafts_drive_folder_url": "https://drive.google.com/drive/u/1/folders/1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl"
         }
       }
     ],
@@ -1074,29 +1103,13 @@
       {
         "json": {
           "task_successful": true,
-          "workflow_execution_id": 3822,
-          "response": "task_successful: true\n\nResponse: \n\n## Idea (greenlit)\n\n{\"row_number\":10,\"working_title\":\"AI Beats Documentary\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"additional_notes\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"status\":\"greenlit\",\"created_at\":\"2025-08-27T15:00:00Z\",\"last_updated\":\"2025-09-05T17:06:58.643Z\",\"author\":\"studio_user\"}\n\n\n## Project\n\n{\"project_id\":\"3822\",\"created_at\":\"2025-09-05T13:08:31.744-04:00\",\"projects_drive_folder_id\":\"15utogoC9X_zuJMO88BU99l-gJLvEUNeX\",\"projects_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/15utogoC9X_zuJMO88BU99l-gJLvEUNeX\",\"projects_draft_folders\":[\"1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\"],\"status\":\"active\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"additional_info\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"project_title\":\"Project 3822: a yellow brick road in ascii art, hieroglypics aesthetic\"}\n\n\n## 1st Working Draft\n\n{\"working_draft_title\":\"1st Draft: proj_3822\",\"working_draft_id\":\"wd_3822\",\"project_working_draft_no\":\"1\",\"draft_status\":\"started\",\"created_at\":\"2025-09-05T13:08:35.897-04:00\",\"project_id\":\"proj_3822\",\"draft_approve_status\":\"incomplete\",\"last_workflow_execution_id\":\"=3822\",\"drafts_drive_folder_id\":\"1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\",\"drafts_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C\"}\n"
-        }
-      }
-    ],
-    "append working draft in sheet": [
-      {
-        "json": {
-          "working_draft_title": "1st Draft: proj_3822",
-          "working_draft_id": "wd_3822",
-          "project_working_draft_no": "1",
-          "draft_status": "started",
-          "created_at": "2025-09-05T13:08:35.897-04:00",
-          "project_id": "proj_3822",
-          "draft_approve_status": "incomplete",
-          "last_workflow_execution_id": "=3822",
-          "drafts_drive_folder_id": "1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C",
-          "drafts_drive_folder_url": "https://drive.google.com/drive/u/1/folders/1LT7thNH8sp5CdSQUBhv3NhhGJft9Id5C"
+          "workflow_execution_id": 4067,
+          "response": "task_successful: true\n\nResponse: \n\n<important_ids>\nworking_draft_id: wd_4065\nworking_draft_title: 1st Draft: proj_proj_4062\nprojct_id: proj_proj_4062\n\n<important_ids/>\n\n<idea_greenlit>\n{\"row_number\":10,\"idea_title\":\"AI Beats Documentary\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"additional_notes\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"status\":\"greenlit\",\"created_at\":\"2025-08-27T15:00:00Z\",\"last_updated\":\"2025-09-05T17:08:29.271Z\",\"author\":\"studio_user\"}\n<idea_greenlit/>\n\n<project>\n{\"project_id\":\"proj_4062\",\"created_at\":\"2025-09-09T18:36:26.610-04:00\",\"projects_drive_folder_id\":\"1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK\",\"projects_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/1VBPzcd3jmKYPoXvHBlLL68p8_dxrPEvK\",\"projects_draft_folders\":[\"1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl\"],\"status\":\"active\",\"logline\":\"A behind-the-scenes look at AI-created music and the humans guiding it.\",\"additional_info\":\"internal_id:f2d9c7b4-4a8e-4c1b-9f42-1a2b3c4d5e6f\",\"description\":\"Short-form documentary exploring how AI composes beats and the creative process around AI-generated music.\",\"project_title\":\"Project 4056: a yellow brick road in ascii art, hieroglypics aesthetic\"}\n<project/>\n\n<1st_working_draft>\n{\"working_draft_title\":\"1st Draft: proj_proj_4062\",\"working_draft_id\":\"wd_4065\",\"project_working_draft_no\":\"1\",\"draft_status\":\"started\",\"created_at\":\"2025-09-09T18:39:08.595-04:00\",\"project_id\":\"proj_proj_4062\",\"draft_approve_status\":\"incomplete\",\"last_workflow_execution_id\":\"4065\",\"drafts_drive_folder_id\":\"1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl\",\"drafts_drive_folder_url\":\"https://drive.google.com/drive/u/1/folders/1u1yss8-nnnO5lYMB0maBo9U4jz5w97kl\"}\n<1st_working_draft/>"
         }
       }
     ]
   },
-  "versionId": "ae0477b7-e8a3-464d-aed5-9f99e5b10bc5",
+  "versionId": "1ae9a80a-7da1-4bbd-83ca-237a6d05b7c1",
   "triggerCount": 0,
   "shared": [
     {
