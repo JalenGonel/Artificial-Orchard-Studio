@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-07-29T02:33:30.339Z",
-  "updatedAt": "2025-09-06T23:17:59.000Z",
+  "updatedAt": "2025-09-10T02:47:52.000Z",
   "id": "qbJAqng79qmg7On6",
   "name": "🤖 Spielberg — AOS V2 🤖🎬",
   "active": true,
@@ -1626,7 +1626,7 @@
       "type": "@n8n/n8n-nodes-langchain.agentTool",
       "typeVersion": 2.2,
       "position": [
-        1664,
+        1648,
         -880
       ],
       "id": "a0426af7-7ce3-4d78-97af-e201138612c8",
@@ -1902,8 +1902,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        3952,
-        -912
+        3216,
+        -1328
       ],
       "id": "a4b4d6d6-ab7b-4100-85b3-01f6ad47ec5e",
       "name": "Data Mngr (efficient)"
@@ -1921,8 +1921,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3952,
-        -704
+        3216,
+        -1120
       ],
       "id": "491b13b9-4f36-49b1-9a28-dd83a080040f",
       "name": "gpt5-mini",
@@ -1954,8 +1954,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4336,
-        -512
+        3600,
+        -928
       ],
       "id": "f6c6342d-2226-405d-8791-ea0db9a4a7b5",
       "name": "Delete Data",
@@ -2098,8 +2098,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4208,
-        -512
+        3472,
+        -928
       ],
       "id": "89b4d8e6-e612-4999-a2f4-fcb7da9b63fb",
       "name": "Update Data",
@@ -2138,8 +2138,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        -512
+        3344,
+        -928
       ],
       "id": "e6fca706-12f7-4839-8371-e5238ff93fad",
       "name": "Create Data",
@@ -2169,8 +2169,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        3952,
-        -512
+        3216,
+        -928
       ],
       "id": "b5c783aa-77b9-4b2e-b8d2-e4c3222bbb52",
       "name": "Get Data",
@@ -2199,8 +2199,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3584,
-        -912
+        2848,
+        -1328
       ],
       "id": "65f690f5-59cc-4dc3-a61b-fe9ca7d680c1",
       "name": "Edit"
@@ -2402,8 +2402,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        -160
+        3344,
+        -576
       ],
       "id": "4c436bb0-d006-4334-91e8-59fd188b688d",
       "name": "Create Project1",
@@ -2706,8 +2706,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        16
+        3344,
+        -400
       ],
       "id": "9bce6180-dac7-4cc1-a214-0c12a58f4dd0",
       "name": "Create Draft1",
@@ -3069,8 +3069,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        368
+        3344,
+        -48
       ],
       "id": "4cfc2c9a-2e06-4430-bd00-53d3c5cfb9a6",
       "name": "Create Run1",
@@ -3399,8 +3399,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        192
+        3344,
+        -224
       ],
       "id": "df32ba37-0386-42eb-98c7-ca6c65939d7a",
       "name": "Create Lock1",
@@ -3740,8 +3740,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        544
+        3344,
+        128
       ],
       "id": "e3348dee-5f88-46c6-8fa8-41b64d92f6bd",
       "name": "Create Final1",
@@ -3864,8 +3864,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        4080,
-        -336
+        3344,
+        -752
       ],
       "id": "3e289804-d2fe-4244-b898-0a10aec25eda",
       "name": "Create Idea2",
@@ -3885,8 +3885,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4304,
-        -912
+        3568,
+        -1328
       ],
       "id": "71c6ae6f-5baa-4e9d-bd12-b989f7ce41d9",
       "name": "Sticky Note15"
@@ -4780,8 +4780,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        144,
-        -768
+        176,
+        -752
       ],
       "id": "bc3893b5-7408-4060-b768-be6084d38bc6",
       "name": "Update row in sheet in Google Sheets",
@@ -5200,11 +5200,12 @@
         "workflowInputs": {
           "mappingMode": "defineBelow",
           "value": {
-            "chatId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('chatId', ``, 'string') }}",
             "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', ``, 'string') }}",
             "aos_prompts_and_contexts": "={{ $('aos_prompts_and_context').item.json.aos_prompts_and_contexts }}",
             "additional_info": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('additional_info', ``, 'string') }}",
-            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'string') }}"
+            "shotlist_crud_action_type": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('shotlist_crud_action_type', `The type of Shot List action agent will carry out: only options are [create_full, create_partial_, update, read]`, 'string') }}",
+            "version_lock_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('version_lock_id', ``, 'string') }}",
+            "chatId": "="
           },
           "matchingColumns": [],
           "schema": [
@@ -5218,8 +5219,17 @@
               "type": "string"
             },
             {
-              "id": "id",
-              "displayName": "id",
+              "id": "version_lock_id",
+              "displayName": "version_lock_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "shotlist_crud_action_type",
+              "displayName": "shotlist_crud_action_type",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -5280,7 +5290,12 @@
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
-          "value": {},
+          "value": {
+            "chat_id": "={{ $('Telegram Trigger JALEN').item.json.message.chat.id }}",
+            "aos_system_contexts": "={{ $('aos_prompts_and_context').item.json.aos_prompts_and_contexts }}",
+            "project_title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('project_title', ``, 'string') }}",
+            "working_draft_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('working_draft_id', ``, 'string') }}"
+          },
           "matchingColumns": [],
           "schema": [
             {
@@ -5343,24 +5358,30 @@
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
-          "value": {},
+          "value": {
+            "aos_prompts_and_contexts": "={{ $('aos_prompts_and_context').item.json.aos_prompts_and_contexts }}",
+            "working_draft_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('working_draft_id', ``, 'string') }}"
+          },
           "matchingColumns": [],
           "schema": [
             {
-              "id": "wrk_drft_id",
-              "displayName": "wrk_drft_id",
+              "id": "working_draft_id",
+              "displayName": "working_draft_id",
               "required": false,
               "defaultMatch": false,
               "display": true,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
-              "id": "AO_Studio_Contexts_status_enums_status_enums_prod_ver_lock_status",
-              "displayName": "AO_Studio_Contexts_status_enums_status_enums_prod_ver_lock_status",
+              "id": "aos_prompts_and_contexts",
+              "displayName": "aos_prompts_and_contexts",
               "required": false,
               "defaultMatch": false,
               "display": true,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -5399,8 +5420,20 @@
             {
               "id": "cc809156-b5e6-46d5-9a51-d2c9aa73c35d",
               "name": "aos_system_contexts",
-              "value": "={\n    \"aos_context_files\": {\n        \"aos_stats_logs_sheet\": {\n            \"file_id\": \"1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY\",\n            \"content_url\": \"https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?usp=drive_link\"\n        }\n    },\n    \"agent_memories_supabase_table\": \"aos_v2_agent_chat_memories\"\n}",
+              "value": "={\n    \n}",
               "type": "object"
+            },
+            {
+              "id": "cc900000-504e-4876-92fc-95b90baf0d0b",
+              "name": "aos_system_contexts.aos_context_files",
+              "value": "={{ \n\n{         \"aos_stats_logs_sheet\": {             \"file_id\": \"1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY\",             \"content_url\": \"https://docs.google.com/spreadsheets/d/1kzBW-0cB99TcrWLWQFAvjT52_jCGCLR0PbQ7s8bqWwY/edit?usp=drive_link\"         }     }\n\n}}",
+              "type": "object"
+            },
+            {
+              "id": "81d9dc03-df78-4a54-9726-30091a9fcfad",
+              "name": "aos_system_contexts.agent_memories_supabase_table",
+              "value": "aos_v2_agent_chat_memories",
+              "type": "string"
             }
           ]
         },
@@ -5546,7 +5579,9 @@
           "mappingMode": "defineBelow",
           "value": {
             "idea_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('idea_id', ``, 'string') }}",
-            "project_title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('project_title', ``, 'string') }}"
+            "project_title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('project_title', ``, 'string') }}",
+            "aos_prompts_and_contexts": "={{ $('aos_prompts_and_context').item.json.aos_prompts_and_contexts }}",
+            "chatId": "={{ $('Telegram Trigger JALEN').item.json.message.chat.id }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -5569,22 +5604,24 @@
               "type": "string"
             },
             {
-              "id": "aos_system_contexts",
-              "displayName": "aos_system_contexts",
+              "id": "aos_prompts_and_contexts",
+              "displayName": "aos_prompts_and_contexts",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "canBeUsedToMatch": true,
-              "type": "object"
+              "type": "object",
+              "removed": false
             },
             {
-              "id": "chat_id",
-              "displayName": "chat_id",
+              "id": "chatId",
+              "displayName": "chatId",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "canBeUsedToMatch": true,
-              "type": "string"
+              "type": "string",
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -6065,6 +6102,46 @@
       ],
       "id": "9d077463-8011-460b-a9f4-683176e4f2e7",
       "name": "Split Output if text length > 4048 chars"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2874a9db-709b-4426-9770-de0782cf3fb3",
+              "name": "projects_folder_hierarchy_chart",
+              "value": "# Project Folder Organization Scheme\n\n+ project_path_structure_hierarchy\n\n```json\nProjects/\n└── Project_[ProjectID]: [Project Title]/\n    ├── proj[ProjectID]_working_drafts/\n    │   └── proj[ProjectID]_[DraftNumber]_working_draft_[DraftID]/\n    ├── version_lock_[LockID]-[VariantNumber]/\n    │   ├── D[DeliverableNumber]_attempt-[AttemptNumber]_run[RunID]_prde[DeliverableID].png\n    │   ├── run[RunID]_asset_manifest\n    │   ├── MASTER-LOCK-SHOT-LIST - version_lock_[LockID]-[VariantNumber](-[DocRevision])?\n    │   └── partial_shot_list - run[RunID]   (optional)\n    └── (repeat additional version_lock folders as needed)\n```\n\n+ example_project_path_structure_hierarchy\n\n```json\nProjects/\n└── Project 3921: 30 Year Old Cat Lady Engaged/\n    ├── proj3921_working_drafts/\n    │   ├── proj3921_1_working_draft_329\n    │   ├── proj3921_2_working_draft_891\n    │   ├── proj3921_3_working_draft_1111\n    │   └── proj3921_4_working_draft_1923\n    │\n    ├── version_lock_1923-1/\n    │   ├── MASTER-LOCK-SHOT-LIST - version_lock_1923-2-1\n    │   └── partial_shot_list - run3819\n    │\n    └── version_lock_1923-2/\n        ├── D1_attempt-1_run2804_prde1801.png\n        ├── D2_attempt-1_run2804_prde1830.png\n        ├── D2_attempt-2_run2009_prde2019.png\n        ├── D2_attempt-2_run2805_prde2001.png\n        ├── D2_attempt-3_run2929_prde2951.png\n        ├── D3_attempt-1_run2804_prde1892.png\n        ├── D4_attempt-1_run2804_prde1899.png\n        ├── D4_attempt-2_run2846_prde2849.png\n        ├── MASTER-LOCK-SHOT-LIST - version_lock_1923-2-2\n        ├── run2009_asset_manifest\n        ├── run2804_asset_manifest\n        ├── run2805_asset_manifest\n        ├── run2846_asset_manifest\n        └── run2929_asset_manifest\n\n```",
+              "type": "string"
+            },
+            {
+              "id": "eb8826c4-1956-42f3-bfdc-2fa64095659d",
+              "name": "agent_roles_table",
+              "value": "# Agent Roles Table\n\n| Name      | Job                                                               | Description                                                                                                                                                          | tech things                                                                                                                                                                                                                                                                                                                                                                                                 |\n| --------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Spielberg | Director, Interfaces with Humans over message channel             |                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                             |\n| Tars      | Handles spreadsheet data, creating it and giving answers          | Creates data once approved to move to its next phase, can update 1-many individual values when desired, is who others interface when desiring questions on data.     | Has both 'Create Row' function tools and sub-workflows for creating new data (for phases that have more sequential steps/requirements for creation).                                                                                                                                                                                                                                                        |\n| Rainman   | Data intelligence and insights                                    | Deputy to Tars, gives longer form answers on Database                                                                                                                | Many more function calls than Tars to read data. to get / query google sheet for higher level or precise data reading.                                                                                                                                                                                                                                                                                      |\n| Paulina   | Writing agent responsible for pitching ideas and writing drafts.  | Writing agent responsible for writing both ideas and drafts for content, both herself and on behalf of the other ai agents in her \"Paulina's Writing Room\" (PWR).    | Function calls to only see data she is data of thing she is working on, can only edit certain parts column values                                                                                                                                                                                                                                                                                           |\n| Eddie     | Quick pitches and sketch writing                                  | Writes quick pitches, loglines, creative concepts                                                                                                                    | Passed in sheet row information by Paulina,  writes information on the spot.                                                                                                                                                                                                                                                                                                                                |\n| Hemingway | General writer agent                                              | General writing tasks, from creative screenplay to planning.                                                                                                         | Passed in state of draft / idea row information and passes it back to Paulina.                                                                                                                                                                                                                                                                                                                              |\n| Caesar    | Prompt Engineer                                                   | Takes the outlined content from drafts and writes ai generated prompts for each asset planned for composition                                                        | Tool called by Paulina. Gets the draft's row info and passes written draft back to Paulina. Especially helpful for when making revisions.                                                                                                                                                                                                                                                                   |\n| Kim       | Quality Assurance                                                 | Technical specifications, brand guidelines, company brandbook, budgetary guidelines, fact checking, research analysis.                                               | Can be tool called by any of a set of other AI agents. For working drafts, mainly called at beginning and end. Initially called by Paulina to establish technical guidelines or important fact checks once platform and deliverables are determined to plan content with right information in mind. Called at the end to ensure draft's proposed guidelines are up to the standards of company, brand, etc. |\n| MacGuyver | Shot List Agent                                                   | Writes the JSON object used to consolidate required data to facilitate ai generated content creation that fulfills the planned content drafted by the writing room.  | Structured output parser requires JSON schema for content creation, including file types, aspect ratios, deliverable size, video sequences, and sub elements which compose the package of deliverables to create.                                                                                                                                                                                           |\n| Forest    | Production Run Agent                                              | Runs Production Runs (yes) to generate necessary media assets for a package of deliverables.                                                                         | Does not run the actual production, but reports on active progress, reports back on whether things were followed through on, and if production run inputs are correct before they can be started.                                                                                                                                                                                                           |\n| Brittany  | Publishing Agent                                                  | Posts Finalized versions of content, and if necessary, writes a completed caption for the respective post before sending the content to be published.                | Has sub-workflow tool call to push row of finalized content. Reports back on if post was published or not.                                                                                                                                                                                                                                                                                                  |",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -976,
+        -2080
+      ],
+      "id": "565cb415-4668-4452-96c4-36f3768afe76",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        -2080
+      ],
+      "id": "c074a1a5-35ab-4032-a5da-f1e496b5a283",
+      "name": "When clicking ‘Execute workflow’"
     }
   ],
   "connections": {
@@ -7097,6 +7174,22 @@
           }
         ]
       ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        []
+      ]
     }
   },
   "settings": {
@@ -7149,7 +7242,7 @@
       }
     ]
   },
-  "versionId": "cff29d30-7813-45ad-a9a1-db5e456e64f0",
+  "versionId": "0e035ff8-b3e0-412c-a4e1-1bef187d4ae9",
   "triggerCount": 1,
   "shared": [
     {
